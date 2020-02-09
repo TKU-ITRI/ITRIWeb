@@ -145,7 +145,7 @@
       });
       sleep(100);
 
-      toolcutterTable = $('#toolcutterTable').DataTable({
+      cutterTable = $('#cutterTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -174,7 +174,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.toolcutterName
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
             html += '<button onclick="cutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="cutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
