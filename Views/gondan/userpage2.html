@@ -38,8 +38,8 @@
   <script>
     var peopleTable;
     var machineTables;
-    var cutterTable;
-    var jigTable;
+    var toolcutterTable;
+    var tooljigTable;
     var materialTable;
     $(document).ready(function () {
 
@@ -145,7 +145,7 @@
       });
       sleep(100);
 
-      cutterTable = $('#cutterTable').DataTable({
+      toolcutterTable = $('#toolcutterTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -196,7 +196,7 @@
       });
       sleep(100);
 
-      var jigTable = $('#jigTable').DataTable({
+      var tooljigTable = $('#tooljigTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
