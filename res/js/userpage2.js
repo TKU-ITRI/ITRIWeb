@@ -301,7 +301,7 @@ function materialCreateContent() {
         }),
         success: function () {
             materialTable.draw();
-            $("#meterialCreate").modal("hide");
+            $("#materialCreate").modal("hide");
         }
 
     })
