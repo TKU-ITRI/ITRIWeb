@@ -276,7 +276,7 @@ function jigDelete (id) {
 
 }
 
-function materiaCreateContent() {
+function materialCreateContent() {
     alert("ddd");
     // <!-- public string machineClass { get; set; }
     // public string machineName { get; set; }
@@ -287,41 +287,41 @@ function materiaCreateContent() {
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
-        url: webApiUrl + "/materia/Create",
+        url: webApiUrl + "/material/Create",
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'materiaClass': $('#materiaClassCreate').val(),
-            'materiaCount': $('#materiaCountCreate').val(),
-            'materiaNo': $('#materiaNoCreate').val(),
-            'materiaStatus': $('#materiaStatusCreate').val(),
-            'materiaSize': $('#materiaSizeCreate').val(),
-            'materiaTableCreateDate':$('#materiaTableCreateDateCreate').val(),
-            'materiaTableModifyDate':$('#materiaTableModifyDateCreate').val()
+            'materialClass': $('#materialClassCreate').val(),
+            'materialCount': $('#materialCountCreate').val(),
+            'materialNo': $('#materialNoCreate').val(),
+            'materialStatus': $('#materialStatusCreate').val(),
+            'materialSize': $('#materialSizeCreate').val(),
+            'materialTableCreateDate':$('#materialTableCreateDateCreate').val(),
+            'materialTableModifyDate':$('#materialTableModifyDateCreate').val()
         }),
         success: function () {
-            materiaTable.draw();
-            $("#meteriaCreate").modal("hide");
+            materialTable.draw();
+            $("#meterialCreate").modal("hide");
         }
 
     })
 
 }
-function materiaDelete (id) {
+function materialDelete (id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
         $.ajax({
             type: "POST",
             headers: { 'Authorization': getCookie("token") },
-            url: webApiUrl + "/materia/delete",
+            url: webApiUrl + "/material/delete",
             contentType: "application/json;charset=utf-8",
             async: false,
             data: JSON.stringify({
                 'id': id,
             }),
             success: function () {
-                materiaTable.draw();
+                materialTable.draw();
                 alert("刪除成功")
             },
             error:function(){

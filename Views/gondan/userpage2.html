@@ -258,7 +258,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/materia/GetAll",
+          url: parent.webApiUrl + "/material/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -276,8 +276,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.materiaNo
-            html += '<button onclick="materiaDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.materialNo
+            html += '<button onclick="materialDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="materialEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
