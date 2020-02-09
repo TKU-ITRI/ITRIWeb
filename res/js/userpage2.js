@@ -180,16 +180,16 @@ function cutterCreateContent() {
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
-        url: webApiUrl + "/cutter/Create",
+        url: webApiUrl + "/toolcutter/Create",
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'cutterClass': $('#cutterClassCreate').val(),
-            'cutterName': $('#cutterNameCreate').val(),
-            'cutterNo': $('#cutterNoCreate').val(),
-            'cutterBrand': $('#cutterBrandCreate').val(),
-            'cutterSize': $('#cutterSizeCreate').val(),
-            'cutterStatus': $('#cutterStatusCreate').val()
+            'toolcutterClass': $('#cutterClassCreate').val(),
+            'toolcutterName': $('#cutterNameCreate').val(),
+            'toolcutterNo': $('#cutterNoCreate').val(),
+            'toolcutterBrand': $('#cutterBrandCreate').val(),
+            'toolcutterSize': $('#cutterSizeCreate').val(),
+            'toolcutterStatus': $('#cutterStatusCreate').val()
         }),
         success: function () {
             cutterTable.draw();
@@ -205,7 +205,7 @@ function cutterDelete (id) {
         $.ajax({
             type: "POST",
             headers: { 'Authorization': getCookie("token") },
-            url: webApiUrl + "/cutter/delete",
+            url: webApiUrl + "/toolcutter/delete",
             contentType: "application/json;charset=utf-8",
             async: false,
             data: JSON.stringify({
@@ -234,14 +234,14 @@ function jigCreateContent() {
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
-        url: webApiUrl + "/jig/Create",
+        url: webApiUrl + "/tooljig/Create",
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'jigName': $('#jigNameCreate').val(),
-            'jigNo': $('#jigNoCreate').val(),
-            'jigClass': $('#jigClassCreate').val(),
-            'jigUse': $('#jigUseCreate').val(),
+            'tooljigName': $('#jigNameCreate').val(),
+            'tooljigNo': $('#jigNoCreate').val(),
+            'tooljigClass': $('#jigClassCreate').val(),
+            'tooljigUse': $('#jigUseCreate').val(),
         }),
         success: function () {
             jigTable.draw();
@@ -258,7 +258,7 @@ function jigDelete (id) {
         $.ajax({
             type: "POST",
             headers: { 'Authorization': getCookie("token") },
-            url: webApiUrl + "/jig/delete",
+            url: webApiUrl + "/tooljig/delete",
             contentType: "application/json;charset=utf-8",
             async: false,
             data: JSON.stringify({

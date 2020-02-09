@@ -156,7 +156,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/cutter/GetAll",
+          url: parent.webApiUrl + "/toolcutter/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -174,7 +174,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.cutterName
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.toolcutterName
             html += '<button onclick="cutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="cutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
@@ -207,7 +207,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/jig/GetAll",
+          url: parent.webApiUrl + "/tooljig/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -225,7 +225,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.jigNo
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.tooljigNo
             html += '<button onclick="jigDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="jigEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
