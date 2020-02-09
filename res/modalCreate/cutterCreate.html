@@ -9,7 +9,7 @@
 			<div class="d-flex justify-content-center">
 				<div class="card mt-8 col-12 animated bounceInDown myForm">
 					<div class="card-header">
-						<h4>訂單-新增頁面</h4>
+						<h4>刀具-新增頁面</h4>
 					</div>
 					<div class="card-body">
 						<form name="build">
@@ -20,41 +20,48 @@
 								預估交貨日期
 								實際交貨日期 -->
 
-								<div>對外訂單編號</div>
+								<div>類別</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
-									<input type="text" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control"id="cutterClassCreate"name="cutterClass" />
 								</div>
-								<div>對內訂單編號</div>
+								<div>名稱</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
 									</div>
-									<input type="text" placeholder="" id="equipmentId" name="equipmentId"
+									<input type="text" placeholder="" id="cutterNameCreate" name="cutterName"
 										class="form-control" />
 								</div>
-								<div>客戶代碼</div>
+								<div>財編</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="email" placeholder="" class="form-control"id="cutterNoCreate"name="cutterNo" />
 								</div>
-								<div>預估交貨日期</div>
+								<div>廠牌</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="email" placeholder="" class="form-control"id="cutterBrandCreate"name="cutterBrand" />
 								</div>
-								<div>實際交貨日期</div>
+								<div>規格</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="email" placeholder="" class="form-control"id="cutterSizeCreate"name="cutterSize" />
+								</div>
+								<div>狀態</div>
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
+									</div>
+									<input type="email" placeholder="" class="form-control"id="cutterStatusCreate"name="cutterStatus" />
 								</div>
 							
 							</div>
@@ -75,7 +82,7 @@
 						</div> -->
 					</div>
 					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-						onclick="b()" />
+						onclick="cutterCreateContent()" />
 					</form>
 				</div>
 

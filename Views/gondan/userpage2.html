@@ -54,7 +54,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/am/GetAll",
+          url: parent.webApiUrl + "/member/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -72,8 +72,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.userName
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberName
+            html += '<button onclick="peopleDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
@@ -156,7 +156,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/am/GetAll",
+          url: parent.webApiUrl + "/cutter/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -164,7 +164,7 @@
         },
 
         "columns": [
-          { 'data': 'userName' },
+          { 'data': null },
 
         ], "columnDefs": [{
           "targets": [], // hidden column
@@ -174,8 +174,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.cutterName
+            html += '<button onclick="cutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="cutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
@@ -207,7 +207,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/am/GetAll",
+          url: parent.webApiUrl + "/jig/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -215,7 +215,7 @@
         },
 
         "columns": [
-          { 'data': 'userName' },
+          { 'data': null },
 
         ], "columnDefs": [{
           "targets": [], // hidden column
@@ -225,8 +225,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.jigNo
+            html += '<button onclick="jigDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="jigEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
@@ -258,7 +258,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/am/GetAll",
+          url: parent.webApiUrl + "/materia/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -266,7 +266,7 @@
         },
 
         "columns": [
-          { 'data': 'userName' },
+          { 'data': null},
 
         ], "columnDefs": [{
           "targets": [], // hidden column
@@ -276,8 +276,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.materiaNo
+            html += '<button onclick="materiaDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="materialEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html

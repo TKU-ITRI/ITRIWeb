@@ -122,7 +122,6 @@ function machineCreateContent() {
     })
 
 }
-
 function machineEditContent() {
 
     $.ajax({
@@ -170,4 +169,219 @@ function machineDelete (id) {
         })
 
 }
+function cutterCreateContent() {
+    alert("ddd");
+    // <!-- public string machineClass { get; set; }
+    // public string machineName { get; set; }
+    // public int? machineNo { get; set; }
+    // public string machineBrand { get; set; }
+    // public string machineSize { get; set; }
+    // public byte? machineStatus { get; set; } -->
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/cutter/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'cutterClass': $('#cutterClassCreate').val(),
+            'cutterName': $('#cutterNameCreate').val(),
+            'cutterNo': $('#cutterNoCreate').val(),
+            'cutterBrand': $('#cutterBrandCreate').val(),
+            'cutterSize': $('#cutterSizeCreate').val(),
+            'cutterStatus': $('#cutterStatusCreate').val()
+        }),
+        success: function () {
+            cutterTable.draw();
+            $("#cutterCreate").modal("hide");
+        }
 
+    })
+}
+function cutterDelete (id) {
+    var confirmStatus = confirm("是否刪除?");
+
+    if (confirmStatus)
+        $.ajax({
+            type: "POST",
+            headers: { 'Authorization': getCookie("token") },
+            url: webApiUrl + "/cutter/delete",
+            contentType: "application/json;charset=utf-8",
+            async: false,
+            data: JSON.stringify({
+                'id': id,
+            }),
+            success: function () {
+                cutterTable.draw();
+                alert("刪除成功")
+            },
+            error:function(){
+                alert("刪除失敗")
+            }
+
+        })
+
+}
+
+function jigCreateContent() {
+    alert("ddd");
+    // <!-- public string machineClass { get; set; }
+    // public string machineName { get; set; }
+    // public int? machineNo { get; set; }
+    // public string machineBrand { get; set; }
+    // public string machineSize { get; set; }
+    // public byte? machineStatus { get; set; } -->
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/jig/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'jigName': $('#jigNameCreate').val(),
+            'jigNo': $('#jigNoCreate').val(),
+            'jigClass': $('#jigClassCreate').val(),
+            'jigUse': $('#jigUseCreate').val(),
+        }),
+        success: function () {
+            jigTable.draw();
+            $("#jigCreate").modal("hide");
+        }
+
+    })
+
+}
+function jigDelete (id) {
+    var confirmStatus = confirm("是否刪除?");
+
+    if (confirmStatus)
+        $.ajax({
+            type: "POST",
+            headers: { 'Authorization': getCookie("token") },
+            url: webApiUrl + "/jig/delete",
+            contentType: "application/json;charset=utf-8",
+            async: false,
+            data: JSON.stringify({
+                'id': id,
+            }),
+            success: function () {
+                jigTable.draw();
+                alert("刪除成功")
+            },
+            error:function(){
+                alert("刪除失敗")
+            }
+
+        })
+
+}
+
+function materiaCreateContent() {
+    alert("ddd");
+    // <!-- public string machineClass { get; set; }
+    // public string machineName { get; set; }
+    // public int? machineNo { get; set; }
+    // public string machineBrand { get; set; }
+    // public string machineSize { get; set; }
+    // public byte? machineStatus { get; set; } -->
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/materia/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'materiaClass': $('#materiaClassCreate').val(),
+            'materiaCount': $('#materiaCountCreate').val(),
+            'materiaNo': $('#materiaNoCreate').val(),
+            'materiaStatus': $('#materiaStatusCreate').val(),
+            'materiaSize': $('#materiaSizeCreate').val(),
+            'materiaTableCreateDate':$('#materiaTableCreateDateCreate').val(),
+            'materiaTableModifyDate':$('#materiaTableModifyDateCreate').val()
+        }),
+        success: function () {
+            materiaTable.draw();
+            $("#meteriaCreate").modal("hide");
+        }
+
+    })
+
+}
+function materiaDelete (id) {
+    var confirmStatus = confirm("是否刪除?");
+
+    if (confirmStatus)
+        $.ajax({
+            type: "POST",
+            headers: { 'Authorization': getCookie("token") },
+            url: webApiUrl + "/materia/delete",
+            contentType: "application/json;charset=utf-8",
+            async: false,
+            data: JSON.stringify({
+                'id': id,
+            }),
+            success: function () {
+                materiaTable.draw();
+                alert("刪除成功")
+            },
+            error:function(){
+                alert("刪除失敗")
+            }
+
+        })
+
+}
+function PeopleCreateContent() {
+    alert("ddd");
+    // <!-- public string machineClass { get; set; }
+    // public string machineName { get; set; }
+    // public int? machineNo { get; set; }
+    // public string machineBrand { get; set; }
+    // public string machineSize { get; set; }
+    // public byte? machineStatus { get; set; } -->
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/member/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'memberNumber': $('#memberNumberCreate').val(),
+            'memberName': $('#memberNameCreate').val(),
+            'memberDuties': $('#memberDutiesCreate').val(),
+            'memberSubDuties': $('#memberSubDutiesCreate').val(),
+            'memberHiringDay':$('#memberHiringDayCreate').val(),
+            'memberFiringDay':$('#memberFiringDayCreate').val(),
+        }),
+        success: function () {
+            PeopleTable.draw();
+            $("#PeopleCreate").modal("hide");
+        }
+
+    })
+
+}
+function peopleDelete (id) {
+    var confirmStatus = confirm("是否刪除?");
+
+    if (confirmStatus)
+        $.ajax({
+            type: "POST",
+            headers: { 'Authorization': getCookie("token") },
+            url: webApiUrl + "/member/delete",
+            contentType: "application/json;charset=utf-8",
+            async: false,
+            data: JSON.stringify({
+                'id': id,
+            }),
+            success: function () {
+                peopleTable.draw();
+                alert("刪除成功")
+            },
+            error:function(){
+                alert("刪除失敗")
+            }
+
+        })
+
+}
