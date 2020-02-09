@@ -8,14 +8,14 @@ function init() {
     $("#peopleCreate_Content").load("/res/modalCreate/peopleCreate.html");
     $("#cutterCreate_Content").load("/res/modalCreate/cutterCreate.html");
     $("#machineCreate_Content").load("/res/modalCreate/machineCreate.html");
-    $("#jigCreate_Content").load("/res/modalCreate/jigCreate.html");
+    $("#tooljigCreate_Content").load("/res/modalCreate/jigCreate.html");
     $("#materialCreate_Content").load("/res/modalCreate/materialCreate.html");
 
     // Edit
     $("#peopleEdit_Content").load("/res/modalEdit/peopleEdit.html");
     $("#cutterEdit_Content").load("/res/modalEdit/cutterEdit.html");
     $("#machineEdit_Content").load("/res/modalEdit/machineEdit.html");
-    $("#jigEdit_Content").load("/res/modalEdit/jigEdit.html");
+    $("#tooljigEdit_Content").load("/res/modalEdit/jigEdit.html");
     $("#materialEdit_Content").load("/res/modalEdit/materialEdit.html");
 
 }
@@ -35,8 +35,8 @@ function materialCreate() {
     $("#materialCreate").modal("show");
 }
 
-function jigCreate() {
-    $("#jigCreate").modal("show");
+function tooljigCreate() {
+    $("#tooljigCreate").modal("show");
 }
 
 
@@ -87,10 +87,10 @@ function materialEdit(id) {
     $("#materialEdit").modal("show");
 }
 
-function jigEdit(id) {
-    $("#jigEdit_title").text(id + " 編輯頁面")
+function tooljigEdit(id) {
+    $("#tooljigEdit_title").text(id + " 編輯頁面")
 
-    $("#jigEdit").modal("show");
+    $("#tooljigEdit").modal("show");
 }
 
 function machineCreateContent() {
@@ -223,7 +223,7 @@ function cutterDelete (id) {
 
 }
 
-function jigCreateContent() {
+function tooljigCreateContent() {
     alert("ddd");
     // <!-- public string machineClass { get; set; }
     // public string machineName { get; set; }
@@ -238,20 +238,20 @@ function jigCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'tooljigName': $('#jigNameCreate').val(),
-            'tooljigNo': $('#jigNoCreate').val(),
-            'tooljigClass': $('#jigClassCreate').val(),
-            'tooljigUse': $('#jigUseCreate').val(),
+            'tooljigName': $('#tooljigNameCreate').val(),
+            'tooljigNo': $('#tooljigNoCreate').val(),
+            'tooljigClass': $('#tooljigClassCreate').val(),
+            'tooljigUse': $('#tooljigUseCreate').val(),
         }),
         success: function () {
-            jigTable.draw();
-            $("#jigCreate").modal("hide");
+            tooljigTable.draw();
+            $("#tooljigCreate").modal("hide");
         }
 
     })
 
 }
-function jigDelete (id) {
+function tooljigDelete (id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -265,7 +265,7 @@ function jigDelete (id) {
                 'id': id,
             }),
             success: function () {
-                jigTable.draw();
+                tooljigTable.draw();
                 alert("刪除成功")
             },
             error:function(){

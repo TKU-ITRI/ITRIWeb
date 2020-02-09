@@ -38,8 +38,8 @@
   <script>
     var peopleTable;
     var machineTables;
-    var cutterTable;
-    var jigTable;
+    var toolcutterTable;
+    var tooljigTable;
     var materialTable;
     $(document).ready(function () {
 
@@ -196,7 +196,7 @@
       });
       sleep(100);
 
-      var jigTable = $('#jigTable').DataTable({
+      var tooljigTable = $('#tooljigTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -226,8 +226,8 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.tooljigNo
-            html += '<button onclick="jigDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="jigEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<button onclick="tooljigDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="tooljigEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           }
@@ -311,8 +311,8 @@
       $('#cutterSearch').on('keyup', function () {
         myFunction(this, "cutterTable");
       });
-      $('#jigSearch').on('keyup', function () {
-        myFunction(this, "jigTable");
+      $('#tooljigSearch').on('keyup', function () {
+        myFunction(this, "tooljigTable");
       });
       $('#materialSearch').on('keyup', function () {
         myFunction(this, "materialTable");
@@ -418,7 +418,7 @@
     </div>
 
     <div style="padding:0px 3%;width:19%">
-      <table id="jigTable">
+      <table id="tooljigTable">
         <thead>
           <tr>
             <td align=" center">
@@ -428,9 +428,9 @@
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="jigSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="tooljigSearch"></input>
             <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="jigCreate();" style="width:200px;">
+              data-ui-class="a-fadeUp" onclick="tooljigCreate();" style="width:200px;">
               <font size="6" color="#737373" ;">新 增</font>
             </button>
           </th>
@@ -495,11 +495,11 @@
         </div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="jigCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    <div class="word  modal fade modal_right" id="tooljigCreate" role="dialog" aria-labelledby="modalCreateLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
         <div class="myForm modal-content">
-          <div id="jigCreate_Content"></div>
+          <div id="tooljigCreate_Content"></div>
         </div>
       </div>
     </div>
@@ -537,11 +537,11 @@
         </div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="jigEdit" role="dialog" aria-labelledby="modalEditLabel"
+    <div class="word  modal fade modal_right" id="tooljigEdit" role="dialog" aria-labelledby="modalEditLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
         <div class="myForm modal-content">
-          <div id="jigEdit_Content"></div>
+          <div id="tooljigEdit_Content"></div>
         </div>
       </div>
     </div>
