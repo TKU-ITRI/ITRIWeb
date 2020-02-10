@@ -196,7 +196,7 @@
       });
       sleep(100);
 
-      var tooljigTable = $('#tooljigTable').DataTable({
+      tooljigTable = $('#tooljigTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -225,7 +225,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.tooljigNo
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.jigName
             html += '<button onclick="tooljigDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="tooljigEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
