@@ -6,14 +6,14 @@
 function init() {
     // Create
     $("#peopleCreate_Content").load("/res/modalCreate/peopleCreate.html");
-    $("#cutterCreate_Content").load("/res/modalCreate/cutterCreate.html");
+    $("#toolcutterCreate_Content").load("/res/modalCreate/cutterCreate.html");
     $("#machineCreate_Content").load("/res/modalCreate/machineCreate.html");
     $("#tooljigCreate_Content").load("/res/modalCreate/jigCreate.html");
     $("#materialCreate_Content").load("/res/modalCreate/materialCreate.html");
 
     // Edit
     $("#peopleEdit_Content").load("/res/modalEdit/peopleEdit.html");
-    $("#cutterEdit_Content").load("/res/modalEdit/cutterEdit.html");
+    $("#toolcutterEdit_Content").load("/res/modalEdit/cutterEdit.html");
     $("#machineEdit_Content").load("/res/modalEdit/machineEdit.html");
     $("#tooljigEdit_Content").load("/res/modalEdit/jigEdit.html");
     $("#materialEdit_Content").load("/res/modalEdit/materialEdit.html");
@@ -23,8 +23,8 @@ function peopleCreate() {
     $("#peopleCreate").modal("show");
 }
 
-function cutterCreate() {
-    $("#cutterCreate").modal("show");
+function toolcutterCreate() {
+    $("#toolcutterCreate").modal("show");
 }
 
 function machineCreate() {
@@ -72,20 +72,32 @@ function machineEdit(id) {
    
 }
 
-function cutterEdit(id) {
-    $("#cutterEdit_title").text(id + " 編輯頁面")
+function toolcutterEdit(id) {
+    $("#toolcutterEdit_title").text(id + " 編輯頁面")
 
-    $("#cutterEdit").modal("show");
+    $("#toolcutterEdit").modal("show");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/toolcutter/getById",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': id,
+        }),
+        
+        success: function (e) {   
+            $("#toolcutterIdEdit").val(e.id);
+            $('#toolcutterClassEdit').val(e.cutterClass);
+            $('#toolcutterNameEdit').val(e.cutterName);
+            $('#toolcutterNoEdit').val(e.cutterNo);
+            $('#toolcutterBrandEdit').val(e.cutterBrand);
+            $('#toolcutterSizeEdit').val(e.cutterSize);
+            $('#toolcutterStatusEdit').val(e.cutterStatus);
+        }
+
+    })
 }
-
-
-
-function materialEdit(id) {
-    $("#materialEdit_title").text(id + " 編輯頁面")
-
-    $("#materialEdit").modal("show");
-}
-
 function tooljigEdit(id) {
     $("#tooljigEdit_title").text(id + " 編輯頁面")
     $("#tooljigEdit").modal("show");
@@ -107,6 +119,34 @@ function tooljigEdit(id) {
             $("#tooljigUseEdit").val(e.jigUse);
             
 
+        }
+
+    })
+}
+
+function materialEdit(id) {
+    $("#materialEdit_title").text(id + " 編輯頁面")
+
+    $("#materialEdit").modal("show");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/material/getById",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': id,
+        }),
+        success: function (e) {
+            $('#materialIdEdit').val(e.id);
+            $('#materialClassEdit').val(e.materialClass);
+            $('#materialCountEdit').val(e.materialCount);
+            $('#materialNoEdit').val(e.materialNo);
+            $('#materialStatusEdit').val(e.materialStatus);
+            $('#materialSizeEdit').val(e.materialSize);
+            $('#materialTableCreateDateEdit').val(e.materialTableCreateDate);
+            $('#materialTableModifyDateEdit').val(e.materialTableModifyDate);   
+        
         }
 
     })
@@ -188,7 +228,8 @@ function machineDelete (id) {
         })
 
 }
-function cutterCreateContent() {
+
+function toolcutterCreateContent() {
     alert("ddd");
     // <!-- public string machineClass { get; set; }
     // public string machineName { get; set; }
@@ -203,21 +244,44 @@ function cutterCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'toolcutterClass': $('#cutterClassCreate').val(),
-            'toolcutterName': $('#cutterNameCreate').val(),
-            'toolcutterNo': $('#cutterNoCreate').val(),
-            'toolcutterBrand': $('#cutterBrandCreate').val(),
-            'toolcutterSize': $('#cutterSizeCreate').val(),
-            'toolcutterStatus': $('#cutterStatusCreate').val()
+            'cutterClass': $('#toolcutterClassCreate').val(),
+            'cutterName': $('#toolcutterNameCreate').val(),
+            'cutterNo': $('#toolcutterNoCreate').val(),
+            'cutterBrand': $('#toolcutterBrandCreate').val(),
+            'cutterSize': $('#toolcutterSizeCreate').val(),
+            'cutterStatus': $('#toolcutterStatusCreate').val(),
         }),
         success: function () {
-            cutterTable.draw();
-            $("#cutterCreate").modal("hide");
+            toolcutterTable.draw();
+            $("#toolcutterCreate").modal("hide");
         }
 
     })
 }
-function cutterDelete (id) {
+function toolcutterEditContent() {
+
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/toolcutter/Update",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': $('#toolcutterIdEdit').val(),
+            'cutterClass': $('#toolcutterClassEdit').val(),
+            'cutterName': $('#toolcutterNameEdit').val(),
+            'cutterNo': $('#toolcutterNoEdit').val(),
+            'cutterBrand': $('#toolcutterBrandEdit').val(),
+            'cutterSize': $('#toolcutterSizeEdit').val(),
+            'cutterStatus': $('#toolcutterStatusEdit').val(),
+        }),
+        success: function () {
+            toolcutterTable.draw();
+            $("#toolcutterEdit").modal("hide");
+        }
+    })
+}
+function toolcutterDelete (id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -231,7 +295,7 @@ function cutterDelete (id) {
                 'id': id,
             }),
             success: function () {
-                cutterTable.draw();
+                toolcutterTable.draw();
                 alert("刪除成功")
             },
             error:function(){
@@ -337,7 +401,7 @@ function materialCreateContent() {
             'materialStatus': $('#materialStatusCreate').val(),
             'materialSize': $('#materialSizeCreate').val(),
             'materialTableCreateDate':$('#materialTableCreateDateCreate').val(),
-            'materialTableModifyDate':$('#materialTableModifyDateCreate').val()
+            'materialTableModifyDate':$('#materialTableModifyDateCreate').val(),
         }),
         success: function () {
             materialTable.draw();
@@ -347,6 +411,32 @@ function materialCreateContent() {
     })
 
 }
+
+function materialEditContent() {
+
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/material/Update",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': $('#materialIdEdit').val(),
+            'materialClass': $('#materialClassEdit').val(),
+            'materialCount': $('#materialCountEdit').val(),
+            'materialNo': $('#materialNoEdit').val(),
+            'materialStatus': $('#materialStatusEdit').val(),
+            'materialSize': $('#materialSizeEdit').val(),
+            'materialTableCreateDate':$('#materialTableCreateDateEdit').val(),
+            'materialTableModifyDate':$('#materialTableModifyDateEdit').val(),
+        }),
+        success: function () {
+            materialTable.draw();
+            $("#materialEdit").modal("hide");
+        }
+    })
+}
+
 function materialDelete (id) {
     var confirmStatus = confirm("是否刪除?");
 
