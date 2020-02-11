@@ -119,7 +119,7 @@
           "targets": [], // hidden column
           "visible": false
 
-        },{
+        }, {
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
@@ -266,7 +266,7 @@
         },
 
         "columns": [
-          { 'data': null},
+          { 'data': null },
 
         ], "columnDefs": [{
           "targets": [], // hidden column
@@ -308,7 +308,11 @@
       $('#machineSearch').on('keyup', function () {
         myFunction(this, "machineTable");
       });
+<<<<<<< HEAD
       $('#toolcutterSearch').on('keyup', function () {
+=======
+      $('#cutterSearch').on('keyup', function () {
+>>>>>>> 4f4994e6746675171a2829150877b3a3b05d9650
         myFunction(this, "toolcutterTable");
       });
       $('#tooljigSearch').on('keyup', function () {

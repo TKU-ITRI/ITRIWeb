@@ -462,7 +462,7 @@ function materialDelete (id) {
 
 }
 function PeopleCreateContent() {
-    alert("ddd");
+    alert("aaa");
     // <!-- public string machineClass { get; set; }
     // public string machineName { get; set; }
     // public int? machineNo { get; set; }
@@ -484,8 +484,8 @@ function PeopleCreateContent() {
             'memberFiringDay':$('#memberFiringDayCreate').val(),
         }),
         success: function () {
-            PeopleTable.draw();
-            $("#PeopleCreate").modal("hide");
+            peopleTable.draw();
+            $("#peopleCreate").modal("hide");
         }
 
     })
