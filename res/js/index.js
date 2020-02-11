@@ -1,7 +1,7 @@
 //var webApiUrl = "http://localhost:49705";
 var webApiUrl = ""
 if (window.location.port == "5500")
-    webApiUrl = "http://localhost:6500";
+    webApiUrl = "http://itriwebapi-test.us-east-1.elasticbeanstalk.com";
 else
     webApiUrl = "http://itriwebapi-test.us-east-1.elasticbeanstalk.com";
 console.log(webApiUrl)
