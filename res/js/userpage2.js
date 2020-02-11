@@ -60,7 +60,6 @@ function machineEdit(id) {
         }),
         success: function (e) {   
             $("#machineIdEdit").val(e.id);
-
             $("#machineClassEdit").val(e.machineClass);
             $("#machineNameEdit").val(e.machineName);
             $("#machineNoEdit").val(e.machineNo);
@@ -89,8 +88,28 @@ function materialEdit(id) {
 
 function tooljigEdit(id) {
     $("#tooljigEdit_title").text(id + " 編輯頁面")
-
     $("#tooljigEdit").modal("show");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/tooljig/getById",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': id,
+        }),
+        
+        success: function (e) {   
+            $("#tooljigIdEdit").val(e.id);
+            $("#tooljigNameEdit").val(e.jigName);
+            $("#tooljigNoEdit").val(e.jigNo);
+            $("#tooljigClassEdit").val(e.jigClass);
+            $("#tooljigUseEdit").val(e.jigUse);
+            
+
+        }
+
+    })
 }
 
 function machineCreateContent() {
@@ -238,10 +257,10 @@ function tooljigCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'tooljigName': $('#tooljigNameCreate').val(),
-            'tooljigNo': $('#tooljigNoCreate').val(),
-            'tooljigClass': $('#tooljigClassCreate').val(),
-            'tooljigUse': $('#tooljigUseCreate').val(),
+            'jigName': $('#tooljigNameCreate').val(),
+            'jigNo': $('#tooljigNoCreate').val(),
+            'jigClass': $('#tooljigClassCreate').val(),
+            'jigUse': $('#tooljigUseCreate').val(),
         }),
         success: function () {
             tooljigTable.draw();
@@ -250,6 +269,27 @@ function tooljigCreateContent() {
 
     })
 
+}
+function tooljigEditContent() {
+
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/tooljig/Update",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': $('#tooljigIdEdit').val(),
+            'jigName': $('#tooljigNameEdit').val(),
+            'jigNo': $('#tooljigNoEdit').val(),
+            'jigClass': $('#tooljigClassEdit').val(),
+            'jigUse': $('#tooljigUseEdit').val(),
+        }),
+        success: function () {
+            tooljigTable.draw();
+            $("#tooljigEdit").modal("hide");
+        }
+    })
 }
 function tooljigDelete (id) {
     var confirmStatus = confirm("是否刪除?");
