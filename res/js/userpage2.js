@@ -5,22 +5,22 @@
 
 function init() {
     // Create
-    $("#peopleCreate_Content").load("/res/modalCreate/peopleCreate.html");
+    $("#memberCreate_Content").load("/res/modalCreate/memberCreate.html");
     $("#toolcutterCreate_Content").load("/res/modalCreate/cutterCreate.html");
     $("#machineCreate_Content").load("/res/modalCreate/machineCreate.html");
     $("#tooljigCreate_Content").load("/res/modalCreate/jigCreate.html");
     $("#materialCreate_Content").load("/res/modalCreate/materialCreate.html");
 
     // Edit
-    $("#peopleEdit_Content").load("/res/modalEdit/peopleEdit.html");
+    $("#memberEdit_Content").load("/res/modalEdit/memberEdit.html");
     $("#toolcutterEdit_Content").load("/res/modalEdit/cutterEdit.html");
     $("#machineEdit_Content").load("/res/modalEdit/machineEdit.html");
     $("#tooljigEdit_Content").load("/res/modalEdit/jigEdit.html");
     $("#materialEdit_Content").load("/res/modalEdit/materialEdit.html");
 
 }
-function peopleCreate() {
-    $("#peopleCreate").modal("show");
+function memberCreate() {
+    $("#memberCreate").modal("show");
 }
 
 function toolcutterCreate() {
@@ -41,9 +41,29 @@ function tooljigCreate() {
 
 
 
-function peopleEdit(id) {
-    $("#peopleEdit_title").text(id + " 編輯頁面")
-    $("#peopleEdit").modal("show");
+function memberEdit(id) {
+    $("#memberEdit_title").text(id + " 編輯頁面")
+    $("#memberEdit").modal("show");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/member/getById",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': id,
+        }),
+        success: function (e) {
+            $("#memberIdEdit").val(e.id);
+            $("#memberNoEdit").val(e.memberNo);
+            $("#memberNameEdit").val(e.memberName);
+            $("#memberDutiesEdit").val(e.memberDuties);
+            $("#memberSubDutiesEdit").val(e.memberSubDuties);
+            $("#memberHiringDayEdit").val(e.memberHiringDay);
+            $("#memberFiringDayEdit").val(e.memberFiringDay);
+        }
+
+    })
 }
 
 function machineEdit(id) {
@@ -461,7 +481,7 @@ function materialDelete (id) {
         })
 
 }
-function PeopleCreateContent() {
+function memberCreateContent() {
     alert("aaa");
     // <!-- public string machineClass { get; set; }
     // public string machineName { get; set; }
@@ -476,7 +496,7 @@ function PeopleCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'memberNumber': $('#memberNumberCreate').val(),
+            'memberNo': $('#memberNoCreate').val(),
             'memberName': $('#memberNameCreate').val(),
             'memberDuties': $('#memberDutiesCreate').val(),
             'memberSubDuties': $('#memberSubDutiesCreate').val(),
@@ -484,14 +504,38 @@ function PeopleCreateContent() {
             'memberFiringDay':$('#memberFiringDayCreate').val(),
         }),
         success: function () {
-            peopleTable.draw();
-            $("#peopleCreate").modal("hide");
+            memberTable.draw();
+            $("#memberCreate").modal("hide");
         }
 
     })
 
 }
-function peopleDelete (id) {
+function memberEditContent() {
+
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/member/Update",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'id': $('#memberIdEdit').val(),
+            'memberNo': $('#memberNoEdit').val(),
+            'memberName': $('#memberNameEdit').val(),
+            'memberDuties': $('#memberDutiesEdit').val(),
+            'memberSubDuties': $('#memberSubDutiesEdit').val(),
+            'memberHiringDay':$('#memberHiringDayEdit').val(),
+            'memberFiringDay':$('#memberFiringDayEdit').val(),
+        }),
+        success: function () {
+            memberTable.draw();
+            $("#memberEdit").modal("hide");
+        }
+    })
+}
+
+function memberDelete (id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -505,7 +549,7 @@ function peopleDelete (id) {
                 'id': id,
             }),
             success: function () {
-                peopleTable.draw();
+                memberTable.draw();
                 alert("刪除成功")
             },
             error:function(){

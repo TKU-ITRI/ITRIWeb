@@ -36,14 +36,14 @@
     }
   </style>
   <script>
-    var peopleTable;
+    var memberTable;
     var machineTables;
     var toolcutterTable;
     var tooljigTable;
     var materialTable;
     $(document).ready(function () {
 
-      peopleTable = $('#peopleTable').DataTable({
+      memberTable = $('#memberTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -72,9 +72,9 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberName
-            html += '<button onclick="peopleDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberNo
+            html += '<button onclick="memberDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="memberEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -302,17 +302,13 @@
   </script>
   <script>
     $(function () {
-      $('#peopleSearch').on('keyup', function () {
-        myFunction(this, "peopleTable");
+      $('#memberSearch').on('keyup', function () {
+        myFunction(this, "memberTable");
       });
       $('#machineSearch').on('keyup', function () {
         myFunction(this, "machineTable");
       });
-<<<<<<< HEAD
       $('#toolcutterSearch').on('keyup', function () {
-=======
-      $('#cutterSearch').on('keyup', function () {
->>>>>>> 4f4994e6746675171a2829150877b3a3b05d9650
         myFunction(this, "toolcutterTable");
       });
       $('#tooljigSearch').on('keyup', function () {
@@ -358,7 +354,7 @@
 
   <div class="row">
     <div style="padding:0px 3%;width:19%">
-      <table id="peopleTable">
+      <table id="memberTable">
         <thead>
           <tr>
             <td align=" center">
@@ -369,9 +365,9 @@
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="peopleSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="memberSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="peopleCreate();" style="width:200px;">
+              data-ui-class="a-fadeUp" onclick="memberCreate();" style="width:200px;">
               <font size="6" color="#737373" ;">新 增</font>
             </button>
           </th>
@@ -467,11 +463,11 @@
 
 
     <!-- Create -->
-    <div class="word  modal fade modal_right" id="peopleCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    <div class="word  modal fade modal_right" id="memberCreate" role="dialog" aria-labelledby="modalCreateLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
         <div class="myForm modal-content">
-          <div id="peopleCreate_Content"></div>
+          <div id="memberCreate_Content"></div>
         </div>
       </div>
     </div>
@@ -509,11 +505,11 @@
     </div>
 
     <!-- Edit -->
-    <div class="word  modal fade modal_right" id="peopleEdit" role="dialog" aria-labelledby="modalEditLabel"
+    <div class="word  modal fade modal_right" id="memberEdit" role="dialog" aria-labelledby="modalEditLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
         <div class="myForm modal-content">
-          <div id="peopleEdit_Content"></div>
+          <div id="memberEdit_Content"></div>
         </div>
       </div>
     </div>
