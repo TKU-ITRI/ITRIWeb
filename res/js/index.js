@@ -3,7 +3,7 @@ var webApiUrl = ""
 if (window.location.port == "5500")
     webApiUrl = "http://localhost:6500";
 else
-    webApiUrl = "http://itriwebapi-dev.us-east-1.elasticbeanstalk.com";
+    webApiUrl = "http://itriwebapi-test.us-east-1.elasticbeanstalk.com";
 console.log(webApiUrl)
 emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 

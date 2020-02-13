@@ -9,7 +9,7 @@
 			<div class="d-flex justify-content-center">
 				<div class="card mt-8 col-12 animated bounceInDown myForm">
 					<div class="card-header">
-						<h4 id="jigEdit_title" ></h4>
+						<h4>治具-編輯頁面 </h4>
 					</div>
 					<div class="card-body">
 						<form name="build">
@@ -18,20 +18,22 @@
 								工(治)具財編
 								工(治)具類別(扶料架)
 								工(治)具用途 -->
-
+								<div class="form-group row">
+									<input type="hidden" class="form-control form-control-sm col-sm-8" id="tooljigIdEdit">
+								</div>
 								<div>名稱</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
-									<input type="text" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="tooljigNameEdit" name="jigName" class="form-control" />
 								</div>
 								<div>財編</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
 									</div>
-									<input type="text" placeholder="" id="equipmentId" name="equipmentId"
+									<input type="text" placeholder="" id="tooljigNoEdit" name="jigNo"
 										class="form-control" />
 								</div>
 								<div>類別</div>
@@ -39,14 +41,14 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="tooljigClassEdit" name="jigClass" class="form-control" />
 								</div>
 								<div>用途</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="tooljigUseEdit" name="jigUse" class="form-control" />
 								</div>
 							</div>
 					</div>
@@ -65,8 +67,8 @@
 							<input type="email" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-						onclick="b()" />
+					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
+						onclick="tooljigEditContent()" />
 					</form>
 				</div>
 

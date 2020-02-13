@@ -9,7 +9,7 @@
 			<div class="d-flex justify-content-center">
 				<div class="card mt-8 col-12 animated bounceInDown myForm">
 					<div class="card-header">
-						<h4 id="materialEdit_title" ></h4>
+						<h4>原物料-編輯頁面</h4>
 					</div>
 					<div class="card-body">
 						<form name="build">
@@ -21,20 +21,22 @@
 								原物料狀態(充足、短缺、補充中)
 								原物料建立表單日期時程
 								原物料修改表單日期時程 -->
-
+								<div class="form-group row">
+									<input type="hidden" class="form-control form-control-sm col-sm-8" id="materialIdEdit">
+								</div>
 								<div>財編</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
-									<input type="text" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" id="materialNoEdit" name="materialNo"/>
 								</div>
 								<div>類別</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
 									</div>
-									<input type="text" placeholder="" id="equipmentId" name="equipmentId"
+									<input type="text" placeholder="" id="materialClassEdit" name="materialClass"
 										class="form-control" />
 								</div>
 								<div>規格</div>
@@ -42,35 +44,35 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" id="materialSizeEdit" name="materialSize" />
 								</div>
 								<div>數量</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control"id="materialCountEdit" name="materialCount" />
 								</div>
 								<div>狀態</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control"id="materialStatusEdit" name="materialStatus" />
 								</div>
 								<div>建立表單日期時程</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" id="materialTableCreateDateEdit" name="materialTableCreateDate"/>
 								</div>
 								<div>修改表單日期時程</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" id="materialTableModifyDateEdit" name="materialTableModifyDate"/>
 								</div>
 							</div>
 					</div>
@@ -89,8 +91,8 @@
 							<input type="email" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-						onclick="b()" />
+					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
+						onclick="materialEditContent()" />
 					</form>
 				</div>
 
