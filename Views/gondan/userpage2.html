@@ -145,7 +145,7 @@
       });
       sleep(100);
 
-      cutterTable = $('#cutterTable').DataTable({
+      toolcutterTable = $('#toolcutterTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -174,15 +174,9 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-<<<<<<< HEAD
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="cutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="cutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
-=======
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.cutterName
             html += '<button onclick="toolcutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="toolcutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
->>>>>>> c143b850f10c0727b55178d6a6465b8003d02f3e
             html += '</div>'
             return html
           }
@@ -202,11 +196,7 @@
       });
       sleep(100);
 
-<<<<<<< HEAD
        tooljigTable = $('#tooljigTable').DataTable({
-=======
-      tooljigTable = $('#tooljigTable').DataTable({
->>>>>>> c143b850f10c0727b55178d6a6465b8003d02f3e
         "searching": false,
         "ordering": false,
         "serverSide": true,

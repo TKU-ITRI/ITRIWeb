@@ -23,7 +23,18 @@
 								生產件數
 								材料序號
 								預估完工日期
-								實際完工日期 -->
+								實際完工日期 
+								public int Id { get; set; }
+								public int? SOrderMemberName { get; set; }
+								public int? SOrderMachine { get; set; }
+								public int? SOrderTool { get; set; }
+								public string SOrderProgram { get; set; }
+								public string SOrderSetting { get; set; }
+								public int? SOrderCount { get; set; }
+								public int? SOrderMaterial { get; set; }
+								public DateTime? SOrderPredictDate { get; set; }
+								public DateTime? SOrderCompleteDate { get; set; }
+								-->
 
 								<div>自製訂單編號</div>
 								<div class="input-group">

@@ -18,7 +18,13 @@
 								項目清單
 								負責人編號
 								預估交貨日期
-								實際交貨日期 -->
+								實際交貨日期 
+								public int Id { get; set; }
+								public string PurchaseOrderList { get; set; }
+								public int? PurchaseOrderMemberName { get; set; }
+								public DateTime? PurchaseOrderPredictDate { get; set; }
+								public DateTime? PurchaseOrderCompleteDate { get; set; }
+							-->
 								
 								<div>指定歸屬訂單編號</div>
 								<div class="input-group">
