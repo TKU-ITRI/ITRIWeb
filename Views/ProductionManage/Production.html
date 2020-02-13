@@ -36,9 +36,9 @@
     }
   </style>
   <script>
-    var orderTable;
+    var pOrderTable;
     $(document).ready(function () {
-      orderpleTable = $('#orderTable').DataTable({
+      pOrderTable = $('#pOrderTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -49,7 +49,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/order/GetAll",
+          url: parent.webApiUrl + "/pOrder/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -68,8 +68,8 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<button onclick="pOrderEdit(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="pOrderDelete(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -95,8 +95,8 @@
   </script>
   <script>
     $(function () {
-      $('#orderSearch').on('keyup', function () {
-        myFunction(this, "orderTable");
+      $('#pOrderSearch').on('keyup', function () {
+        myFunction(this, "pOrderTable");
       });
      
       
@@ -150,9 +150,9 @@
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="orderSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="pOrderSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="orderCreate();" style="width:200px;">
+              data-ui-class="a-fadeUp" onclick="pOrderCreate();" style="width:200px;">
               <font size="6" color="#737373" ;">新 增</font>
             </button>
           </th>
@@ -246,11 +246,11 @@
 
 
     <!-- Create -->
-    <div class="word  modal fade modal_right" id="orderCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    <div class="word  modal fade modal_right" id="pOrderCreate" role="dialog" aria-labelledby="modalCreateLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
         <div class="myForm modal-content">
-          <div id="orderCreate_Content"></div>
+          <div id="pOrderCreate_Content"></div>
         </div>
       </div>
     </div>

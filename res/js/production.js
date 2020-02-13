@@ -5,15 +5,15 @@
 
 function init(){
     // Create
-    $("#orderCreate_Content").load("/res/modalCreate/orderCreate.html");
+    $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
    
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
 
     // Edit
 
 }
-function orderCreate(){
-    $("#orderCreate").modal("show");
+function pOrderCreate(){
+    $("#pOrderCreate").modal("show");
 }
 
 function purchaseCreate(){
@@ -66,27 +66,29 @@ function jigEdit(id){
 }
 
 
-function orderCreateContent(){
-    $("#orderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+function pOrderCreateContent(){
+    alert("ddd");
+    $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     "<a onclick=\"purchaseCreate()\">新增</a>"+
     "</button>");
-    /*$.ajax({
+    $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
-        url: webApiUrl + "/order/Create",
+        url: webApiUrl + "/pOrder/Create",
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'P_Out_order_Id': $('#P_Out_order_Id').val(),
-            'P_In_order_Id': $('#P_In_order_Id').val(),
-            'P_order_client': $('#P_order_client').val(),
-            'P_order_predict_date': $('#P_order_predict_date').val(),
-            'P_order_complete_date': $('#P_order_complete_date').val(),
+            'pOutOrderId': $('#pOutOrderIdCreate').val(),
+            'pInOrderId': $('#pInOrderIdCreate').val(),
+            'pOrderClientNo': $('#pOrderClientNoCreate').val(),
+            'pOrderPredictDate': $('#pOrderPredictDateCreate').val(),
+            'pOrderCompleteDate': $('#pOrderCompleteDateCreate').val(),
+            
         }),
         success: function () {
-            orderTable.draw();
-            $("#orderCreate").modal("hide");
+            pOrderTable.draw();
+            $("#pOrderCreate").modal("hide");
         }
 
-    })*/
+    })
 }
