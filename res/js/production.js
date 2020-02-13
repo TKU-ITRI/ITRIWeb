@@ -5,26 +5,19 @@
 
 function init(){
     // Create
-    $("#peopleCreate_Content").load("/res/modalCreate/orderCreate.html");
-    $("#cutterCreate_Content").load("/res/modalCreate/purchaseCreate.html");
-    $("#machineCreate_Content").load("/res/modalCreate/assemblyCreate.html");
-    $("#jigCreate_Content").load("/res/modalCreate/orderSelfCreate.html");
-    $("#materialCreate_Content").load("/res/modalCreate/orderOutCreate.html");
+    $("#orderCreate_Content").load("/res/modalCreate/orderCreate.html");
+   
+    $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
 
     // Edit
-    $("#peopleEdit_Content").load("/res/modalEdit/orderEdit.html");
-    $("#cutterEdit_Content").load("/res/modalEdit/purchaseEdit.html");
-    $("#machineEdit_Content").load("/res/modalEdit/assemblyEdit.html");
-    $("#jigEdit_Content").load("/res/modalEdit/orderSelfEdit.html");
-    $("#materialEdit_Content").load("/res/modalEdit/orderOutEdit.html");
 
 }
-function peopleCreate(){
-    $("#peopleCreate").modal("show");
+function orderCreate(){
+    $("#orderCreate").modal("show");
 }
 
-function cutterCreate(){
-    $("#cutterCreate").modal("show");
+function purchaseCreate(){
+    $("#purchase").modal("show");
 }
 
 function machineCreate(){
@@ -70,4 +63,30 @@ function jigEdit(id){
     $("#jigEdit_title").text(id + " 編輯頁面")
 
     $("#jigEdit").modal("show");
+}
+
+
+function orderCreateContent(){
+    $("#orderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    "<a onclick=\"\">新增</a>"+
+    "</button>");
+    /*$.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/order/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'P_Out_order_Id': $('#P_Out_order_Id').val(),
+            'P_In_order_Id': $('#P_In_order_Id').val(),
+            'P_order_client': $('#P_order_client').val(),
+            'P_order_predict_date': $('#P_order_predict_date').val(),
+            'P_order_complete_date': $('#P_order_complete_date').val(),
+        }),
+        success: function () {
+            orderTable.draw();
+            $("#orderCreate").modal("hide");
+        }
+
+    })*/
 }
