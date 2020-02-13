@@ -85,9 +85,7 @@ function machineEdit(id) {
             $("#machineNoEdit").val(e.machineNo);
             $("#machineBrandEdit").val(e.machineBrand);
             $("#machineSizeEdit").val(e.machineSize);
-
         }
-
     })
    
 }
@@ -115,7 +113,6 @@ function toolcutterEdit(id) {
             $('#toolcutterSizeEdit').val(e.cutterSize);
             $('#toolcutterStatusEdit').val(e.cutterStatus);
         }
-
     })
 }
 function tooljigEdit(id) {
