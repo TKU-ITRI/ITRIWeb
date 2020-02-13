@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
 	<div class="row text-center">
 		<div class="col-12">
 		</div>
@@ -9,103 +9,91 @@
 			<div class="d-flex justify-content-center">
 				<div class="card mt-8 col-12 animated bounceInDown myForm">
 					<div class="card-header">
-						<h4>加工單(自製)-新增頁面</h4>
+						<h4>訂單-新增頁面</h4>
 					</div>
 					<div class="card-body">
 						<form name="build">
 							<div id="dynamic_container">
-								<!-- 自製訂單編號
-								負責人編號
-								機台序號
-								刀具序號
-								程式
-								機台設定
-								生產件數
-								材料序號
-								預估完工日期
-								實際完工日期 
+								<!-- 對外訂單編號
+								對內訂單編號
+								客戶代碼
+								預估交貨日期
+								實際交貨日期 
 								public int Id { get; set; }
-								public int? SOrderMemberName { get; set; }
-								public int? SOrderMachine { get; set; }
-								public int? SOrderTool { get; set; }
-								public string SOrderProgram { get; set; }
-								public string SOrderSetting { get; set; }
-								public int? SOrderCount { get; set; }
-								public int? SOrderMaterial { get; set; }
-								public DateTime? SOrderPredictDate { get; set; }
-								public DateTime? SOrderCompleteDate { get; set; }
+								public int POutOrderId { get; set; }
+								public int PInOrderId { get; set; }
+								public DateTime? POrderPredictDate { get; set; }
+								public DateTime? POrderCompleteDate { get; set; }
 								-->
 
-								<div>自製訂單編號</div>
+								<div>對外訂單編號</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
-									<input type="text" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control"id="P_Out_order_Id" name="P_Out_order_Id" />
 								</div>
-								<div>負責人編號</div>
+								<div>對內訂單編號</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
 									</div>
-									<input type="text" placeholder="" id="equipmentId" name="equipmentId"
+									<input type="text" placeholder="" id="P_In_order_Id" name="P_In_order_Id"
 										class="form-control" />
 								</div>
-								<div>機台序號</div>
+								<div>客戶代碼</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+<<<<<<< HEAD:res/modalCreate/porderCreate.html
+									<input type="text" placeholder="" class="form-control" />
+=======
+									<input type="email" placeholder="" class="form-control" id="P_order_client"name="P_order_client"/>
+>>>>>>> 4d8c44f5cf5b3d33488a17f86099c68380cf5df0:res/modalCreate/orderCreate.html
 								</div>
-								<div>刀具序號</div>
+								<div>預估交貸日期</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+<<<<<<< HEAD:res/modalCreate/porderCreate.html
+									<input type="text" placeholder="" class="form-control" />
+=======
+									<input type="email" placeholder="" class="form-control"id="P_order_predict_date"name="P_order_predict_date" />
+>>>>>>> 4d8c44f5cf5b3d33488a17f86099c68380cf5df0:res/modalCreate/orderCreate.html
 								</div>
-								<div>程式</div>
+								<div>實際交貸日期</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+<<<<<<< HEAD:res/modalCreate/porderCreate.html
+									<input type="text" placeholder="" class="form-control" />
 								</div>
-								<div>機台設定</div>
+								<div>廠牌</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" />
 								</div>
-								<div>生產件數</div>
+								<div>規格</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" />
 								</div>
-								<div>材料序號</div>
+								<div>狀態</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
-								</div>
-								<div>預估完工日期</div>
-								<div class="input-group mt-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
-									<input type="email" placeholder="" class="form-control" />
-								</div>
-								<div>實際完工日期</div>
-								<div class="input-group mt-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" class="form-control" />
+=======
+									<input type="email" placeholder="" class="form-control" id="P_order_complete_date"name="P_order_complete_date"/>
+>>>>>>> 4d8c44f5cf5b3d33488a17f86099c68380cf5df0:res/modalCreate/orderCreate.html
 								</div>
 							</div>
 					</div>
@@ -124,8 +112,11 @@
 							<input type="email" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
+					<div style="display: inline-block;">
+						<button class="btn-primary" onclick="purchaseCreate()">採購單</button>
+					</div>
 					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-						onclick="b()" />
+						onclick="orderCreateContent()" />
 					</form>
 				</div>
 
@@ -133,3 +124,4 @@
 			</div>
 	</div>
 </div>
+
