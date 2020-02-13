@@ -68,7 +68,7 @@ function jigEdit(id){
 
 function orderCreateContent(){
     $("#orderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
-    "<a onclick=\"\">新增</a>"+
+    "<a onclick=\"purchaseCreate()\">新增</a>"+
     "</button>");
     /*$.ajax({
         type: "POST",

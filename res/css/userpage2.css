@@ -5,7 +5,7 @@
     box-shadow: 0 0 16px #F5F5F5;
 }
 .searchFrame{
-	width:140px;
+	width:2px;
 	height:360px;
 	background-color: beige
 }
@@ -21,3 +21,7 @@
     font-family:DFKai-sb;
     color:#888888;
   }
+.Block{
+    margin:0px 2%;
+    width:15%
+}
