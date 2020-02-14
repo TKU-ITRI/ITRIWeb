@@ -9,12 +9,13 @@
 			<div class="d-flex justify-content-center">
 				<div class="card mt-8 col-12 animated bounceInDown myForm">
 					<div class="card-header">
-						<h4 id="jigEdit_title"></h4>
+						<h4>加工單(自製)-編輯頁面</h4>
 					</div>
 					<div class="card-body">
 						<form name="build">
 							<div id="dynamic_container">
-								<!-- 自製訂單編號
+								<!-- 
+								自製訂單編號
 								負責人編號
 								機台序號
 								刀具序號
@@ -23,21 +24,33 @@
 								生產件數
 								材料序號
 								預估完工日期
-								實際完工日期 -->
+								實際完工日期 
+								public int Id { get; set; }
+								public int? SOrderMemberName { get; set; }
+								public int? SOrderMachine { get; set; }
+								public int? SOrderTool { get; set; }
+								public string SOrderProgram { get; set; }
+								public string SOrderSetting { get; set; }
+								public int? SOrderCount { get; set; }
+								public int? SOrderMaterial { get; set; }
+								public DateTime? SOrderPredictDate { get; set; }
+								public DateTime? SOrderCompleteDate { get; set; }
+								-->
 
 								<div>自製訂單編號</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
-									<input type="text" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="pOrderidEdit" name="pOrderid" class="form-control" />
 								</div>
+								<!-- 這裡的訂單編號要用資料庫裡的pOrder去做外部鍵關聯 -->
 								<div>負責人編號</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
 									</div>
-									<input type="text" placeholder="" id="equipmentId" name="equipmentId"
+									<input type="text" placeholder="" id="sOrderMemberNameEdit" name="sOrderMemberName"
 										class="form-control" />
 								</div>
 								<div>機台序號</div>
@@ -45,56 +58,56 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderMachineEdit" name="sOrderMachine" class="form-control" />
 								</div>
 								<div>刀具序號</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderToolEdit" name="sOrderTool" class="form-control" />
 								</div>
 								<div>程式</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderProgramEdit" name="sOrderProgram" class="form-control" />
 								</div>
 								<div>機台設定</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderSettingEdit" name="sOrderSetting" class="form-control" />
 								</div>
 								<div>生產件數</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderCountEdit" name="sOrderCount" class="form-control" />
 								</div>
 								<div>材料序號</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderMaterialEdit" name="sOrderMaterial" class="form-control" />
 								</div>
 								<div>預估完工日期</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderPredictDateEdit" name="sOrderPredictDate" class="form-control" />
 								</div>
 								<div>實際完工日期</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" placeholder="" class="form-control" />
+									<input type="text" placeholder="" id="sOrderCompleteDateEdit" name="sOrderCompleteDate" class="form-control" />
 								</div>
 							</div>
 					</div>
@@ -104,17 +117,17 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 							</div>
-							<input type="email" placeholder="起始" class="form-control" />
+							<input type="text" placeholder="起始" class="form-control" />
 						</div>
 						<div class="input-group mt-3" style="width:120px;margin:10px">
 							<div class="input-group-prepend">
 								<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 							</div>
-							<input type="email" placeholder="結束" class="form-control" />
+							<input type="text" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-						onclick="b()" />
+					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
+						onclick="orderSelfEditContent()" />
 					</form>
 				</div>
 
