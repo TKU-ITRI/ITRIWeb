@@ -68,6 +68,7 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<a onclick=\"purchaseCreate()\">新增</a>'
             html += '<button onclick="pOrderEdit(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="pOrderDelete(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
@@ -263,6 +264,8 @@
         </div>
       </div>
     </div>
+
+
     <!-- Edit -->
     
   

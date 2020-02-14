@@ -8,10 +8,18 @@ function init(){
     $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
    
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
+    
 
     // Edit
 
 }
+
+function init2(){
+    $("#purchase2_Content").load("/res/modalCreate/purchaseCreate.html");
+    $("#assemblyCreate_Content").load("/res/modalCreate/assemblyCreate.html");
+    $("#workOrderCreate_Content").load("/res/modalCreate/workOrderCreate.html");
+}
+
 function pOrderCreate(){
     $("#pOrderCreate").modal("show");
 }
@@ -20,6 +28,15 @@ function purchaseCreate(){
     $("#purchase").modal("show");
 }
 
+function purchase2Create(){
+    $("#purchase2Create").modal("show");
+}
+function assemblyCreate(){
+    $("#assemblyCreate").modal("show");
+}
+function workOrderCreate(){
+    $("#workOrderCreate").modal("show");
+}
 function machineCreate(){
     $("#machineCreate").modal("show");
 }
@@ -68,9 +85,9 @@ function jigEdit(id){
 
 function pOrderCreateContent(){
     alert("ddd");
-    $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
-    "<a onclick=\"purchaseCreate()\">新增</a>"+
-    "</button>");
+    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    // "<a onclick=\"purchaseCreate()\">新增</a>"+
+    // "</button>");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
