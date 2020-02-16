@@ -6,7 +6,7 @@
   <script src="/res/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
 
   <link rel="stylesheet" type="text/css" href="../../res/bootstrap/bootstrap.min2.css">
-  <link rel="stylesheet" type="text/css" href="../../res/css/userpage2.css">
+  <link rel="stylesheet" type="text/css" href="../../res/css/production.css">
   <script src="/res/js/production.js"></script>
   <script src="/res/js/index.js"></script>
 
@@ -36,9 +36,10 @@
     }
   </style>
   <script>
-    var purchaseTable;
+    var purchaseTable2;
     $(document).ready(function () {
-      purchasepleTable = $('#purchaseTable').DataTable({
+      alert(123);
+      purchaseTable2 = $('#purchaseTable').DataTable({
         "searching": false,
         "purchaseing": false,
         "serverSide": true,
@@ -49,7 +50,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/purchase/GetAll",
+          url: parent.webApiUrl + "/purchaseOrder/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -69,9 +70,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + "123"
+            html += '<button  class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -90,7 +90,8 @@
         }
 
       });
-
+      alert(")");
+      console.log(purchaseTable2);
     
 
     });
@@ -149,9 +150,11 @@
               <h1>組裝單</h1>
             </td>
             <td >
-              <h1>加工單</h1>
+              <h1>加工單(外)</h1>
             </td>
-
+            <td >
+              <h1>加工單(內)</h1>
+            </td>
           </tr>
         </thead>
         <tfoot>
@@ -172,7 +175,14 @@
           <th>
             <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="workOrderCreate();" style="width:200px;">
+              data-ui-class="a-fadeUp" onclick="orderOutCreate();" style="width:200px;">
+              <font size="6" color="#737373" ;">新 增</font>
+            </button>
+          </th>
+          <th>
+            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
+              data-ui-class="a-fadeUp" onclick="orderSelfCreate();" style="width:200px;">
               <font size="6" color="#737373" ;">新 增</font>
             </button>
           </th>
@@ -199,11 +209,20 @@
       </div>
     </div>
 
-    <div class="word  modal fade modal_right" id="workOrderCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    <div class="word  modal fade modal_right" id="orderOutCreate" role="dialog" aria-labelledby="modalCreateLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:25em;" role="document">
       <div class="myForm modal-content">
-        <div id="workOrderCreate_Content"></div>
+        <div id="orderOutCreate_Content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="word  modal fade modal_right" id="orderSelfCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="orderSelfCreate_Content"></div>
       </div>
     </div>
   </div>

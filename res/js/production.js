@@ -8,7 +8,7 @@ function init(){
     $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
    
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
-    
+    $("#gon_Content").load("/Views/ProductionManage/gon.html");
 
     // Edit
 
@@ -18,8 +18,12 @@ function init2(){
     $("#purchase2_Content").load("/res/modalCreate/purchaseCreate.html");
     $("#assemblyCreate_Content").load("/res/modalCreate/assemblyCreate.html");
     $("#workOrderCreate_Content").load("/res/modalCreate/workOrderCreate.html");
+    $("#orderOutCreate_Content").load("/res/modalCreate/orderOutCreate.html");
+    $("#orderSelfCreate_Content").load("/res/modalCreate/orderSelfCreate.html");
 }
-
+function gonCreate(){
+    $("#gon").modal("show");
+}
 function pOrderCreate(){
     $("#pOrderCreate").modal("show");
 }
@@ -36,6 +40,12 @@ function assemblyCreate(){
 }
 function workOrderCreate(){
     $("#workOrderCreate").modal("show");
+}
+function orderOutCreate(){
+    $("#orderOutCreate").modal("show");
+}
+function orderSelfCreate(){
+    $("#orderSelfCreate").modal("show");
 }
 function machineCreate(){
     $("#machineCreate").modal("show");
@@ -105,6 +115,36 @@ function pOrderCreateContent(){
         success: function () {
             pOrderTable.draw();
             $("#pOrderCreate").modal("hide");
+        }
+
+    })
+}
+
+
+function purchaseCreateContent(){
+    alert("ddd");
+    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    // "<a onclick=\"purchaseCreate()\">新增</a>"+
+    // "</button>");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/purchaseOrder/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'purchaseOrderList': $('#purchaseOrderListCreate').val(),
+            'purchaseOrderMemberName': $('#purchaseOrderMemberNameCreate').val(),
+            'purchaseOrderPredictDate': $('#purchaseOrderPredictDateCreate').val(),
+            'purchaseOrderCompleteDate': $('#purchaseOrderCompleteDateCreate').val()
+            
+        }),
+        success: function () {
+            console.log(purchaseTable2);
+
+            purchaseTable2.draw();
+            console.log(purchaseTable2);
+            $("#purchase2Create").modal("hide");
         }
 
     })
