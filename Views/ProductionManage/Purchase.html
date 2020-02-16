@@ -37,16 +37,10 @@
   </style>
   <script>
     var purchaseTable2;
-<<<<<<< HEAD
-    //var b;
-    $(document).ready(function () {
-      
-=======
     var assemblyTable;
     var orderOutTable;
     var orderSelfTable;
     $(document).ready(function () {
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
       purchaseTable2 = $('#purchaseTable').DataTable({
         "searching": false,
         "purchaseing": false,
@@ -65,12 +59,6 @@
           }
         },
         "columns": [
-<<<<<<< HEAD
-          { 'data': null },
-          { 'data': null },
-          { 'data': null },
-=======
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
           { 'data': null }
         ], "columnDefs": [{
           "targets": [], // hidden column
@@ -197,13 +185,7 @@
           }
         }
       });
-<<<<<<< HEAD
     
-      console.log(purchaseTable2);
-    
-=======
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
-
       orderSelfTable = $('#orderSelfTable').DataTable({
         "searching": false,
         "orderSelfing": false,
@@ -309,13 +291,8 @@
           <th>
             <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-<<<<<<< HEAD
-              data-ui-class="a-fadeUp" onclick="purchase2Create();" style="width:200px;">
-              <font size="6" color="#737373">新 增</font>
-=======
               data-ui-class="a-fadeUp" onclick="purchase2Create();" style="width:100%">
               <font size="6" color="#737373" ;">新 增</font>
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
             </button>
           </th>
         </tfoot>
@@ -335,13 +312,8 @@
           <th>
             <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-<<<<<<< HEAD
-              data-ui-class="a-fadeUp" onclick="assemblyCreate();" style="width:200px;">
-              <font size="6" color="#737373">新 增</font>
-=======
               data-ui-class="a-fadeUp" onclick="assemblyCreate();" style="width:100%;">
               <font size="6" color="#737373" ;">新 增</font>
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
             </button>
           </th>
         </tfoot>
@@ -360,13 +332,8 @@
           <th>
             <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-<<<<<<< HEAD
-              data-ui-class="a-fadeUp" onclick="orderOutCreate();" style="width:200px;">
-              <font size="6" color="#737373">新 增</font>
-=======
-              data-ui-class="a-fadeUp" onclick="orderOutCreate()();" style="width:100%;">
+              data-ui-class="a-fadeUp" onclick="orderOutCreate();" style="width:100%;">
               <font size="6" color="#737373" ;">新 增</font>
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
             </button>
           </th>
         </tfoot>
@@ -386,27 +353,19 @@
           <th>
             <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-<<<<<<< HEAD
-              data-ui-class="a-fadeUp" onclick="orderSelfCreate();" style="width:200px;">
-              <font size="6" color="#737373">新 增</font>
-=======
               data-ui-class="a-fadeUp" onclick="orderSelfCreate();" style="width:100%;">
               <font size="6" color="#737373" ;">新 增</font>
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
             </button>
           </th>
         </tfoot>
       </table>
     </div>
-<<<<<<< HEAD
     <div>
       <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
         data-ui-class="a-fadeUp" onclick="confirm()" style="width:100px;">
         <font size="6" color="#737373">確 認</font>
        </button>
     </div>
-=======
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
 
     <div class="word  modal fade modal_right" id="purchase2Create" role="dialog" aria-labelledby="modalCreateLabel"
       aria-hidden="true">

@@ -159,10 +159,6 @@ function purchaseCreateContent(){
 
     })
 }
-<<<<<<< HEAD
-function gonCreateContent(No){
-    alert("aaa");
-=======
 
 function assemblyCreateContent(){
     alert("ddd");
@@ -185,7 +181,7 @@ function assemblyCreateContent(){
         }),
         success: function () {
 
-            purchaseTable2.draw();
+            assemblyTable.draw();
             $("#assemblyCreate").modal("hide");
         }
 
@@ -194,28 +190,12 @@ function assemblyCreateContent(){
 
 function orderOutCreateContent(){
     alert("ddd");
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
     // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     // "<a onclick=\"purchaseCreate()\">新增</a>"+
     // "</button>");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
-<<<<<<< HEAD
-        url: webApiUrl + "/gon/Create",
-        contentType: "application/json;charset=utf-8",
-        async: false,
-        data: JSON.stringify({
-            'porderNo': No,
-            'createDate': $('#createDateCreate').val(),
-            'modifyDate': $('#modifyDateCreate').val()      
-        }),
-        success: function () {
-            
-        }
-        
-        
-=======
         url: webApiUrl + "/orderoutsource/Create",
         contentType: "application/json;charset=utf-8",
         async: false,
@@ -267,7 +247,24 @@ function orderSelfCreateContent(){
             orderSelfTable.draw();
             $("#orderSelfCreate").modal("hide");
         }
->>>>>>> 44dfb1a431443db0c262c0d2d31f116c783276e1
 
+    })
+}
+function gonCreateContent(No){
+    alert("aaa");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/gon/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'porderNo': No,
+            'createDate': $('#createDateCreate').val(),
+            'modifyDate': $('#modifyDateCreate').val()      
+        }),
+        success: function () {
+            
+        }
     })
 }
