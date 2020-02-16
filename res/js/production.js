@@ -2,7 +2,7 @@
 
 
 
-
+var PorderNo;
 function init(){
     // Create
     $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
@@ -21,17 +21,28 @@ function init2(){
     $("#orderOutCreate_Content").load("/res/modalCreate/orderOutCreate.html");
     $("#orderSelfCreate_Content").load("/res/modalCreate/orderSelfCreate.html");
 }
-function gonCreate(){
+function gonCreate(id){
+    PorderNo = id
+    console.log(PorderNo);
     $("#gon").modal("show");
+    
 }
 function pOrderCreate(){
     $("#pOrderCreate").modal("show");
 }
 
 function purchaseCreate(){
+    var No=PorderNo;
+    $("#gon").modal("hide");
+    gonCreateContent(No);
     $("#purchase").modal("show");
 }
 
+function confirm(){
+    alert("123");
+    $("#purchase").modal("hide");
+    $("#gon").modal("show");
+}
 function purchase2Create(){
     $("#purchase2Create").modal("show");
 }
@@ -45,6 +56,7 @@ function orderOutCreate(){
     $("#orderOutCreate").modal("show");
 }
 function orderSelfCreate(){
+    
     $("#orderSelfCreate").modal("show");
 }
 function machineCreate(){
@@ -146,6 +158,30 @@ function purchaseCreateContent(){
             console.log(purchaseTable2);
             $("#purchase2Create").modal("hide");
         }
+
+    })
+}
+function gonCreateContent(No){
+    alert("aaa");
+    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    // "<a onclick=\"purchaseCreate()\">新增</a>"+
+    // "</button>");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/gon/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'porderNo': No,
+            'createDate': $('#createDateCreate').val(),
+            'modifyDate': $('#modifyDateCreate').val()      
+        }),
+        success: function () {
+            
+        }
+        
+        
 
     })
 }

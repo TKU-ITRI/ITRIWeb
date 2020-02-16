@@ -36,6 +36,7 @@
     }
   </style>
   <script>
+
     var pOrderTable;
     $(document).ready(function () {
       pOrderTable = $('#pOrderTable').DataTable({
@@ -67,8 +68,8 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<a onclick=\"gonCreate()\">新增</a>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + "<div id=\"porderNo\">"+row.id+"</div>"
+            html += '<a onclick=\"gonCreate('+row.id+')\">新增</a>'
             html += '<button onclick="pOrderEdit(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="pOrderDelete(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
