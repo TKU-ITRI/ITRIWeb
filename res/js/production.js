@@ -140,11 +140,100 @@ function purchaseCreateContent(){
             
         }),
         success: function () {
-            console.log(purchaseTable2);
 
             purchaseTable2.draw();
-            console.log(purchaseTable2);
             $("#purchase2Create").modal("hide");
+        }
+
+    })
+}
+
+function assemblyCreateContent(){
+    alert("ddd");
+    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    // "<a onclick=\"purchaseCreate()\">新增</a>"+
+    // "</button>");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/assemblyList/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'aListImage': $('#aListImageCreate').val(),
+            'aListMemberName': $('#aListMemberNameCreate').val(),
+            'aListTool': $('#aListToolCreate').val(),
+            'aListPredictDate': $('#aListPredictDateCreate').val(),
+            'aListCompleteDateCreate': $('#aListCompleteDateCreate').val()
+            
+        }),
+        success: function () {
+
+            purchaseTable2.draw();
+            $("#assemblyCreate").modal("hide");
+        }
+
+    })
+}
+
+function orderOutCreateContent(){
+    alert("ddd");
+    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    // "<a onclick=\"purchaseCreate()\">新增</a>"+
+    // "</button>");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/orderoutsource/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'oOrderImage': $('#oOrderImageCreate').val(),
+            'oOrderSchedule': $('#oOrderScheduleCreate').val(),
+            'oOrderMethod': $('#oOrderMethodCreate').val(),
+            'oOrderContractor': $('#oOrderContractorCreate').val(),
+            'oOrderPredictDate': $('#oOrderPredictDateCreate').val(),
+            'oOrderCompleteDate': $('#oOrderCompleteDateCreate').val()
+            
+        }),
+        success: function () {
+            orderOutTable.draw();
+            $("#orderOutCreate").modal("hide");
+        }
+
+    })
+}
+
+function orderSelfCreateContent(){
+    alert("ddd");
+    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
+    // "<a onclick=\"purchaseCreate()\">新增</a>"+
+    // "</button>");
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/orderselfmade/Create",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'sOrderImage': $('#sOrderImageCreate').val(),
+            'sOrderSchedule': $('#sOrderScheduleCreate').val(),
+            'oOrderMethod': $('#sOrderMethodCreate').val(),
+            'oOrderContractor': $('#oOrderContractorCreate').val(),
+            'sOrderMemberName': $('#sOrderMemberNameCreate').val(),
+            'sOrderMachine': $('#sOrderMachineCreate').val(),
+            'sOrderTool': $('#sOrderToolCreate').val(),
+            'sOrderProgram': $('#sOrderProgramCreate').val(),
+            'sOrderSetting': $('#sOrderSettingCreate').val(),
+            'sOrderCount': $('#sOrderCountCreate').val(),
+            'sOrderMaterial': $('#sOrderMaterialCreate').val(),
+            'sOrderPredictDate': $('#sOrderPredictDateCreate').val(),
+            'sOrderCompleteDate': $('#sOrderCompleteDateCreate').val()
+            
+        }),
+        success: function () {
+            orderSelfTable.draw();
+            $("#orderSelfCreate").modal("hide");
         }
 
     })
