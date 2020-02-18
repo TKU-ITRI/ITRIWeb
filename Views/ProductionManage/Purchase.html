@@ -6,7 +6,7 @@
   <script src="/res/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
 
   <link rel="stylesheet" type="text/css" href="../../res/bootstrap/bootstrap.min2.css">
-  <link rel="stylesheet" type="text/css" href="../../res/css/userpage2.css">
+  <link rel="stylesheet" type="text/css" href="../../res/css/production.css">
   <script src="/res/js/production.js"></script>
   <script src="/res/js/index.js"></script>
 
@@ -36,9 +36,12 @@
     }
   </style>
   <script>
-    var purchaseTable;
+    var purchaseTable2;
+    var assemblyTable;
+    var orderOutTable;
+    var orderSelfTable;
     $(document).ready(function () {
-      purchasepleTable = $('#purchaseTable').DataTable({
+      purchaseTable2 = $('#purchaseTable').DataTable({
         "searching": false,
         "purchaseing": false,
         "serverSide": true,
@@ -49,18 +52,14 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/purchase/GetAll",
+          url: parent.webApiUrl + "/purchaseOrder/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
           }
         },
-
         "columns": [
-          { 'data': null },
-          { 'data': null },
           { 'data': null }
-
         ], "columnDefs": [{
           "targets": [], // hidden column
           "visible": false
@@ -75,8 +74,8 @@
             html += '</div>'
             return html
           },
-
-        }],
+        }
+      ],
         "dom": 'Pfrtip', // enable custommize toolbar elements
         "language": { // change display text
           "info": "",
@@ -88,11 +87,152 @@
             "previous": "<"
           }
         }
-
       });
-
     
 
+      assemblyTable = $('#assemblyTable').DataTable({
+        "searching": false,
+        "assemblying": false,
+        "serverSide": true,
+        "processing": true,
+
+        "ajax": {
+          "headers": {
+            'Authorization': getCookie("token")
+          },
+          "type": "POST",
+          url: parent.webApiUrl + "/assemblyList/GetAll",
+          contentType: "application/json",
+          data: function (d) {
+            return JSON.stringify(d)
+          }
+        },
+        "columns": [
+          { 'data': null }
+        ], "columnDefs": [{
+          "targets": [], // hidden column
+          "visible": false
+
+        }, {
+          "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
+          "render": function (data, type, row) {
+            var html = "";
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '</div>'
+            return html
+          },
+        }
+      ],
+        "dom": 'Pfrtip', // enable custommize toolbar elements
+        "language": { // change display text
+          "info": "",
+          "search": "搜尋",
+          "paginate": {
+            "first": "第一頁",
+            "last": "最後一頁",
+            "next": ">",
+            "previous": "<"
+          }
+        }
+      });
+
+      orderOutTable = $('#orderOutTable').DataTable({
+        "searching": false,
+        "orderOuting": false,
+        "serverSide": true,
+        "processing": true,
+
+        "ajax": {
+          "headers": {
+            'Authorization': getCookie("token")
+          },
+          "type": "POST",
+          url: parent.webApiUrl + "/orderoutsource/GetAll",
+          contentType: "application/json",
+          data: function (d) {
+            return JSON.stringify(d)
+          }
+        },
+        "columns": [
+          { 'data': null }
+        ], "columnDefs": [{
+          "targets": [], // hidden column
+          "visible": false
+
+        }, {
+          "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
+          "render": function (data, type, row) {
+            var html = "";
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '</div>'
+            return html
+          },
+        }
+      ],
+        "dom": 'Pfrtip', // enable custommize toolbar elements
+        "language": { // change display text
+          "info": "",
+          "search": "搜尋",
+          "paginate": {
+            "first": "第一頁",
+            "last": "最後一頁",
+            "next": ">",
+            "previous": "<"
+          }
+        }
+      });
+    
+      orderSelfTable = $('#orderSelfTable').DataTable({
+        "searching": false,
+        "orderSelfing": false,
+        "serverSide": true,
+        "processing": true,
+
+        "ajax": {
+          "headers": {
+            'Authorization': getCookie("token")
+          },
+          "type": "POST",
+          url: parent.webApiUrl + "/orderselfmade/GetAll",
+          contentType: "application/json",
+          data: function (d) {
+            return JSON.stringify(d)
+          }
+        },
+        "columns": [
+          { 'data': null }
+        ], "columnDefs": [{
+          "targets": [], // hidden column
+          "visible": false
+
+        }, {
+          "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
+          "render": function (data, type, row) {
+            var html = "";
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '</div>'
+            return html
+          },
+        }
+      ],
+        "dom": 'Pfrtip', // enable custommize toolbar elements
+        "language": { // change display text
+          "info": "",
+          "search": "搜尋",
+          "paginate": {
+            "first": "第一頁",
+            "last": "最後一頁",
+            "next": ">",
+            "previous": "<"
+          }
+        }
+      });
     });
   </script>
   <script>
@@ -138,41 +278,20 @@
 <body>
 
   <div class="row">
-    <div style="padding:0px 3%;width:19%">
+    <div style="padding:0px 2%;width:21%">
       <table id="purchaseTable">
         <thead>
           <tr>
             <td >
               <h1>採購單</h1>
             </td>
-            <td >
-              <h1>組裝單</h1>
-            </td>
-            <td >
-              <h1>加工單</h1>
-            </td>
-
           </tr>
         </thead>
         <tfoot>
           <th>
             <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="purchase2Create();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
-            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="assemblyCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
-            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="workOrderCreate();" style="width:200px;">
+              data-ui-class="a-fadeUp" onclick="purchase2Create();" style="width:100%">
               <font size="6" color="#737373" ;">新 增</font>
             </button>
           </th>
@@ -180,6 +299,73 @@
       </table>
     </div>
 
+    <div style="margin:0px 2%;width:21%">
+      <table id="assemblyTable">
+        <thead>
+          <tr>
+            <td >
+              <h1>組裝單</h1>
+            </td>
+          </tr>
+        </thead>
+        <tfoot>
+          <th>
+            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
+              data-ui-class="a-fadeUp" onclick="assemblyCreate();" style="width:100%;">
+              <font size="6" color="#737373" ;">新 增</font>
+            </button>
+          </th>
+        </tfoot>
+      </table>
+    </div>
+    <div style="margin:0px 2%;width:21%">
+      <table id="orderOutTable">
+        <thead>
+          <tr>
+            <td >
+              <h1>加工單(外)</h1>
+            </td>
+          </tr>
+        </thead>
+        <tfoot>
+          <th>
+            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
+              data-ui-class="a-fadeUp" onclick="orderOutCreate();" style="width:100%;">
+              <font size="6" color="#737373" ;">新 增</font>
+            </button>
+          </th>
+        </tfoot>
+      </table>
+    </div>
+
+    <div style="margin:0px 2%;width:21%">
+      <table id="orderSelfTable">
+        <thead>
+          <tr>
+            <td >
+              <h1>加工單(內)</h1>
+            </td>
+          </tr>
+        </thead>
+        <tfoot>
+          <th>
+            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
+              data-ui-class="a-fadeUp" onclick="orderSelfCreate();" style="width:100%;">
+              <font size="6" color="#737373" ;">新 增</font>
+            </button>
+          </th>
+        </tfoot>
+      </table>
+    </div>
+    <div>
+      <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
+        data-ui-class="a-fadeUp" onclick="confirm()" style="width:100px;">
+        <font size="6" color="#737373">確 認</font>
+       </button>
+    </div>
 
     <div class="word  modal fade modal_right" id="purchase2Create" role="dialog" aria-labelledby="modalCreateLabel"
       aria-hidden="true">
@@ -199,14 +385,24 @@
       </div>
     </div>
 
-    <div class="word  modal fade modal_right" id="workOrderCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    <div class="word  modal fade modal_right" id="orderOutCreate" role="dialog" aria-labelledby="modalCreateLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:25em;" role="document">
       <div class="myForm modal-content">
-        <div id="workOrderCreate_Content"></div>
+        <div id="orderOutCreate_Content"></div>
       </div>
     </div>
   </div>
+
+  <div class="word  modal fade modal_right" id="orderSelfCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="orderSelfCreate_Content"></div>
+      </div>
+    </div>
+  </div>
+  
     <!-- <div style="padding:0px 3%;width:19%">
       <table id="machineTable">
         <thead>

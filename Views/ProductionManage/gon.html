@@ -36,12 +36,11 @@
     }
   </style>
   <script>
-
-    var pOrderTable;
+    var gonTable;
     $(document).ready(function () {
-      pOrderTable = $('#pOrderTable').DataTable({
+      gonTable = $('#gonTable').DataTable({
         "searching": false,
-        "ordering": false,
+        "goning": false,
         "serverSide": true,
         "processing": true,
 
@@ -50,7 +49,7 @@
             'Authorization': getCookie("token")
           },
           "type": "POST",
-          url: parent.webApiUrl + "/pOrder/GetAll",
+          url: parent.webApiUrl + "/gon/GetAll",
           contentType: "application/json",
           data: function (d) {
             return JSON.stringify(d)
@@ -58,8 +57,7 @@
         },
 
         "columns": [
-          { 'data': null },
-
+          { 'data': null }
         ], "columnDefs": [{
           "targets": [], // hidden column
           "visible": false
@@ -68,10 +66,9 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + "<div id=\"porderNo\">"+row.id+"</div>"
-            html += '<a onclick=\"gonCreate('+row.id+')\">新增</a>'
-            html += '<button onclick="pOrderEdit(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="pOrderDelete(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -97,8 +94,8 @@
   </script>
   <script>
     $(function () {
-      $('#pOrderSearch').on('keyup', function () {
-        myFunction(this, "pOrderTable");
+      $('#gonSearch').on('keyup', function () {
+        myFunction(this, "gonTable");
       });
      
       
@@ -139,22 +136,19 @@
 
   <div class="row">
     <div style="padding:0px 3%;width:19%">
-      <table id="pOrderTable">
+      <table id="gonTable">
         <thead>
           <tr>
-            <td align=" center">
-              <h1>訂單</h1>
-
-
+            <td align=" center" >
+              <h1>工單</h1>
             </td>
-
           </tr>
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="pOrderSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="gonSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="pOrderCreate();" style="width:200px;">
+              data-ui-class="a-fadeUp" onclick="purchaseCreate();" style="width:200px;">
               <font size="6" color="#737373" ;">新 增</font>
             </button>
           </th>
@@ -162,6 +156,17 @@
       </table>
     </div>
 
+
+    <div class="word  modal fade modal_right" id="gonCreate" role="dialog" aria-labelledby="modalCreateLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+        <div class="myForm modal-content">
+          <div id="gon_Content"></div>
+        </div>
+      </div>
+    </div>
+
+    
     <!-- <div style="padding:0px 3%;width:19%">
       <table id="machineTable">
         <thead>
@@ -245,48 +250,12 @@
         </tfoot>
       </table>
     </div> -->
-
-
-    <!-- Create -->
-    <div class="word  modal fade modal_right" id="pOrderCreate" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="pOrderCreate_Content"></div>
-        </div>
-      </div>
-    </div>
-    <div class="word  modal fade modal_right" style="overflow-y: visible;" id="gon" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg"  role="document" >
-        <div class=" modal-content">
-          <div id="gon_Content"></div>
-        </div>
-      </div>
-    </div>
-    <div class="word  modal fade modal_right" id="purchase" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg"  role="document"  style="width: 120em;">
-        <div class=" modal-content">
-          <div id="purchase_Content"></div>
-        </div>
-      </div>
-    </div>
-    
-
-
-    <!-- Edit -->
-    
-  
-    <div class="word  modal fade modal_right" id="cutterEdit" role="dialog" aria-labelledby="modalEditLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="cutterEdit_Content"></div>
-        </div>
-      </div>
-    </div>
-  
+    <script>
+    $(document).ready(function () {
+      init2();
+    });
+   
+  </script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 </body>
@@ -294,7 +263,4 @@
 </html>
 <script>
 
-  $(document).ready(function () {
-    init();
-  });
 </script>
