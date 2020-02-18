@@ -23,16 +23,27 @@ function mainInitial() {
         });
         feather.replace();
 
-        $.each(menuData[generateMenuType], function () {
-            $("#menu").append(
-                getMenuItem(this)
-            );
-        });
+
         feather.replace();
     }).fail(function (jqxhr, settings, exception) {
         $("div.log").text("Triggered ajaxError handler.");
     });
-    $("#iframe-content").attr("src", "/Views/gondan/userpage.html");
+    alert(getCookie('type'));
+    switch (getCookie('type')) {
+        case "A":
+            $("#iframe-content").attr("src", "/Views/Account/AccountManager.html");
+            break;
+        case "C":
+            $("#iframe-content").attr("src", "/Views/Account/AccountManager.html");
+            break;
+        case "P":
+            $("#iframe-content").attr("src", "/Views/gondan/userpage.html");
+            break;
+        case "P2":
+            break;
+
+    }
+    
 
 
 }

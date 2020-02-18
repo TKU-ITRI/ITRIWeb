@@ -6,9 +6,9 @@
 function init(){
     // Create
     $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
-   
-    $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     
+    $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
+     
 
     // Edit
 
