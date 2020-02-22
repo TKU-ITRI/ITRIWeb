@@ -37,11 +37,14 @@ function mainInitial() {
         case "P":
             $("#iframe-content").attr("src", "/Views/gondan/userpage.html");
             break;
+        case "S":
+            $("#iframe-content").attr("src", "/Views/gondan/userpage.html");
+            break;
         case "P2":
             break;
 
     }
-    
+
 
 
 }
@@ -195,6 +198,7 @@ function accountLogin(form) {
             setCookie("token", result.token);
             setCookie("GroupId", result.groupId);
             setCookie("nickName", result.nickName);
+            setCookie("companyId", result.companyId);
 
             mainInitial(StudentId);
             form.reset();
@@ -251,7 +255,8 @@ function accountLogout() {
     setCookie("name", "", -1);
     setCookie("type", "", -1);
     setCookie("token", "", -1);
-    setCookie("GroupId", "", -1);
+    setCookie("companyId", "", -1);
+
     $("#loginForm").show();
     $("#mainPage").hide();
     //$("body").css("background-image", "url('/res/img/loginpage6.jpg')");

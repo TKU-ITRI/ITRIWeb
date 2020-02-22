@@ -30,8 +30,8 @@
     .btn {
       border: none;
       float: right;
-
-      cursor: pointer;
+      
+      /* cursor: pointer; */
     }
   </style>
   <script>
@@ -71,7 +71,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberNo
+            html += '<div  class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberNo
             html += '<button onclick="memberDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="memberEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
@@ -173,10 +173,12 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<div class="row  btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
             html += '<button onclick="toolcutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="toolcutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
+
+
             return html
           }
         }],
@@ -363,7 +365,7 @@
           </tr>
         </thead>
         <tfoot>
-          <th>
+          <th >
             <input style="width:100%;" placeholder="Search.." id="memberSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
               data-ui-class="a-fadeUp" onclick="memberCreate();" style="width:200px;">

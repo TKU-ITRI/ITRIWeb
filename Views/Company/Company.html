@@ -30,7 +30,7 @@
     </style>
     <script>
         var dataTables;
-        var CompanyId;
+        var companyDataTables;
         $(document).ready(function () {
 
 
@@ -81,15 +81,15 @@
                 }, {
                     "targets": 1,
                     "render": function (data, type, row) {
-                        var checked = (row.active == 1) ? "啟用中" : "停用中";
-                        return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
+                        var checked = (row.active == 0) ? "啟用" : "停用";
+                        return "<a href='javascript:void(0);' onclick='changeCMStatus(" + row.id + ",\"" + checked + row.companyName + "\", \"" + checked + "\");'>" + checked + "</a>";
                     }
 
                 }, {
                     "targets": 2,
                     "render": function (data, type, row) {
                         var html = "";
-                        html += '<div><button onclick="CompanyManager(' + row.id + ',\'' + row.companyName + '\')" class="btn btn-secondary btn-sm" style="width:100%";>'+row.companyName+'</button>'
+                        html += '<div><button onclick="CompanyManager(' + row.id + ',\'' + row.companyName + '\')" class="btn btn-secondary btn-sm" style="width:100%";>' + row.companyName + '</button>'
                         html += '</div>'
                         return html
                     }
@@ -104,7 +104,10 @@
                     }
                 }, {
                     "targets": [3, 4], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else
+                            return moment(data).format('YYYY-MM-DD hh:mm:ss');
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -172,7 +175,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="editCompanyCommit();">修改存檔</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="editCompanyCommit();">編輯公司</button>
                 </div>
             </div>
         </div>
@@ -302,7 +305,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="editAccountCommit();">修改存檔</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="editAccountCommit();">編輯公司帳號</button>
                 </div>
             </div>
         </div>
@@ -313,7 +316,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="AMCreateLabel">新增會員帳號</h5>
+                    <h5 class="modal-title" id="AMCreateLabel">新增公司帳號</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

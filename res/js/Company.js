@@ -79,7 +79,6 @@ function editCompany(id, title) { // 編輯會員初始化
             "Id": id
         }),
         success: function (e) {
-            console.log(e.status);
             $("#txtidEdit").val(id);
             $('#txtcompanyNameEdit').val(e.companyName);
             $('#txtactiveEdit').val(e.active);
@@ -89,11 +88,30 @@ function editCompany(id, title) { // 編輯會員初始化
 
 }
 
-function CompanyManager(Id, title) { // 編輯會員初始化
+function editCompanyCommit() { // 編輯會員送出
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/cm/Update",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'Id': $("#txtidEdit").val(),
+            'CompanyName': $("#txtcompanyNameEdit").val(),
+            'Active': $("#txtactiveEdit").val(),
+        }),
+        success: function () {
+            dataTables.draw();
+            $('#CMEdit').modal('hide');
+        }
+    });
+}
 
+
+function CompanyManager(Id, title) { // 編輯會員初始化
     $('#AMModalLabel').html('編輯 ' + title);
-    CompanyId = Id;
-    $('#AMTable').DataTable({
+    setCookie("companyId", Id);
+    companyDataTables = $('#AMTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -107,7 +125,7 @@ function CompanyManager(Id, title) { // 編輯會員初始化
             url: parent.webApiUrl + "/cm/GetAllAccount",
             contentType: "application/json",
             data: function (d) {
-                d.companyId = CompanyId;
+                d.companyId = Id;
                 return JSON.stringify(d)
 
             }
@@ -130,9 +148,9 @@ function CompanyManager(Id, title) { // 編輯會員初始化
         }, {
             "targets": 1,
             "render": function (data, type, row) {
-                var checked = (row.active == 1) ? "啟用中" : "停用中";
-                return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
-            }
+                var checked = (row.active == 0) ? "啟用" : "停用";
+                return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.companyName + "\", \"" + checked + "\");'>" + checked + "</a>";
+    }
 
         }, {
             "targets": 3,
@@ -151,7 +169,10 @@ function CompanyManager(Id, title) { // 編輯會員初始化
             }
         }, {
             "targets": [6, 7], render: function (data) {
-                return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                if(data==null)
+                    return "無";
+                else
+                    return moment(data).format('YYYY-MM-DD hh:mm:ss');
             }
         }],
         "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -169,24 +190,6 @@ function CompanyManager(Id, title) { // 編輯會員初始化
 
     $('#modalDetail').modal('show');
 }
-function editCompanyCommit() { // 編輯會員送出
-    $.ajax({
-        type: "POST",
-        headers: { 'Authorization': getCookie("token") },
-        url: webApiUrl + "/cm/Update",
-        contentType: "application/json;charset=utf-8",
-        async: false,
-        data: JSON.stringify({
-            'Id': $("#txtidEdit").val(),
-            'CompanyName': $("#txtcompanyNameEdit").val(),
-            'Active': $("#txtactiveEdit").val(),
-        }),
-        success: function () {
-            dataTables.draw();
-            $('#AMEdit').modal('hide');
-        }
-    });
-}
 
 function DeleteAccount(id, msg) { // 變更狀態
     var confirmStatus = confirm("是否刪除此帳號?");
@@ -201,7 +204,7 @@ function DeleteAccount(id, msg) { // 變更狀態
                 "id": id
             }),
             success: function () {
-                dataTables.draw();
+                companyDataTables.draw();
             }
         });
     }
@@ -219,7 +222,7 @@ function changeAMStatus(id, msg) { // 變更狀態
                 "id": id
             }),
             success: function () {
-                dataTables.draw();
+                companyDataTables.draw();
             }
         });
     }
@@ -252,14 +255,14 @@ function createAccountCommit() { // 建立初始化
             'nickName': $('#txtnameCreate').val(),
             'password': $('#txtpasswordCreate').val(),
             'active': $('#txtactiveCreate').val(),
-            'companyId': ($('#txttypeCreate').val()=="S")?getCookie("id"):0,
+            'companyId': getCookie("companyId"),
         }),
         success: function (e) {
             switch (e) {
                 case "success":
                     alert("新增帳號成功")
 
-                    dataTables.draw();
+                    companyDataTables.draw();
                     $('#AMCreate').modal('hide');
                     break;
                 case "error":
@@ -284,7 +287,7 @@ function editAccount(id, title) { // 編輯會員初始化
             "Id": id
         }),
         success: function (e) {
-            console.log(e.active);
+
             $("#txtidEdit").val(id);
             $("#txtloginEdit").val(e.userName);
             $("#txttypeEdit").val(e.type);
@@ -300,7 +303,7 @@ function editAccount(id, title) { // 編輯會員初始化
 function editAccountCommit() { // 編輯會員送出
     console.log($('#txtloginEdit').val());
     if ($('#txtpasswordEdit').val() != $('#txtConfirmPasswordEdit').val()) return alert("密碼不符");
-    if ($('#txtloginEdit').val().indexOf('@') == -1) return alert("帳號格式不正確");
+
     console.log($("#txtidEdit").val())
     $.ajax({
         type: "POST",
@@ -315,10 +318,11 @@ function editAccountCommit() { // 編輯會員送出
             'Type': $("#txttypeEdit").val(),
             'Active': $("#txtactiveEdit").val(),
             'Password': $("#txtpasswordEdit").val(),
+            'companyId': getCookie("companyId"),
 
         }),
         success: function () {
-            dataTables.draw();
+            companyDataTables.draw();
             $('#AMEdit').modal('hide');
         }
     });

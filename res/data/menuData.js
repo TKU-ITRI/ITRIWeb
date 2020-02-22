@@ -149,5 +149,108 @@ var menuData = {
         //     icon: null
         // }
     ],
-    
+    "P":[
+        {
+            title: '首頁' ,
+            link: 'javascript:void(0);',
+            command: 'userpage',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        
+        
+        // {
+        //     title: '進度' ,
+        //     link: 'javascript:void(0);',
+        //     command: 'userpage',
+        //     views: 'gondan',
+        //     sub: null,
+        //     icon: null
+        // },
+        {
+            title: '資源管理' ,
+            link: 'javascript:void(0);',
+            command: 'userpage2',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '訂單' ,
+            link: 'javascript:void(0);',
+            command: 'APS',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '生產管理' ,
+            link: 'javascript:void(0);',
+            command: 'Production',
+            views: 'ProductionManage',
+            sub: null,
+            icon: null
+        },
+        // {
+        //     title: '日程' ,
+        //     link: 'javascript:void(0);',
+        //     command: 'personal',
+        //     views: 'gondan',
+        //     sub: null,
+        //     icon: null
+        // }
+    ],
+    "S":[
+        {
+            title: '首頁' ,
+            link: 'javascript:void(0);',
+            command: 'userpage',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+      
+        
+        {
+            title: '進度' ,
+            link: 'javascript:void(0);',
+            command: 'jindu',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '資源管理' ,
+            link: 'javascript:void(0);',
+            command: 'userpage2',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '訂單' ,
+            link: 'javascript:void(0);',
+            command: 'APS',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '生產管理' ,
+            link: 'javascript:void(0);',
+            command: 'Production',
+            views: 'ProductionManage',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '日程' ,
+            link: 'javascript:void(0);',
+            command: 'personal',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        }
+    ],
 };

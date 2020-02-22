@@ -78,7 +78,7 @@
                 }, {
                     "targets": 1,
                     "render": function (data, type, row) {
-                        var checked = (row.active == 1) ? "啟用中" : "停用中";
+                        var checked = (row.active == 0) ? "啟用" : "停用";
                         return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
                     }
 
@@ -99,7 +99,11 @@
                     }
                 }, {
                     "targets": [6, 7], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else
+                            return moment(data).format('YYYY-MM-DD hh:mm:ss');
+
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -122,11 +126,11 @@
         $(function () {
             $("#txttypeCreate").change(function () {
                 switch ($("#txttypeCreate").val()) {
-                    case "C":
-                        $("#companyCreate").css('display', 'block');
+                    case "A":
+                        $("#companyCreate").css('display', 'none');
                         break;
                     default:
-                        $("#companyCreate").css('display', 'none');
+                        $("#companyCreate").css('display', 'block');
 
                         break;
                 }
@@ -135,10 +139,10 @@
             $("#txttypeEdit").change(function () {
                 switch ($("#txttypeEdit").val()) {
                     case "C":
-                        $("#companyEdit").css('display', 'block');
+                        $("#companyEdit").css('display', 'none');
                         break;
                     default:
-                        $("#companyEdit").css('display', 'none');
+                        $("#companyEdit").css('display', 'block');
 
                         break;
                 }
@@ -195,7 +199,7 @@
                     </div>
                     <div id="companyEdit" class="form-group" style=" display:none;">
                         <label for="txtcompanyEdit">公司</label>
-                        <select class="form-control form-control-sm"  id="txtcompanyEdit">
+                        <select class="form-control form-control-sm" id="txtcompanyEdit">
                         </select>
                     </div>
                     <div class="form-group">
@@ -249,10 +253,10 @@
                         <select class="form-control form-control-sm" id="txttypeCreate">
                         </select>
                     </div>
-                    <div id = "companyCreate" class="form-group" >
+                    <div id="companyCreate" class="form-group">
 
                         <label for="txtcompanyCreate">公司</label>
-                        <select class="form-control form-control-sm"  id="txtcompanyCreate">
+                        <select class="form-control form-control-sm" id="txtcompanyCreate">
                         </select>
                     </div>
                     <div class="form-group">
