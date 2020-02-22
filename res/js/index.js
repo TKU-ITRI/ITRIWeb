@@ -12,7 +12,6 @@ function mainInitial() {
     $("#loginForm").hide();
     $("#mainPage").show();
     $("body").css("background-image", "none");
-    var generateMenuType = (getCookie('type') == 'S') ? 'S' : 0;
     $.getScript("/res/data/menuData.js").done(function () {
         //<!--管理員聊室 -->
 
@@ -28,13 +27,12 @@ function mainInitial() {
     }).fail(function (jqxhr, settings, exception) {
         $("div.log").text("Triggered ajaxError handler.");
     });
-    alert(getCookie('type'));
     switch (getCookie('type')) {
         case "A":
             $("#iframe-content").attr("src", "/Views/Account/AccountManager.html");
             break;
         case "C":
-            $("#iframe-content").attr("src", "/Views/Account/AccountManager.html");
+            $("#iframe-content").attr("src", "/Views/Company/CompanyManager.html");
             break;
         case "P":
             $("#iframe-content").attr("src", "/Views/gondan/userpage.html");

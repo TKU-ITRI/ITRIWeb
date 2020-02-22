@@ -11,6 +11,8 @@
     <meta name="referrer" content="no-referrer" />
     <title>合作廠商管理系統</title>
     <script src="/res/js/index.js"></script>
+    <script src="/res/js/Account.js"></script>
+
     <script src="/res/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="/res/bootstrap/bootstrap.min.js"></script>
     <script src="/res/data/memberData.js"></script>
@@ -28,6 +30,7 @@
     </style>
     <script>
         var dataTables;
+
         $(document).ready(function () {
             $.each(memberTypeData, function (key, value) { // generate dropdown list from memberData.js 
                 $("#txttypeEdit").append('<option value=' + key + '>' + value + '</option>');
@@ -40,7 +43,7 @@
             $("#txtactiveCreate").append('<option value="1">啟用</option>');
             $("#txtactiveCreate").append('<option value="0">停用</option>');
 
-
+            GetAllCompany();
             dataTables = $('#AMTable').DataTable({
                 "searching": false,
                 "ordering": false,
@@ -113,131 +116,35 @@
             });
             $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">新增會員帳號</button>'); // get dom from toolbar
             //$('#txtCreateDateEdit').datepicker({ format: 'yyyy-mm-dd' }); 
+
+
         });
-        function DeleteAccount(id, msg) { // 變更狀態
-            var confirmStatus = confirm("是否刪除此帳號?");
-            if (confirmStatus) {
-                $.ajax({
-                    type: "POST",
-                    headers: { 'Authorization': getCookie("token") },
-                    url: webApiUrl + "/am/Delete",
-                    contentType: "application/json;charset=utf-8",
-                    async: false,
-                    data: JSON.stringify({
-                        "id": id
-                    }),
-                    success: function () {
-                        dataTables.draw();
-                    }
-                });
-            }
-        }
-        function changeAMStatus(id, msg) { // 變更狀態
-            var confirmStatus = confirm("是否" + msg + "?");
-            if (confirmStatus) {
-                $.ajax({
-                    type: "POST",
-                    headers: { 'Authorization': getCookie("token") },
-                    url: webApiUrl + "/am/TurnStatus",
-                    contentType: "application/json;charset=utf-8",
-                    async: false,
-                    data: JSON.stringify({
-                        "id": id
-                    }),
-                    success: function () {
-                        dataTables.draw();
-                    }
-                });
-            }
-        }
-        function createAccount() { // 建立會員初始化
+        $(function () {
+            $("#txttypeCreate").change(function () {
+                switch ($("#txttypeCreate").val()) {
+                    case "C":
+                        $("#companyCreate").css('display', 'block');
+                        break;
+                    default:
+                        $("#companyCreate").css('display', 'none');
 
-
-  
-            
-            $("#txtactiveCreate").append('<option value="1">啟用</option>');
-            $("#txtactiveCreate").append('<option value="0">停用</option>');
-
-            $('#AMCreate').modal('show');
-
-        }
-        function createAccountCommit() { // 建立初始化
-            if ($('#txtpasswordCreate').val() != $('#txtConfirmPasswordCreate').val()) return alert("密碼不符");
-            //if ($('#txtloginCreate').val().search(emailRule) == -1) return alert("帳號格式不正確");
-            //if ($('#txtnameCreate').val() == "") return alert("暱稱不正確");
-            $.ajax({
-                type: "POST",
-                headers: { 'Authorization': getCookie("token") },
-                url: webApiUrl + "/am/Create",
-                contentType: "application/json;charset=utf-8",
-                async: false,
-                data: JSON.stringify({
-                    'userName': $('#txtloginCreate').val(),
-                    'type': $('#txttypeCreate').val(),
-                    'nickName': $('#txtnameCreate').val(),
-                    'password': $('#txtpasswordCreate').val(),
-                    'active': $('#txtactiveCreate').val(),
-                }),
-                success: function () {
-                    dataTables.draw();
-                    $('#AMCreate').modal('hide');
+                        break;
                 }
 
-            })
-            $('#AMCreate').modal('show');
-        }
-        function editAccount(id, title) { // 編輯會員初始化
-            $('#AMEditLabel').html('編輯 ' + title);
-
-            $.ajax({
-                type: "POST",
-                headers: { 'Authorization': getCookie("token") },
-                url: webApiUrl + "/am/GetById",
-                contentType: "application/json;charset=utf-8",
-                async: false,
-                data: JSON.stringify({
-                    "Id": id
-                }),
-                success: function (e) {
-                    console.log(e.active);
-                    $("#txtidEdit").val(id);
-                    $("#txtloginEdit").val(e.userName);
-                    $("#txttypeEdit").val(e.type);
-                    $('#txtnameEdit').val(e.nickName);
-                    $('#txtpasswordEdit').val(e.password);
-                    $('#txtConfirmPasswordEdit').val(e.password);
-                    $('#txtactiveEdit').val(e.active);
-                }
             });
-            $('#AMEdit').modal('show');
+            $("#txttypeEdit").change(function () {
+                switch ($("#txttypeEdit").val()) {
+                    case "C":
+                        $("#companyEdit").css('display', 'block');
+                        break;
+                    default:
+                        $("#companyEdit").css('display', 'none');
 
-        }
-        function editAccountCommit() { // 編輯會員送出
-            console.log($('#txtloginEdit').val());
-            if ($('#txtpasswordEdit').val() != $('#txtConfirmPasswordEdit').val()) return alert("密碼不符");
-            if ($('#txtloginEdit').val().indexOf('@') == -1) return alert("帳號格式不正確");
-            console.log($("#txtidEdit").val())
-            $.ajax({
-                type: "POST",
-                headers: { 'Authorization': getCookie("token") },
-                url: webApiUrl + "/am/Update",
-                contentType: "application/json;charset=utf-8",
-                async: false,
-                data: JSON.stringify({
-                    'Id': $("#txtidEdit").val(),
-                    'UserName': $("#txtloginEdit").val(),
-                    'NickName': $("#txtnameEdit").val(),
-                    'Type': $("#txttypeEdit").val(),
-                    'Active': $("#txtactiveEdit").val(),
-                    'Password': $("#txtpasswordEdit").val(),
-
-                }),
-                success: function () {
-                    dataTables.draw();
-                    $('#AMEdit').modal('hide');
+                        break;
                 }
+
             });
-        }
+        });
     </script>
 </head>
 
@@ -280,11 +187,15 @@
                         <label for="txtloginEdit">帳號</label>
                         <input type="email" class="form-control form-control-sm" id="txtloginEdit" name="inputEmail"
                             placeholder="example@email.com" required autofocus>
-
                     </div>
                     <div class="form-group">
                         <label for="txttypeEdit">類型</label>
                         <select class="form-control form-control-sm" id="txttypeEdit">
+                        </select>
+                    </div>
+                    <div id="companyEdit" class="form-group" style=" display:none;">
+                        <label for="txtcompanyEdit">公司</label>
+                        <select class="form-control form-control-sm"  id="txtcompanyEdit">
                         </select>
                     </div>
                     <div class="form-group">
@@ -336,6 +247,12 @@
                     <div class="form-group">
                         <label for="txttypeCreate">類型</label>
                         <select class="form-control form-control-sm" id="txttypeCreate">
+                        </select>
+                    </div>
+                    <div id = "companyCreate" class="form-group" >
+
+                        <label for="txtcompanyCreate">公司</label>
+                        <select class="form-control form-control-sm"  id="txtcompanyCreate">
                         </select>
                     </div>
                     <div class="form-group">

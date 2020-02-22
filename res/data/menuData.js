@@ -1,7 +1,7 @@
 var menuData = {
     "C": [
         {
-            title: '公司帳號管理頁面' ,
+            title: '主管帳號管理頁面' ,
             link: 'javascript:void(0);',
             command: 'CompanyManager',
             views: 'Company',
@@ -11,7 +11,7 @@ var menuData = {
     ],
     "A": [
         {
-            title: '帳號權限管理' ,
+            title: '帳號管理頁面' ,
             link: 'javascript:void(0);',
             command: 'AccountManager',
             views: 'Account',
