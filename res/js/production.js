@@ -6,9 +6,15 @@ var PorderNo;
 function init(){
     // Create
     $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
+<<<<<<< HEAD
+    
+    $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
+     
+=======
    
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     $("#gon_Content").load("/Views/ProductionManage/gon.html");
+>>>>>>> fcda453f510fb406601d30cb8aded36e0b9fa6b9
 
     // Edit
 
