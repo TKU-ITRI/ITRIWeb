@@ -25,3 +25,47 @@
     margin:0px 2%;
     width:15%;
 }
+.BlockTable{
+    padding:0px 3%;
+    width:19%; 
+    position: relative;
+    left:35%;
+    right: 35%;
+}
+.modal-content{
+    width: 130%;
+    position: relative;
+    right: 15%;
+   
+}
+.TableStyle{
+    padding:0px 2%;
+    width:21%;
+    margin: 1.5%;
+}
+@media screen and (max-width:1200px){
+    .modal-content{
+        width: 110%;
+    }
+    .TableStyle{
+        margin: 8%;
+    }
+}
+@media screen and (max-width:900px){
+    .BlockTable{
+        position: absolute;
+        left:15%;
+    }
+    
+}
+@media screen and (max-width:600px){
+    .modal-content{
+        width: 450px;
+        position: relative;
+        right:0%;
+    }
+    .TableStyle{
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+}
