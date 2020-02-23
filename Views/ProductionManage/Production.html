@@ -28,7 +28,7 @@
   <!-- icon -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../../res/css/APS.css"> 
+  <link rel="stylesheet" type="text/css" href="../../res/css/APS.css">
   <!-- 日期 -->
 
   <link rel="stylesheet"
@@ -101,8 +101,7 @@
           else
             num = row.pInOrderId;
           var html = "";
-          html += '<div><button onclick="gonCreate(' + row.id + ')" class="btn btn-secondary btn-sm" style="width:100%";>' + num + '</button>'
-          html += '</div>'
+          html += '<button onclick="gonCreate(' + row.id + ')" class="btn btn-secondary btn-block" style="width:100% height:100%";>' + num + '</button>'
           return html
 
           return html
@@ -179,6 +178,15 @@
       ({
         weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime: true
       })
+    $('#pOrderCompleteDateEdit').bootstrapMaterialDatePicker
+      ({
+        weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+      });
+
+    $('#pOrderPredictDateEdit').bootstrapMaterialDatePicker
+      ({
+        weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime: true
+      })
     $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
 
     $.material.init()
@@ -223,7 +231,7 @@
 
 
 
-  <table id="pOrderTable" class="table table-striped table-sm" style="width:100%; ">
+  <table id="pOrderTable" class="table" style="width:100%; ">
     <thead>
       <tr>
         <td style="width:20%;">對內訂單編號</td>
@@ -310,7 +318,7 @@
                       </div>
                   </div>
 
-                  <input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
+                  <input type="button" style="color:#000000;" class="btn btn-success btn-sm float-right submit_btn" value="建立"
                     onclick="pOrderCreateContent()" />
                   </form>
                 </div>
@@ -345,7 +353,72 @@
     aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:25em;" role="document">
       <div class="myForm modal-content">
-        <div id="pOrderEdit_Content"></div>
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-20">
+            </div>
+            <dvi class="container h-20">
+              <!-- left frame -->
+              <div class="d-flex justify-content-center">
+                <div class="card mt-4 col-20 animated bounceInDown myForm">
+                  <div class="card-header">
+                    <h4>訂單-新增頁面</h4>
+                  </div>
+                  <div class="card-body">
+                    <form name="build">
+                      <div id="dynamic_container">
+                        <!-- 對外訂單編號
+                    對內訂單編號
+                    客戶代碼
+                    預估交貨日期
+                    實際交貨日期 
+                    public int Id { get; set; }
+                    public int POutOrderId { get; set; }
+                    public int PInOrderId { get; set; }
+                    public DateTime? POrderPredictDate { get; set; }
+                    public DateTime? POrderCompleteDate { get; set; }
+                    public int POrderClientNo { get; set; }
+                    -->
+
+                        <div>對外訂單編號</div>
+                        <div class="form-group">
+                          <input style="background-color:#ffffff;" type="text" placeholder="" class="form-control"
+                            id="pOutOrderIdEdit" name="pOutOrderId" />
+                        </div>
+                        <div>對內訂單編號</div>
+                        <div class="form-group">
+                          <input style="background-color:#ffffff;" type="text" placeholder="" id="pInOrderIdEdit"
+                            name="pInOrderId" class="form-control floating-label" />
+                        </div>
+                        <div>客戶代碼</div>
+                        <div class="form-group">
+                          <input style="background-color:#ffffff;" type="text" placeholder="" id="pOrderClientNoEdit"
+                            name="pOrderClientNo" class="form-control floating-label" />
+                        </div>
+                        <div>預估交貸日期</div>
+                        <div class="form-group floating-label">
+
+                          <input style="background-color:#ffffff;" type="text" placeholder="" id="pOrderPredictDateEdit"
+                            name="pOrderPredictDate" class="form-control floating-label " />
+                        </div>
+                        <div>實際交貸日期</div>
+                        <div class="form-group">
+                          <input style="background-color:#ffffff;" type="text" placeholder=""
+                            id="pOrderCompleteDateEdit" name="pOrderCompleteDate" class="form-control floating-label" />
+                        </div>
+
+                      </div>
+                  </div>
+
+                  <input type="button" style="color:#000000;" class="btn btn-success btn-sm float-right submit_btn" value="建立"
+                    onclick="pOrderEditContent()" />
+                  </form>
+                </div>
+
+
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
