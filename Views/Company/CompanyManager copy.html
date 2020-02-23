@@ -11,8 +11,6 @@
     <meta name="referrer" content="no-referrer" />
     <title>合作廠商管理系統</title>
     <script src="/res/js/index.js"></script>
-    <script src="/res/js/Account.js"></script>
-
     <script src="/res/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="/res/bootstrap/bootstrap.min.js"></script>
     <script src="/res/data/memberData.js"></script>
@@ -30,20 +28,18 @@
     </style>
     <script>
         var dataTables;
-
         $(document).ready(function () {
             $.each(memberTypeData, function (key, value) { // generate dropdown list from memberData.js 
                 $("#txttypeEdit").append('<option value=' + key + '>' + value + '</option>');
                 $("#txttypeCreate").append('<option value=' + key + '>' + value + '</option>');
-
             });
 
             $("#txtactiveEdit").append('<option value="1">啟用</option>');
             $("#txtactiveEdit").append('<option value="0">停用</option>');
             $("#txtactiveCreate").append('<option value="1">啟用</option>');
             $("#txtactiveCreate").append('<option value="0">停用</option>');
-
-            GetAllCompany();
+            alert("start")
+            alert(getCookie("id"));
             dataTables = $('#AMTable').DataTable({
                 "searching": false,
                 "ordering": false,
@@ -54,9 +50,10 @@
                         'Authorization': getCookie("token")
                     },
                     "type": "POST",
-                    url: parent.webApiUrl + "/am/GetAll",
+                    url: parent.webApiUrl + "/cm/GetAllAcount",
                     contentType: "application/json",
                     data: function (d) {
+                        d.companyId = getCookie("id");
                         return JSON.stringify(d)
                     }
                 },
@@ -78,7 +75,7 @@
                 }, {
                     "targets": 1,
                     "render": function (data, type, row) {
-                        var checked = (row.active == 0) ? "啟用" : "停用";
+                        var checked = (row.active == 1) ? "啟用中" : "停用中";
                         return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
                     }
 
@@ -99,11 +96,7 @@
                     }
                 }, {
                     "targets": [6, 7], render: function (data) {
-                        if (data == null)
-                            return "無";
-                        else
-                            return moment(data).format('YYYY-MM-DD hh:mm:ss');
-
+                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -119,36 +112,8 @@
 
             });
             $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">新增會員帳號</button>'); // get dom from toolbar
-            //$('#txtCreateDateEdit').datepicker({ format: 'yyyy-mm-dd' }); 
-
-
         });
-        $(function () {
-            $("#txttypeCreate").change(function () {
-                switch ($("#txttypeCreate").val()) {
-                    case "A":
-                        $("#companyCreate").css('display', 'none');
-                        break;
-                    default:
-                        $("#companyCreate").css('display', 'block');
-
-                        break;
-                }
-
-            });
-            $("#txttypeEdit").change(function () {
-                switch ($("#txttypeEdit").val()) {
-                    case "C":
-                        $("#companyEdit").css('display', 'none');
-                        break;
-                    default:
-                        $("#companyEdit").css('display', 'block');
-
-                        break;
-                }
-
-            });
-        });
+   
     </script>
 </head>
 
@@ -191,15 +156,11 @@
                         <label for="txtloginEdit">帳號</label>
                         <input type="email" class="form-control form-control-sm" id="txtloginEdit" name="inputEmail"
                             placeholder="example@email.com" required autofocus>
+
                     </div>
                     <div class="form-group">
                         <label for="txttypeEdit">類型</label>
                         <select class="form-control form-control-sm" id="txttypeEdit">
-                        </select>
-                    </div>
-                    <div id="companyEdit" class="form-group" style=" display:none;">
-                        <label for="txtcompanyEdit">公司</label>
-                        <select class="form-control form-control-sm" id="txtcompanyEdit">
                         </select>
                     </div>
                     <div class="form-group">
@@ -251,12 +212,6 @@
                     <div class="form-group">
                         <label for="txttypeCreate">類型</label>
                         <select class="form-control form-control-sm" id="txttypeCreate">
-                        </select>
-                    </div>
-                    <div id="companyCreate" class="form-group">
-
-                        <label for="txtcompanyCreate">公司</label>
-                        <select class="form-control form-control-sm" id="txtcompanyCreate">
                         </select>
                     </div>
                     <div class="form-group">

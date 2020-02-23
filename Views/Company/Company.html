@@ -30,13 +30,22 @@
     </style>
     <script>
         var dataTables;
-        var CompanyId;
+        var companyDataTables;
         $(document).ready(function () {
-            $("#CompanyManager_Content").load("/Views/Company/CompanyManager.html");
 
+
+            $("#txtCompanyctiveEdit").append('<option value="1">啟用</option>');
+            $("#txtCompanyctiveEdit ").append('<option value="0">停用</option>');
+            $("#txtCompanyctiveCreate").append('<option value="1">啟用</option>');
+            $("#txtCompanyctiveCreate").append('<option value="0">停用</option>');
+            $.each(companyTypeData, function (key, value) { // generate dropdown list from memberData.js 
+                $("#txttypeEdit").append('<option value=' + key + '>' + value + '</option>');
+                $("#txttypeCreate").append('<option value=' + key + '>' + value + '</option>');
+
+            });
 
             $("#txtactiveEdit").append('<option value="1">啟用</option>');
-            $("#txtactiveEdit ").append('<option value="0">停用</option>');
+            $("#txtactiveEdit").append('<option value="0">停用</option>');
             $("#txtactiveCreate").append('<option value="1">啟用</option>');
             $("#txtactiveCreate").append('<option value="0">停用</option>');
 
@@ -61,8 +70,8 @@
 
                 "columns": [
                     { 'data': 'id' },
-                    { 'data': 'companyName' },
                     { 'data': 'active' },
+                    { 'data': 'companyName' },
                     { 'data': 'createDate' },
                     { 'data': 'modifyDate' },
                     { 'data': null }
@@ -72,22 +81,33 @@
                 }, {
                     "targets": 1,
                     "render": function (data, type, row) {
-                        var checked = (row.active == 1) ? "啟用中" : "停用中";
-                        return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
+                        var checked = (row.active == 0) ? "啟用" : "停用";
+                        return "<a href='javascript:void(0);' onclick='changeCMStatus(" + row.id + ",\"" + checked + row.companyName + "\", \"" + checked + "\");'>" + checked + "</a>";
+                    }
+
+                }, {
+                    "targets": 2,
+                    "render": function (data, type, row) {
+                        var html = "";
+                        html += '<div><button onclick="CompanyManager(' + row.id + ',\'' + row.companyName + '\')" class="btn btn-secondary btn-sm" style="width:100%";>' + row.companyName + '</button>'
+                        html += '</div>'
+                        return html
                     }
 
                 }, {
                     "targets": 5, // add edit buttononclick="recordChat(' + row.id + ')
                     "render": function (data, type, row) {
                         var html = "";
-                        html += ' <a href="javascript:void(0);" onclick="CompanyManager(' + row.id + ',\'' + row.companyName + '\')">編輯公司帳號</a>'
                         html += ' <a href="javascript:void(0);" onclick="editCompany(' + row.id + ',\'' + row.companyName + '\')">編輯</a>'
                         html += ' | <a href="javascript:void(0);" onclick="DeleteCompany(' + row.id + ')">刪除</a> '
                         return html
                     }
                 }, {
                     "targets": [3, 4], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else
+                            return moment(data).format('YYYY-MM-DD hh:mm:ss');
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -123,7 +143,6 @@
             </tr>
         </thead>
     </table>
-    
 
 
     <!-- Modal: Edit -->
@@ -143,8 +162,8 @@
                         <input type="hidden" class="form-control form-control-sm" id="txtidEdit">
                     </div>
                     <div class="form-group">
-                        <label for="txtactiveEdit">狀態</label>
-                        <select class="form-control form-control-sm" id="txtactiveEdit">
+                        <label for="txtCompanyctiveEdit">狀態</label>
+                        <select class="form-control form-control-sm" id="txtCompanyctiveEdit">
                         </select>
                     </div>
 
@@ -156,7 +175,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="editCompanyCommit();">修改存檔</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="editCompanyCommit();">編輯公司</button>
                 </div>
             </div>
         </div>
@@ -179,8 +198,8 @@
                         <input type="hidden" class="form-control form-control-sm" id="txtidCreate">
                     </div>
                     <div class="form-group">
-                        <label for="txtactiveCreate">狀態</label>
-                        <select class="form-control form-control-sm" id="txtactiveCreate">
+                        <label for="txtCompanyctiveCreate">狀態</label>
+                        <select class="form-control form-control-sm" id="txtCompanyctiveCreate">
                         </select>
                     </div>
 
@@ -192,17 +211,154 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm"
-                        onclick="createCompanyCommit();">新增公司</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="createCompanyCommit();">新增公司</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="word  modal fade modal_right" id="CompanyManager" role="dialog" aria-labelledby="CompanyManagerLabel"
+    <!-- AccountTable -->
+
+
+    <!-- Detail -->
+    <div class=" modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetailLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg"  role="document">
-            <div class="myForm modal-content">
-                <div id="CompanyManager_Content"></div>
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDetailLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-outline-primary my-2 my-sm-0"
+                        onclick="createAccount();">新增公司帳號</button>
+                    <table id="AMTable" class="word table table-striped table-sm" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>狀態</th>
+                                <th>帳號</th>
+                                <th>類型</th>
+                                <th>名稱</th>
+                                <th>密碼</th>
+                                <th>創建日期</th>
+                                <th>修改日期</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: Edit -->
+    <div class="modal fade" id="AMEdit" tabindex="-1" role="dialog" aria-labelledby="AMEditLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AMEditLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" id="txtidEdit">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtloginEdit">帳號</label>
+                        <input type="email" class="form-control form-control-sm" id="txtloginEdit" name="inputEmail"
+                            placeholder="example@email.com" required autofocus>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txttypeEdit">類型</label>
+                        <select disabled="disabled" class="form-control form-control-sm" id="txttypeEdit">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtnameEdit">名稱</label>
+                        <input type="text" class="form-control form-control-sm" id="txtnameEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtpasswordEdit">會員密碼</label>
+                        <input type="password" class="form-control form-control-sm" id="txtpasswordEdit">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtConfirmPasswordEdit">確認密碼</label>
+                        <input type="password" class="form-control form-control-sm" id="txtConfirmPasswordEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtactiveEdit">狀態</label>
+                        <select class="form-control form-control-sm" id="txtactiveEdit">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="editAccountCommit();">編輯公司帳號</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: Create -->
+    <div class="modal fade" id="AMCreate" tabindex="-1" role="dialog" aria-labelledby="AMCreateLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AMCreateLabel">新增公司帳號</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="txtloginCreate">帳號</label>
+                        <input type="email" class="form-control form-control-sm" id="txtloginCreate" name="inputEmail"
+                            placeholder="example@email.com" required autofocus>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txttypeCreate">類型</label>
+                        <select disabled="disabled" class="form-control form-control-sm" id="txttypeCreate">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtnameCreate">名稱</label>
+                        <input type="text" class="form-control form-control-sm" id="txtnameCreate">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtpasswordCreate">會員密碼</label>
+                        <input type="password" class="form-control form-control-sm" id="txtpasswordCreate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtConfirmPasswordCreate">確認密碼</label>
+                        <input type="password" class="form-control form-control-sm" id="txtConfirmPasswordCreate">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtactiveCreate">狀態</label>
+                        <select class="form-control form-control-sm" id="txtactiveCreate">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                        onclick="createAccountCommit();">新增會員帳號</button>
+                </div>
             </div>
         </div>
     </div>

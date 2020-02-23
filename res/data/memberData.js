@@ -1,13 +1,14 @@
 var memberTypeData = {
+    "C": "公司帳號",
     "P": "一級主管",
     "P": "二級主管",
-    "C": "公司帳號",
     "A": "管理員"
 }
 var companyTypeData = {
-    "P": "一級主管",
-    "P": "二級主管",
     "C": "公司帳號",
+}
+var SupervisorTypeData = {
+    "S": "主管",
 }
 var GoOutWeekends = {
     0: "自行",

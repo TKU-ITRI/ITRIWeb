@@ -9,7 +9,7 @@
 }
 
 .bg-image {
-  background-image: url('https://yt3.ggpht.com/a-/ACSszfH9N5UQ85-Z4FzylTwdbGdVt-LynhiyzfdM0g');
+  background-image: url('/res/img/loginpage.jpg');
   background-size: cover;
   background-position: center;
 }

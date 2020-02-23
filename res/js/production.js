@@ -7,11 +7,22 @@ var GonNo;
 function init(){
     // Create
     $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
+<<<<<<< HEAD
+    
+    $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
+     
+=======
    
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     $("#gon_Content").load("/Views/ProductionManage/gon.html");
+<<<<<<< HEAD
     //Edit
     $("#pOrderEdit_Content").load("/res/modalEdit/pOrderEdit.html");
+=======
+>>>>>>> fcda453f510fb406601d30cb8aded36e0b9fa6b9
+
+    // Edit
+>>>>>>> 7f8d85b583f87736f1d535dd3cbdd52951b49df7
 
 }
 
