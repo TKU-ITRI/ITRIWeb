@@ -6,12 +6,21 @@ var PorderNo;
 var GonNo;
 function init(){
     // Create
+<<<<<<< HEAD
     // $("#pOrderCreate_Content").load("/Views/ProductionManage/test.html");
    
+=======
+    $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
+
+>>>>>>> 886cbe0ff2f3ed9b80bdf2b3924567b90b96d96c
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     $("#gon_Content").load("/Views/ProductionManage/gon.html");
     //Edit
     $("#pOrderEdit_Content").load("/res/modalEdit/pOrderEdit.html");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 886cbe0ff2f3ed9b80bdf2b3924567b90b96d96c
 }
 
 function init2(){
@@ -21,7 +30,7 @@ function init2(){
     $("#orderOutCreate_Content").load("/res/modalCreate/orderOutCreate.html");
     $("#orderSelfCreate_Content").load("/res/modalCreate/orderSelfCreate.html");
     // Edit
-    $("#purchase2Edit_Content").load("/res/modalEdit/memberEdit.html");
+    $("#purchase2Edit_Content").load("/res/modalEdit/purchaseEdit.html");
     $("#assemblyEdit_Content").load("/res/modalEdit/assemblyEdit.html");
     $("#orderOutEdit_Content").load("/res/modalEdit/orderOutEdit.html");
     $("#orderSelfEdit_Content").load("/res/modalEdit/orderSelfEdit.html");
