@@ -36,14 +36,19 @@
     }
   </style>
   <script>
-    var gonTable;
+    var gonTable = null;
     $(document).ready(function () {
+
+
+    });
+    function GetGonTable() {
+      alert("===" + PorderNo);
       gonTable = $('#gonTable').DataTable({
         "searching": false,
         "goning": false,
         "serverSide": true,
         "processing": true,
-
+        "destroy": true,
         "ajax": {
           "headers": {
             'Authorization': getCookie("token")
@@ -52,6 +57,7 @@
           url: parent.webApiUrl + "/gon/GetAll",
           contentType: "application/json",
           data: function (d) {
+            d.id = PorderNo;
             return JSON.stringify(d)
           }
         },
@@ -66,9 +72,11 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            var gonNo;
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + "<div id=\"GonNo\">" + row.id + "</div>"
+            //html += '<a onclick=\"purchaseCreate(' + row.id + ')\">新增</a>'
+            html += '<button onclick="gonDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="gonEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -87,18 +95,17 @@
         }
 
       });
+      $("#gon").modal("show");
 
-    
-
-    });
+    }
   </script>
   <script>
     $(function () {
       $('#gonSearch').on('keyup', function () {
         myFunction(this, "gonTable");
       });
-     
-      
+
+
     });
     function deleteData(id) {
       var confirmStatus = confirm("是否刪除?");
@@ -139,7 +146,7 @@
       <table id="gonTable">
         <thead>
           <tr>
-            <td align=" center" >
+            <td align=" center">
               <h1>工單</h1>
             </td>
           </tr>
@@ -156,7 +163,7 @@
       </table>
     </div>
 
-
+  <!-- Create -->
     <div class="word  modal fade modal_right" id="gonCreate" role="dialog" aria-labelledby="modalCreateLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
@@ -165,8 +172,8 @@
         </div>
       </div>
     </div>
-
     
+
     <!-- <div style="padding:0px 3%;width:19%">
       <table id="machineTable">
         <thead>
@@ -251,11 +258,11 @@
       </table>
     </div> -->
     <script>
-    $(document).ready(function () {
-      init2();
-    });
-   
-  </script>
+      $(document).ready(function () {
+        init2();
+      });
+
+    </script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 </body>

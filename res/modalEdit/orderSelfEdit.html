@@ -39,12 +39,13 @@
 								<div class="form-group row">
 									<input type="hidden" class="form-control form-control-sm col-sm-8" id="sOrderIdEdit">
 								</div>
-								<div>自製訂單編號</div>
+								<div>指定歸屬工單編號</div>
 								<div class="input-group">
-									
-									<div type="text" placeholder="" id="sGonNoEdit" name="sGonNoEdit" class="form-control"></div>
+									<div class="input-group-prepend">
+										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
+									</div>
+									<input disabled="disabled" type="text" placeholder="" id="sGonNoEdit" name="sGonNo" class="form-control" />
 								</div>
-								<!-- 這裡的訂單編號要用資料庫裡的pOrder去做外部鍵關聯 -->
 								<div>負責人編號</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">

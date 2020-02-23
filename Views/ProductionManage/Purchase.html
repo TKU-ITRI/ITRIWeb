@@ -69,8 +69,8 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<button onclick="purchase2Delete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="purchase2Edit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -118,8 +118,8 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<button onclick="assemblyDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="assemblyEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -166,8 +166,8 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<button onclick="orderOutDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="orderOutEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -214,8 +214,8 @@
           "render": function (data, type, row) {
             var html = "";
             html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
-            html += '<button onclick="deleteData(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
-            html += '<button onclick="peopleEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
+            html += '<button onclick="orderSelfDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
+            html += '<button onclick="orderSelfEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
             return html
           },
@@ -236,11 +236,20 @@
     });
   </script>
   <script>
+    
     $(function () {
       $('#purchaseSearch').on('keyup', function () {
         myFunction(this, "purchaseTable");
       });
-     
+      $('#assemblySearch').on('keyup', function () {
+        myFunction(this, "assemblyTable");
+      });
+      $('#orderOutSearch').on('keyup', function () {
+        myFunction(this, "orderOutTable");
+      });
+      $('#orderSelfSearch').on('keyup', function () {
+        myFunction(this, "orderSelfTable");
+      });
       
     });
     function deleteData(id) {
@@ -249,6 +258,7 @@
         alert("刪除成功")
 
     }
+    
     function myFunction(input, tableName) {
       var filter, table, tr, td, i, txtValue;
       filter = input.value.toUpperCase();
@@ -276,7 +286,6 @@
 </head>
 
 <body>
-
   <div class="row">
     <div style="padding:0px 2%;width:21%">
       <table id="purchaseTable">
@@ -310,7 +319,7 @@
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="assemblySearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
               data-ui-class="a-fadeUp" onclick="assemblyCreate();" style="width:100%;">
               <font size="6" color="#737373" ;">新 增</font>
@@ -330,7 +339,7 @@
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="orderOutSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
               data-ui-class="a-fadeUp" onclick="orderOutCreate();" style="width:100%;">
               <font size="6" color="#737373" ;">新 增</font>
@@ -351,7 +360,7 @@
         </thead>
         <tfoot>
           <th>
-            <input style="width:100%;" placeholder="Search.." id="purchaseSearch"></input>
+            <input style="width:100%;" placeholder="Search.." id="orderSelfSearch"></input>
             <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
               data-ui-class="a-fadeUp" onclick="orderSelfCreate();" style="width:100%;">
               <font size="6" color="#737373" ;">新 增</font>
@@ -371,7 +380,7 @@
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="width:25em;" role="document">
         <div class="myForm modal-content">
-          <div id="purchase2_Content"></div>
+          <div id="purchase2Create_Content"></div>
         </div>
       </div>
     </div>
@@ -402,101 +411,50 @@
       </div>
     </div>
   </div>
-  
-    <!-- <div style="padding:0px 3%;width:19%">
-      <table id="machineTable">
-        <thead>
-          <tr>
-            <td align=" center">
-              <h1>採購單</h1>
-            </td>
-          </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="machineSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="machineCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
-    </div>
 
-    <div style="padding:0px 3%;width:19%">
-      <table id="cutterTable">
-        <thead>
-          <tr>
-            <td align=" center">
-              <h1>組裝單</h1>
-            </td>
-          </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="cutterSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="cutterCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
+  <!-- Edit -->
+  <div class="word  modal fade modal_right" id="purchase2Edit" role="dialog" aria-labelledby="modalEditLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+        <div class="myForm modal-content">
+          <div id="purchase2Edit_Content"></div>
+        </div>
+      </div>
     </div>
-
-    <div style="padding:0px 3%;width:19%">
-      <table id="jigTable">
-        <thead>
-          <tr>
-            <td align=" center">
-              <h1>加工單(自製)</h1>
-            </td>
-          </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="jigSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="jigCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
+    <div class="word  modal fade modal_right" id="assemblyEdit" role="dialog" aria-labelledby="modalEditLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+        <div class="myForm modal-content">
+          <div id="assemblyEdit_Content"></div>
+        </div>
+      </div>
     </div>
-
-    <div style="padding:0px 3%;width:19%">
-      <table id="materialTable" ">
-        <thead>
-          <tr>
-            <td align=" center">
-        <h1>加工單(外包)</h1>
-        </td>
-        </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="materialSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="materialCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
-    </div> -->
-    <script>
-    $(document).ready(function () {
-      init2();
-    });
-   
-  </script>
+    <div class="word  modal fade modal_right" id="orderOutEdit" role="dialog" aria-labelledby="modalEditLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+        <div class="myForm modal-content">
+          <div id="orderOutEdit_Content"></div>
+        </div>
+      </div>
+    </div>
+    <div class="word  modal fade modal_right" id="orderSelfEdit" role="dialog" aria-labelledby="modalEditLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+        <div class="myForm modal-content">
+          <div id="orderSelfEdit_Content"></div>
+        </div>
+      </div>
+    </div>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+  
+      $(document).ready(function () {
+        init2();
+      });
+    </script>
+    
+    
 
 </body>
 
 </html>
-<script>
-
-</script>
