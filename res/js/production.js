@@ -6,21 +6,12 @@ var PorderNo;
 var GonNo;
 function init(){
     // Create
-<<<<<<< HEAD
     // $("#pOrderCreate_Content").load("/Views/ProductionManage/test.html");
    
-=======
-    $("#pOrderCreate_Content").load("/res/modalCreate/pOrderCreate.html");
-
->>>>>>> 886cbe0ff2f3ed9b80bdf2b3924567b90b96d96c
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     $("#gon_Content").load("/Views/ProductionManage/gon.html");
     //Edit
     $("#pOrderEdit_Content").load("/res/modalEdit/pOrderEdit.html");
-<<<<<<< HEAD
-=======
-
->>>>>>> 886cbe0ff2f3ed9b80bdf2b3924567b90b96d96c
 }
 
 function init2(){
