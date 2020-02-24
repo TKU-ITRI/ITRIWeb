@@ -32,11 +32,28 @@
 
 #B ul li{
     font-size: xx-large;
-    
     padding: 1%;
     list-style-type:none;
 }
 
 #B a{
     color: rgb(119, 119, 57);
+}
+@media screen and (max-width:1200px){
+    .undername{
+        width: 800px;
+        left: 10%;
+    }
+    #U ul li{
+        padding: 50px;
+    }
+}
+@media screen and (max-width:900px){
+    .undername{
+        width: 500px;
+        left: 0%;
+    }
+    #U ul li{
+        padding: 20px;
+    }
 }
