@@ -70,7 +70,7 @@ function orderSelfCreate(){
     $("#orderSelfCreate").modal("show");
 }
 
-function confirm(){
+function confirm2(){
     alert("456");
     $("#purchase").modal("hide");
     $("#gon").modal("show");
@@ -318,7 +318,8 @@ function gonCreateContent(PorderNo){
         }),
         success: function (e) {
                 console.log('api call back:'+e);
-                GonNo=e;   
+                GonNo=e;
+                $("#gon").modal("hide");
         }
     })
 }

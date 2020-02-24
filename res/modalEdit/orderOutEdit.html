@@ -32,9 +32,31 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
-									<input disabled="disabled" type="text" placeholder="" id="oGonNoEdit" name="oGonNo" class="form-control" />
+									<input disabled="disabled" type="text" placeholder="" id="oGonNo"  class="form-control"></input>
 								</div>
 								<!-- 這裡的訂單編號要用資料庫裡的pOrder去做外部鍵關聯 -->
+								<div>指定圖檔</div>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
+									</div>
+									<input type="text" placeholder="" id="oOrderImageEdit" name="oOrderImage" class="form-control" />
+								</div>
+								<div>製程編排</div>
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
+									</div>
+									<input type="text" placeholder="" id="oOrderScheduleEdit" name="oOrderSchedule"
+										class="form-control" />
+								</div>
+								<div>製程工法</div>
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
+									</div>
+									<input type="text" placeholder="" id="oOrderMethodEdit" name="oOrderMethod" class="form-control" />
+								</div>
 								<div>承包商</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
@@ -75,7 +97,7 @@
 							<input type="email" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="建立"
+					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
 						onclick="orderOutEditContent()" />
 					</form>
 				</div>
