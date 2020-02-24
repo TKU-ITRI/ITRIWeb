@@ -136,10 +136,10 @@ function purchase2Edit(id){
             'id': id,
         }),
         success: function (e) {
-            $("#purchase2OrderIdEdit").val(e.id);
-            $("#purchase2OrderListEdit").val(e.purchaseOrderList);
-            $("#purchase2OrderMemberNameEdit").val(e.purchaseOrderMemberName);
-            $("#purchase2OrderCompleteDateEdit").val(e.purchaseOrderCompleteDate);
+            $("#purchaseOrderIdEdit").val(e.id);
+            $("#purchaseOrderListEdit").val(e.purchaseOrderList);
+            $("#purchaseOrderMemberNameEdit").val(e.purchaseOrderMemberName);
+            $("#purchaseOrderCompleteDateEdit").val(e.purchaseOrderCompleteDate);
             $("#pGonNoEdit").val(e.pGonNo);
         }
 
@@ -374,7 +374,7 @@ function purchase2CreateContent(){
     // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     // "<a onclick=\"purchaseCreate()\">新增</a>"+
     // "</button>");
-    
+
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -382,10 +382,10 @@ function purchase2CreateContent(){
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'purchaseOrderList': $('#purchase2OrderListCreate').val(),
-            'purchaseOrderMemberName': $('#purchase2OrderMemberNameCreate').val(),
-            'purchaseOrderPredictDate': $('#purchase2OrderPredictDateCreate').val(),
-            'purchaseOrderCompleteDate': $('#purchase2OrderCompleteDateCreate').val(),
+            'purchaseOrderList': $('#purchaseOrderListCreate').val(),
+            'purchaseOrderMemberName': $('#purchaseOrderMemberNameCreate').val(),
+            'purchaseOrderPredictDate': $('#purchaseOrderPredictDateCreate').val(),
+            'purchaseOrderCompleteDate': $('#purchaseOrderCompleteDateCreate').val(),
             'pGonNo':GonNo
         }),
         success: function () {
@@ -405,11 +405,11 @@ function purchase2EditContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'id': $('#purchase2OrderIdEdit').val(),
-            'purchaseOrderList': $('#purchase2OrderListEdit').val(),
-            'purchaseOrderMemberName': $('#purchase2OrderMemberNameEdit').val(),
-            'purchaseOrderPredictDate': $('#purchase2OrderPredictDateEdit').val(),
-            'purchaseOrderCompleteDate': $('#purchase2OrderCompleteDateEdit').val(),
+            'id': $('#purchaseOrderIdEdit').val(),
+            'purchaseOrderList': $('#purchaseOrderListEdit').val(),
+            'purchaseOrderMemberName': $('#purchaseOrderMemberNameEdit').val(),
+            'purchaseOrderPredictDate': $('#purchaseOrderPredictDateEdit').val(),
+            'purchaseOrderCompleteDate': $('#purchaseOrderCompleteDateEdit').val(),
             'pGonNo':$('pGonNoEdit').val(),
         }),
         success: function () {
