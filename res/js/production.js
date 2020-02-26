@@ -232,6 +232,7 @@ function orderSelfEdit(id){
 //create_content
 function pOrderCreateContent(){
     alert("ddd");
+
     // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     // "<a onclick=\"purchaseCreate()\">新增</a>"+
     // "</button>");
@@ -245,8 +246,8 @@ function pOrderCreateContent(){
             'pOutOrderId': $('#pOutOrderIdCreate').val(),
             'pInOrderId': $('#pInOrderIdCreate').val(),
             'pOrderClientNo': $('#pOrderClientNoCreate').val(),
-            'pOrderPredictDate': $('#pOrderPredictDateCreate').val(),
-            'pOrderCompleteDate': $('#pOrderCompleteDateCreate').val(),
+            'pOrderPredictDate': new Date($('#pOrderPredictDateCreate').val()),
+            'pOrderCompleteDate': new Date($('#pOrderCompleteDateCreate').val()),
             
         }),
         success: function () {
@@ -255,6 +256,7 @@ function pOrderCreateContent(){
         }
 
     })
+    alert("ddddd");
 }
 function pOrderEditContent() {
     $.ajax({
