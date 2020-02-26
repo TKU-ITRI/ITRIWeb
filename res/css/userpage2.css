@@ -25,19 +25,43 @@
     margin:0px 2%;
     width:15%;
 }
-.row div{
+.mainframe .row div{
     margin-left: 2%;
     margin-right: 2%;
+} 
+.mainframe .row .odd td{
+    position: relative;
+    left:7%;
+}
+.mainframe .row .even td{
+    position: relative;
+    left:7%;
 }
 @media screen and (max-width:1400px){
-    .row div{
+    .mainframe .row div{
         margin-left: 8%;
         margin-right: 8%;
     }
+    .mainframe .row .odd td{
+        position: relative;
+        left:12%;
+    }
+    .mainframe .row .even td{
+        position: relative;
+        left:12%;
+    }
 }
 @media screen and (max-width:900px){
-    .row div{
+    .mainframe .row div{
         margin-left: 25%;
         margin-right: 25%;
+    }
+    .mainframe .row .odd td{
+        position: relative;
+        left:27%;
+    }
+    .mainframe .row .even td{
+        position: relative;
+        left:27%;
     }
 }
