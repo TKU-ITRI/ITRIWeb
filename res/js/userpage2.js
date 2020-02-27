@@ -111,7 +111,7 @@ function toolcutterEdit(id) {
             $('#toolcutterNoEdit').val(e.cutterNo);
             $('#toolcutterBrandEdit').val(e.cutterBrand);
             $('#toolcutterSizeEdit').val(e.cutterSize);
-            $('#toolcutterStatusEdit').val(e.cutterStatus);
+            // $('#toolcutterStatusEdit').val(e.cutterStatus);
         }
     })
 }
@@ -131,9 +131,9 @@ function tooljigEdit(id) {
         success: function (e) {   
             $("#tooljigIdEdit").val(e.id);
             $("#tooljigNameEdit").val(e.jigName);
-            $("#tooljigNoEdit").val(e.jigNo);
+            // $("#tooljigNoEdit").val(e.jigNo);
             $("#tooljigClassEdit").val(e.jigClass);
-            $("#tooljigUseEdit").val(e.jigUse);
+            // $("#tooljigUseEdit").val(e.jigUse);
             
 
         }
@@ -156,13 +156,15 @@ function materialEdit(id) {
         }),
         success: function (e) {
             $('#materialIdEdit').val(e.id);
+            $('#materialNameEdit').val(e.materialName);
             $('#materialClassEdit').val(e.materialClass);
-            $('#materialCountEdit').val(e.materialCount);
-            $('#materialNoEdit').val(e.materialNo);
-            $('#materialStatusEdit').val(e.materialStatus);
             $('#materialSizeEdit').val(e.materialSize);
-            $('#materialTableCreateDateEdit').val(e.materialTableCreateDate);
-            $('#materialTableModifyDateEdit').val(e.materialTableModifyDate);   
+            $('#materialCountEdit').val(e.materialCount);
+
+            // $('#materialNoEdit').val(e.materialNo);
+            // $('#materialStatusEdit').val(e.materialStatus);
+            // $('#materialTableCreateDateEdit').val(e.materialTableCreateDate);
+            // $('#materialTableModifyDateEdit').val(e.materialTableModifyDate);   
         
         }
 
@@ -266,7 +268,7 @@ function toolcutterCreateContent() {
             'cutterNo': $('#toolcutterNoCreate').val(),
             'cutterBrand': $('#toolcutterBrandCreate').val(),
             'cutterSize': $('#toolcutterSizeCreate').val(),
-            'cutterStatus': $('#toolcutterStatusCreate').val(),
+            // 'cutterStatus': $('#toolcutterStatusCreate').val(),
         }),
         success: function () {
             toolcutterTable.draw();
@@ -290,7 +292,7 @@ function toolcutterEditContent() {
             'cutterNo': $('#toolcutterNoEdit').val(),
             'cutterBrand': $('#toolcutterBrandEdit').val(),
             'cutterSize': $('#toolcutterSizeEdit').val(),
-            'cutterStatus': $('#toolcutterStatusEdit').val(),
+            // 'cutterStatus': $('#toolcutterStatusEdit').val(),
         }),
         success: function () {
             toolcutterTable.draw();
@@ -339,9 +341,9 @@ function tooljigCreateContent() {
         async: false,
         data: JSON.stringify({
             'jigName': $('#tooljigNameCreate').val(),
-            'jigNo': $('#tooljigNoCreate').val(),
+            // 'jigNo': $('#tooljigNoCreate').val(),
             'jigClass': $('#tooljigClassCreate').val(),
-            'jigUse': $('#tooljigUseCreate').val(),
+            // 'jigUse': $('#tooljigUseCreate').val(),
         }),
         success: function () {
             tooljigTable.draw();
@@ -362,9 +364,9 @@ function tooljigEditContent() {
         data: JSON.stringify({
             'id': $('#tooljigIdEdit').val(),
             'jigName': $('#tooljigNameEdit').val(),
-            'jigNo': $('#tooljigNoEdit').val(),
+            // 'jigNo': $('#tooljigNoEdit').val(),
             'jigClass': $('#tooljigClassEdit').val(),
-            'jigUse': $('#tooljigUseEdit').val(),
+            // 'jigUse': $('#tooljigUseEdit').val(),
         }),
         success: function () {
             tooljigTable.draw();
@@ -412,13 +414,15 @@ function materialCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
+            'materialName': $('#materialNameCreate').val(),
             'materialClass': $('#materialClassCreate').val(),
-            'materialCount': $('#materialCountCreate').val(),
-            'materialNo': $('#materialNoCreate').val(),
-            'materialStatus': $('#materialStatusCreate').val(),
             'materialSize': $('#materialSizeCreate').val(),
-            'materialTableCreateDate':$('#materialTableCreateDateCreate').val(),
-            'materialTableModifyDate':$('#materialTableModifyDateCreate').val(),
+            'materialCount': $('#materialCountCreate').val(),
+            
+            // 'materialNo': $('#materialNoCreate').val(),
+            // 'materialStatus': $('#materialStatusCreate').val(),
+            // 'materialTableCreateDate':$('#materialTableCreateDateCreate').val(),
+            // 'materialTableModifyDate':$('#materialTableModifyDateCreate').val(),
         }),
         success: function () {
             materialTable.draw();
@@ -439,13 +443,15 @@ function materialEditContent() {
         async: false,
         data: JSON.stringify({
             'id': $('#materialIdEdit').val(),
+            'materialName': $('#materialNameEdit').val(),
             'materialClass': $('#materialClassEdit').val(),
-            'materialCount': $('#materialCountEdit').val(),
-            'materialNo': $('#materialNoEdit').val(),
-            'materialStatus': $('#materialStatusEdit').val(),
             'materialSize': $('#materialSizeEdit').val(),
-            'materialTableCreateDate':$('#materialTableCreateDateEdit').val(),
-            'materialTableModifyDate':$('#materialTableModifyDateEdit').val(),
+            'materialCount': $('#materialCountEdit').val(),
+
+            // 'materialNo': $('#materialNoEdit').val(),
+            // 'materialStatus': $('#materialStatusEdit').val(),
+            // 'materialTableCreateDate':$('#materialTableCreateDateEdit').val(),
+            // 'materialTableModifyDate':$('#materialTableModifyDateEdit').val(),
         }),
         success: function () {
             materialTable.draw();
@@ -496,9 +502,9 @@ function memberCreateContent() {
             'memberNo': $('#memberNoCreate').val(),
             'memberName': $('#memberNameCreate').val(),
             'memberDuties': $('#memberDutiesCreate').val(),
-            'memberSubDuties': $('#memberSubDutiesCreate').val(),
-            'memberHiringDay':$('#memberHiringDayCreate').val(),
-            'memberFiringDay':$('#memberFiringDayCreate').val(),
+            // 'memberSubDuties': $('#memberSubDutiesCreate').val(),
+            // 'memberHiringDay':$('#memberHiringDayCreate').val(),
+            // 'memberFiringDay':$('#memberFiringDayCreate').val(),
         }),
         success: function () {
             memberTable.draw();
@@ -521,9 +527,9 @@ function memberEditContent() {
             'memberNo': $('#memberNoEdit').val(),
             'memberName': $('#memberNameEdit').val(),
             'memberDuties': $('#memberDutiesEdit').val(),
-            'memberSubDuties': $('#memberSubDutiesEdit').val(),
-            'memberHiringDay':$('#memberHiringDayEdit').val(),
-            'memberFiringDay':$('#memberFiringDayEdit').val(),
+            // 'memberSubDuties': $('#memberSubDutiesEdit').val(),
+            // 'memberHiringDay':$('#memberHiringDayEdit').val(),
+            // 'memberFiringDay':$('#memberFiringDayEdit').val(),
         }),
         success: function () {
             memberTable.draw();

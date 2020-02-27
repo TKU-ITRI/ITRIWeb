@@ -251,6 +251,14 @@ var menuData = {
             views: 'gondan',
             sub: null,
             icon: null
-        }
+        },
+        {
+            title: '檢視查詢' ,
+            link: 'javascript:void(0);',
+            command: 'ViewTable',
+            views: 'ITRIViewTable',
+            sub: null,
+            icon: null
+        },
     ],
 };

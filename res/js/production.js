@@ -4,17 +4,18 @@
 
 var PorderNo;
 var GonNo;
-function init(){
+function init() {
     // Create
     // $("#pOrderCreate_Content").load("/Views/ProductionManage/test.html");
-   
+
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     $("#gon_Content").load("/Views/ProductionManage/gon.html");
+
     //Edit
     $("#pOrderEdit_Content").load("/res/modalEdit/pOrderEdit.html");
 }
 
-function init2(){
+function init2() {
     // Create
     $("#purchase2Create_Content").load("/res/modalCreate/purchaseCreate.html");
     $("#assemblyCreate_Content").load("/res/modalCreate/assemblyCreate.html");
@@ -27,57 +28,61 @@ function init2(){
     $("#orderSelfEdit_Content").load("/res/modalEdit/orderSelfEdit.html");
 }
 
-function pOrderCreate(){
+function pOrderCreate() {
     $("#pOrderCreate").modal("show");
-    
+
 }
 
-function gonCreate(id){
+function gonCreate(id) {
     PorderNo = id
-    console.log("I am porderNo:"+PorderNo);
+    console.log("I am porderNo:" + PorderNo);
     GetGonTable();
-    
+
+
 }
 
-function purchaseCreate(){
-    
+function purchaseCreate() {
+
     gonCreateContent(PorderNo);
+    //GonNo = 0;
     $("#purchase").modal("show");
-  
+
 }
 
-function purchase2Create(){
-    $("#pGonNo").val(GonNo);
-    console.log('i am p'+GonNo);
+function purchase2Create() {
+    alert(GonNo)
+    $("#pGonNoCreate").val(GonNo);
+    console.log(GonNo);
+    console.log('i am p' + GonNo);
     $("#purchase2Create").modal("show");
 }
 
-function assemblyCreate(){
-    $("#aGonNo").val(GonNo);
-    console.log('i am a'+GonNo);
+function assemblyCreate() {
+    $("#aGonNoCreate").val(GonNo);
+    console.log('i am a' + GonNo);
     $("#assemblyCreate").modal("show");
 }
 
-function orderOutCreate(){
-    $("#oGonNo").val(GonNo);
-    console.log('i am o'+GonNo);
+function orderOutCreate() {
+    $("#oGonNoCreate").val(GonNo);
+    console.log('i am o' + GonNo);
     $("#orderOutCreate").modal("show");
 }
 
-function orderSelfCreate(){
-    $("#sGonNo").val(GonNo);
-    console.log('i am s'+GonNo);
+function orderSelfCreate() {
+    $("#sGonNoCreate").val(GonNo);
+    console.log('i am s' + GonNo);
     $("#orderSelfCreate").modal("show");
 }
 
-function confirm2(){
+function confirm2() {
     alert("456");
     $("#purchase").modal("hide");
     $("#gon").modal("show");
 }
 
 // Edit
-function pOrderEdit(id){
+function pOrderEdit(id) {
     $("#pOrderEdit_title").text(id + " 編輯頁面")
     $("#pOrderEdit").modal("show");
     $.ajax({
@@ -94,36 +99,40 @@ function pOrderEdit(id){
             $("#pOutOrderIdEdit").val(e.pOutOrderId);
             $("#pInOrderIdEdit").val(e.pInOrderId);
             $("#pOrderClientNoEdit").val(e.pOrderClientNo);
-            $("pOrderPredictDateEdit").val(e.pOrderPredictDate);
-            $('#pOrderCompleteDateEdit').val(e.pOrderCompleteDate);
-        }
-
+            $("#pOrderPredictDateEdit").val(moment(e.pOrderPredictDate).format('YYYY/MM/DD hh:mm'));
+            $('#pOrderCompleteDateEdit').val( moment(e.pOrderCompleteDate).format('YYYY/MM/DD hh:mm')
+            );
+        }       
     })
 }
 
-function gonEdit(id){
-    $("#gonEdit_title").text(id + " 編輯頁面")
-    $("#gonEdit").modal("show");
-    $.ajax({
-        type: "POST",
-        headers: { 'Authorization': getCookie("token") },
-        url: webApiUrl + "/gon/getById",
-        contentType: "application/json;charset=utf-8",
-        async: false,
-        data: JSON.stringify({
-            'id': id,
-        }),
-        success: function (e) {
-            $("#gonIdEdit").val(e.id);
-            $("#porderNoEdit").val(e.porderNo);
-            $('#createDateEdit').val(e.createDate);
-            $('#modifyDateEdit').val(e.modifyDate);
-        }
+function gonEdit(id) {
+    alert("ddddd");
+    // $("#gonEdit_title").text(id + " 編輯頁面")
+    // $("#gonEdit").modal("show");
+    initPurchase(id);
+    GonNo = id
+    $("#purchase").modal("show");
+    // $.ajax({
+    //     type: "POST",
+    //     headers: { 'Authorization': getCookie("token") },
+    //     url: webApiUrl + "/gon/getById",
+    //     contentType: "application/json;charset=utf-8",
+    //     async: false,
+    //     data: JSON.stringify({
+    //         'id': id,
+    //     }),
+    //     success: function (e) {
+    //         $("#gonIdEdit").val(e.id);
+    //         $("#porderNoEdit").val(e.porderNo);
+    //         $('#createDateEdit').val(e.createDate);
+    //         $('#modifyDateEdit').val(e.modifyDate);
+    //     }
 
-    })
+    // })
 }
 
-function purchase2Edit(id){
+function purchase2Edit(id) {
     $("#purchase2Edit_title").text(id + " 編輯頁面")
     $("#purchase2Edit").modal("show");
     $.ajax({
@@ -139,14 +148,16 @@ function purchase2Edit(id){
             $("#purchaseOrderIdEdit").val(e.id);
             $("#purchaseOrderListEdit").val(e.purchaseOrderList);
             $("#purchaseOrderMemberNameEdit").val(e.purchaseOrderMemberName);
-            $("#purchaseOrderCompleteDateEdit").val(e.purchaseOrderCompleteDate);
+            $("#purchaseOrderPredictDateEdit").val(moment(e.purchaseOrderPredictDateEdit).format('YYYY/MM/DD hh:mm'));
+
+            $("#purchaseOrderCompleteDateEdit").val(moment(e.purchaseOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
             $("#pGonNoEdit").val(e.pGonNo);
         }
 
     })
 }
 
-function assemblyEdit(id){
+function assemblyEdit(id) {
     $("#assemblyEdit_title").text(id + " 編輯頁面")
     $("#assemblyEdit").modal("show");
     $.ajax({
@@ -163,15 +174,15 @@ function assemblyEdit(id){
             $('#aListImageEdit').val(e.aListImage);
             $('#aListMemberNameEdit').val(e.aListMemberName);
             $('#aListToolEdit').val(e.aListTool);
-            $('#aListPredictDateEdit').val(e.aListPredictDate);
-            $('#aListCompleteDateEdit').val(e.aListCompleteDate);
+            $('#aListPredictDateEdit').val(moment(e.aListPredictDate).format('YYYY/MM/DD hh:mm'));
+            $('#aListCompleteDateEdit').val(moment(e.aListCompleteDate).format('YYYY/MM/DD hh:mm'));
             $("#aGonNoEdit").val(e.aGonNo);
         }
 
     })
 }
 
-function orderOutEdit(id){
+function orderOutEdit(id) {
     $("#orderOutEdit_title").text(id + " 編輯頁面")
 
     $("#orderOutEdit").modal("show");
@@ -190,14 +201,15 @@ function orderOutEdit(id){
             $('#oOrderScheduleEdit').val(e.oOrderSchedule);
             $('#oOrderMethodEdit').val(e.oOrderMethod);
             $('#oOrderContractorEdit').val(e.oOrderContractor);
-            $('#oOrderPredictDateEdit').val(e.oOrderPredictDate);
-            $('#oOrderCompleteDateEdit').val(e.oOrderCompleteDate);
+            $('#oOrderPredictDateEdit').val(moment(e.oOrderPredictDate).format('YYYY/MM/DD hh:mm'));
+            $('#oOrderCompleteDateEdit').val(moment(e.oOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
+
             $("#oGonNoEdit").val(e.oGonNo);
         }
     })
 }
 
-function orderSelfEdit(id){
+function orderSelfEdit(id) {
     $("#orderSelfEdit_title").text(id + " 編輯頁面")
     $("#orderSelfEdit").modal("show");
     $.ajax({
@@ -222,20 +234,18 @@ function orderSelfEdit(id){
             $('#sOrderSettingEdit').val(e.sOrderSetting);
             $('#sOrderCountEdit').val(e.sOrderCount);
             $('#sOrderMaterialEdit').val(e.sOrderMaterial);
-            $('#sOrderPredictDateEdit').val(e.sOrderPredictDate);
-            $('#sOrderCompleteDateEdit').val(e.sOrderCompleteDate);
+            $('#sOrderPredictDateEdit').val(moment(e.sOrderPredictDate).format('YYYY/MM/DD hh:mm'));
+            $('#sOrderCompleteDateEdit').val(moment(e.sOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
+
             $("#sGonNoEdit").val(e.sGonNo);
         }
     })
 }
 
 //create_content
-function pOrderCreateContent(){
+function pOrderCreateContent() {
     alert("ddd");
 
-    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
-    // "<a onclick=\"purchaseCreate()\">新增</a>"+
-    // "</button>");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -248,7 +258,7 @@ function pOrderCreateContent(){
             'pOrderClientNo': $('#pOrderClientNoCreate').val(),
             'pOrderPredictDate': new Date($('#pOrderPredictDateCreate').val()),
             'pOrderCompleteDate': new Date($('#pOrderCompleteDateCreate').val()),
-            
+
         }),
         success: function () {
             pOrderTable.draw();
@@ -270,9 +280,9 @@ function pOrderEditContent() {
             'pOutOrderId': $('#pOutOrderIdEdit').val(),
             'pInOrderId': $('#pInOrderIdEdit').val(),
             'pOrderClientNo': $('#pOrderClientNoEdit').val(),
-            'pOrderPredictDate': $('#pOrderPredictDateEdit').val(),
-            'pOrderCompleteDate': $('#pOrderCompleteDateEdit').val(),
-            
+            'pOrderPredictDate': new Date($('#pOrderPredictDateEdit').val()),
+            'pOrderCompleteDate': new Date($('#pOrderCompleteDateEdit').val()),
+
         }),
         success: function () {
             pOrderTable.draw();
@@ -280,7 +290,7 @@ function pOrderEditContent() {
         }
     })
 }
-function pOrderDelete (id) {
+function pOrderDelete(id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -297,7 +307,7 @@ function pOrderDelete (id) {
                 pOrderTable.draw();
                 alert("刪除成功")
             },
-            error:function(){
+            error: function () {
                 alert("刪除失敗")
             }
 
@@ -305,7 +315,7 @@ function pOrderDelete (id) {
 
 }
 
-function gonCreateContent(PorderNo){
+function gonCreateContent(PorderNo) {
     alert("aaa");
     $.ajax({
         type: "POST",
@@ -316,12 +326,13 @@ function gonCreateContent(PorderNo){
         data: JSON.stringify({
             'porderNo': PorderNo,
             'createDate': $('#createDateCreate').val(),
-            'modifyDate': $('#modifyDateCreate').val(),      
+            'modifyDate': $('#modifyDateCreate').val(),
         }),
         success: function (e) {
-                console.log('api call back:'+e);
-                GonNo=e;
-                $("#gon").modal("hide");
+            console.log('api call back:' + e);
+            GonNo = e.id;
+            initPurchase(GonNo)
+            $("#gon").modal("hide");
         }
     })
 }
@@ -338,7 +349,7 @@ function gonEditContent() {
             'porderNo': $('#porderNoEdit'),
             'createDate': $('#createDateEdit').val(),
             'modifyDate': $('#modifyDateEdit').val()
-            
+
         }),
         success: function () {
             gonTable.draw();
@@ -346,7 +357,7 @@ function gonEditContent() {
         }
     })
 }
-function gonDelete (id) {
+function gonDelete(id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -363,7 +374,7 @@ function gonDelete (id) {
                 gonTable.draw();
                 alert("刪除成功")
             },
-            error:function(){
+            error: function () {
                 alert("刪除失敗")
             }
 
@@ -371,11 +382,8 @@ function gonDelete (id) {
 
 }
 
-function purchase2CreateContent(){
+function purchase2CreateContent() {
     alert("ddd");
-    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
-    // "<a onclick=\"purchaseCreate()\">新增</a>"+
-    // "</button>");
 
     $.ajax({
         type: "POST",
@@ -384,14 +392,13 @@ function purchase2CreateContent(){
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'purchaseOrderList': $('#purchaseOrderListCreate').val(),
+            'purchaseOrderList': 1,
             'purchaseOrderMemberName': $('#purchaseOrderMemberNameCreate').val(),
-            'purchaseOrderPredictDate': $('#purchaseOrderPredictDateCreate').val(),
-            'purchaseOrderCompleteDate': $('#purchaseOrderCompleteDateCreate').val(),
-            'pGonNo':GonNo
+            'purchaseOrderPredictDate': new Date($('#purchaseOrderPredictDateCreate').val()),
+            'purchaseOrderCompleteDate': new Date($('#purchaseOrderCompleteDateCreate').val()),
+            'pGonNo': $('#pGonNoCreate').val(),
         }),
         success: function () {
-
             purchaseTable2.draw();
             $("#purchase2Create").modal("hide");
         }
@@ -410,9 +417,9 @@ function purchase2EditContent() {
             'id': $('#purchaseOrderIdEdit').val(),
             'purchaseOrderList': $('#purchaseOrderListEdit').val(),
             'purchaseOrderMemberName': $('#purchaseOrderMemberNameEdit').val(),
-            'purchaseOrderPredictDate': $('#purchaseOrderPredictDateEdit').val(),
-            'purchaseOrderCompleteDate': $('#purchaseOrderCompleteDateEdit').val(),
-            'pGonNo':$('pGonNoEdit').val(),
+            'purchaseOrderPredictDate': new Date($('#purchaseOrderPredictDateEdit').val()),
+            'purchaseOrderCompleteDate': new Date($('#purchaseOrderCompleteDateEdit').val()),
+            'pGonNo': $('#pGonNoEdit').val(),
         }),
         success: function () {
             purchaseTable2.draw();
@@ -420,7 +427,7 @@ function purchase2EditContent() {
         }
     })
 }
-function purchase2Delete (id) {
+function purchase2Delete(id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -437,7 +444,7 @@ function purchase2Delete (id) {
                 purchaseTable2.draw();
                 alert("刪除成功")
             },
-            error:function(){
+            error: function () {
                 alert("刪除失敗")
             }
 
@@ -445,12 +452,12 @@ function purchase2Delete (id) {
 
 }
 
-function assemblyCreateContent(){
+function assemblyCreateContent() {
     alert("ddd");
     // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     // "<a onclick=\"purchaseCreate()\">新增</a>"+
     // "</button>");
-    
+
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -461,10 +468,10 @@ function assemblyCreateContent(){
             'aListImage': $('#aListImageCreate').val(),
             'aListMemberName': $('#aListMemberNameCreate').val(),
             'aListTool': $('#aListToolCreate').val(),
-            'aListPredictDate': $('#aListPredictDateCreate').val(),
-            'aListCompleteDateCreate': $('#aListCompleteDateCreate').val(),
-            'aGonNo':GonNo
-            
+            'aListPredictDate': new Date($('#aListPredictDateCreate').val()),
+            'aListCompleteDate': new Date($('#aListCompleteDateCreate').val()),
+            'aGonNo': $('#aGonNoCreate').val(),
+
         }),
         success: function () {
 
@@ -473,8 +480,8 @@ function assemblyCreateContent(){
         }
 
     })
-    
-    
+
+
 }
 function assemblyEditContent() {
     $.ajax({
@@ -488,9 +495,9 @@ function assemblyEditContent() {
             'aListImage': $('#aListImageEdit').val(),
             'aListMemberName': $('#aListMemberNameEdit').val(),
             'aListTool': $('#aListToolEdit').val(),
-            'aListPredictDate': $('#aListPredictDateEdit').val(),
-            'aListCompleteDateEdit': $('#aListCompleteDateEdit').val(),
-            'aGonNo':$('aGonNoEdit').val(),
+            'aListPredictDate': new Date($('#aListPredictDateEdit').val()),
+            'aListCompleteDate': new Date($('#aListCompleteDateEdit').val()),
+            'aGonNo': $('#aGonNoEdit').val(),
         }),
         success: function () {
             assemblyTable.draw();
@@ -498,7 +505,7 @@ function assemblyEditContent() {
         }
     })
 }
-function assemblyDelete (id) {
+function assemblyDelete(id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -515,7 +522,7 @@ function assemblyDelete (id) {
                 assemblyTable.draw();
                 alert("刪除成功")
             },
-            error:function(){
+            error: function () {
                 alert("刪除失敗")
             }
 
@@ -523,12 +530,12 @@ function assemblyDelete (id) {
 
 }
 
-function orderOutCreateContent(){
+function orderOutCreateContent() {
     alert("ddd");
     // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     // "<a onclick=\"purchaseCreate()\">新增</a>"+
     // "</button>");
-    
+
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -540,16 +547,16 @@ function orderOutCreateContent(){
             'oOrderSchedule': $('#oOrderScheduleCreate').val(),
             'oOrderMethod': $('#oOrderMethodCreate').val(),
             'oOrderContractor': $('#oOrderContractorCreate').val(),
-            'oOrderPredictDate': $('#oOrderPredictDateCreate').val(),
-            'oOrderCompleteDate': $('#oOrderCompleteDateCreate').val(),
-            'oGonNo':GonNo
-            
+            'oOrderPredictDate': new Date($('#oOrderPredictDateCreate').val()),
+            'oOrderCompleteDate': new Date($('#oOrderCompleteDateCreate').val()),
+            'oGonNo': $('#oGonNoCreate').val(),
+
         }),
         success: function () {
             orderOutTable.draw();
             $("#orderOutCreate").modal("hide");
         }
-    })    
+    })
 }
 function orderOutEditContent() {
     $.ajax({
@@ -564,9 +571,9 @@ function orderOutEditContent() {
             'oOrderSchedule': $('#oOrderScheduleEdit').val(),
             'oOrderMethod': $('#oOrderMethodEdit').val(),
             'oOrderContractor': $('#oOrderContractorEdit').val(),
-            'oOrderPredictDate': $('#oOrderPredictDateEdit').val(),
-            'oOrderCompleteDate': $('#oOrderCompleteDateEdit').val(),
-            'oGonNo':$('oGonNoEdit').val(),
+            'oOrderPredictDate': new Date($('#oOrderPredictDateEdit').val()),
+            'oOrderCompleteDate': new Date($('#oOrderCompleteDateEdit').val()),
+            'oGonNo': $('#oGonNoEdit').val(),
         }),
         success: function () {
             orderOutTable.draw();
@@ -574,7 +581,7 @@ function orderOutEditContent() {
         }
     })
 }
-function orderOutDelete (id) {
+function orderOutDelete(id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -591,7 +598,7 @@ function orderOutDelete (id) {
                 orderOutTable.draw();
                 alert("刪除成功")
             },
-            error:function(){
+            error: function () {
                 alert("刪除失敗")
             }
 
@@ -599,7 +606,7 @@ function orderOutDelete (id) {
 
 }
 
-function orderSelfCreateContent(){
+function orderSelfCreateContent() {
     alert("ddd");
     // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
     // "<a onclick=\"purchaseCreate()\">新增</a>"+
@@ -622,10 +629,11 @@ function orderSelfCreateContent(){
             'sOrderSetting': $('#sOrderSettingCreate').val(),
             'sOrderCount': $('#sOrderCountCreate').val(),
             'sOrderMaterial': $('#sOrderMaterialCreate').val(),
-            'sOrderPredictDate': $('#sOrderPredictDateCreate').val(),
-            'sOrderCompleteDate': $('#sOrderCompleteDateCreate').val(),
-            'sGonNo':GonNo
-            
+            'sOrderPredictDate': new Date($('#sOrderPredictDateCreate').val()),
+            'sOrderCompleteDate': new Date($('#sOrderCompleteDateCreate').val()),
+            'sGonNo': $('#sGonNoCreate').val(),
+
+
         }),
         success: function () {
             orderSelfTable.draw();
@@ -654,9 +662,9 @@ function orderSelfEditContent() {
             'sOrderSetting': $('#sOrderSettingEdit').val(),
             'sOrderCount': $('#sOrderCountEdit').val(),
             'sOrderMaterial': $('#sOrderMaterialEdit').val(),
-            'sOrderPredictDate': $('#sOrderPredictDateEdit').val(),
-            'sOrderCompleteDate': $('#sOrderCompleteDateEdit').val(),
-            'sGonNo':$('sGonNoEdit').val(),
+            'sOrderPredictDate': new Date($('#sOrderPredictDateEdit').val()),
+            'sOrderCompleteDate': new Date($('#sOrderCompleteDateEdit').val()),
+            'sGonNo': $('#sGonNoEdit').val(),
         }),
         success: function () {
             orderSelfTable.draw();
@@ -664,7 +672,7 @@ function orderSelfEditContent() {
         }
     })
 }
-function orderSelfDelete (id) {
+function orderSelfDelete(id) {
     var confirmStatus = confirm("是否刪除?");
 
     if (confirmStatus)
@@ -681,7 +689,7 @@ function orderSelfDelete (id) {
                 orderSelfTable.draw();
                 alert("刪除成功")
             },
-            error:function(){
+            error: function () {
                 alert("刪除失敗")
             }
 

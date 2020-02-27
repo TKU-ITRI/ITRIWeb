@@ -65,6 +65,7 @@
       "ordering": false,
       "serverSide": true,
       "processing": true,
+      "ordering": false,
 
       "ajax": {
         "headers": {
@@ -106,6 +107,15 @@
 
           return html
         },
+      },
+      {
+        "targets": [1, 2], render: function (data) {
+          if (data == null)
+            return "無";
+          else
+            return moment(data).format('YYYY-MM-DD hh:mm:ss');
+
+        }
       },
       {
         "targets": 3, // add edit buttononclick="recordChat(' + row.id + ')
@@ -231,9 +241,9 @@
 
 
 
-  <table id="pOrderTable" class="table" style="width:100%; ">
+  <table id="pOrderTable" class="table" style="width:100%;font-size:120%">
     <thead>
-      <tr>
+      <tr >
         <td style="width:20%;">對內訂單編號</td>
         <!-- <td>對外訂單編號</td>
         <td>客戶代碼</td> -->
@@ -318,8 +328,8 @@
                       </div>
                   </div>
 
-                  <input type="button" style="color:#000000;" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-                    onclick="pOrderCreateContent()" />
+                  <input type="button" style="color:#ffffff;" class="btn btn-success btn-lg float-right submit_btn"
+                    value="建立" onclick="pOrderCreateContent()" />
                   </form>
                 </div>
               </div>
@@ -329,7 +339,7 @@
     </div>
   </div>
 
-  
+
   <div class="word  modal fade modal_right" style="overflow-y: visible;" id="gon" role="dialog"
     aria-labelledby="modalCreateLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -339,8 +349,8 @@
     </div>
   </div>
 
-  <div class="word  modal fade modal_right" style="overflow-y: visible;" id="purchase" role="dialog" aria-labelledby="modalCreateLabel"
-    aria-hidden="true">
+  <div class="word  modal fade modal_right" style="overflow-y: visible;" id="purchase" role="dialog"
+    aria-labelledby="modalCreateLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="width: 120em;">
       <div class=" modal-content">
         <div id="purchase_Content"></div>
@@ -409,8 +419,8 @@
                       </div>
                   </div>
 
-                  <input type="button" style="color:#000000;" class="btn btn-success btn-sm float-right submit_btn" value="建立"
-                    onclick="pOrderEditContent()" />
+                  <input type="button" style="color:#ffffff;" class="btn btn-success btn-lg float-right submit_btn"
+                    value="建立" onclick="pOrderEditContent()" />
                   </form>
                 </div>
 

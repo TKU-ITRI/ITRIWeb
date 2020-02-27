@@ -1,3 +1,73 @@
+
+<head>
+	<!-- <link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" /> -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />
+
+	<link rel="stylesheet"
+		href="/bootstrap-material-datetimepicker-gh-pages/css/bootstrap-material-datetimepicker.css" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+	<script type="text/javascript"
+		src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+	<script type="text/javascript"
+		src="/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
+	<script>
+		$(document).ready(function () {
+
+		});
+
+
+		$(function () {
+			$('#date').bootstrapMaterialDatePicker
+				({
+					time: false,
+					clearButton: true
+				});
+
+			$('#time').bootstrapMaterialDatePicker
+				({
+					date: false,
+					shortTime: false,
+					format: 'HH:mm'
+				});
+
+			$('#date-format').bootstrapMaterialDatePicker
+				({
+					format: 'dddd DD MMMM YYYY - HH:mm'
+				});
+			$('#date-fr').bootstrapMaterialDatePicker
+				({
+					format: 'DD/MM/YYYY HH:mm',
+					lang: 'fr',
+					weekStart: 1,
+					cancelText: 'ANNULER',
+					nowButton: true,
+					switchOnClick: true
+				});
+
+			$('#oOrderPredictDateEdit').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'YYYY/MM/DD HH:mm'
+				});
+
+			$('#oOrderCompleteDateEdit').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'YYYY/MM/DD HH:mm', shortTime: true
+				})
+		
+			$('#min-date').bootstrapMaterialDatePicker({ format: 'YYYY/MM/DD HH:mm', minDate: new Date() });
+
+			$.material.init()
+		}); 
+	</script>
+
+</head>
 <div class="container">
 	<div class="row text-center">
 		<div class="col-12">
@@ -9,7 +79,7 @@
 			<div class="d-flex justify-content-center">
 				<div class="card mt-8 col-12 animated bounceInDown myForm">
 					<div class="card-header">
-						<h4>加工單(外包)-新增頁面</h4>
+						<h4>加工單(外包)-編輯頁面</h4>
 					</div>
 					<div class="card-body">
 						<form name="build">
@@ -25,58 +95,59 @@
 								public DateTime? OOrderCompleteDate { get; set; }
 								-->
 								<div class="form-group row">
-									<input type="hidden" class="form-control form-control-sm col-sm-8" id="oOrderIdEdit">
+									<input type="hidden" class="form-control form-control-sm col-sm-8"
+										id="oOrderIdEdit">
 								</div>
 								<div>指定歸屬工單編號</div>
 								<div class="input-group">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
-									</div>
-									<input disabled="disabled" type="text" placeholder="" id="oGonNo"  class="form-control"></input>
+									</div> -->
+									<input disabled="disabled" type="text" placeholder="" id="oGonNoEdit"  class="form-control"></input>
 								</div>
 								<!-- 這裡的訂單編號要用資料庫裡的pOrder去做外部鍵關聯 -->
 								<div>指定圖檔</div>
 								<div class="input-group">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="oOrderImageEdit" name="oOrderImage" class="form-control" />
 								</div>
 								<div>製程編排</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="oOrderScheduleEdit" name="oOrderSchedule"
 										class="form-control" />
 								</div>
 								<div>製程工法</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="oOrderMethodEdit" name="oOrderMethod" class="form-control" />
 								</div>
 								<div>承包商</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="oOrderContractorEdit" name="oOrderContractor"
 										class="form-control" />
 								</div>
 								<div>預估完工日期</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="oOrderPredictDateEdit" name="oOrderPredictDate" class="form-control" />
 								</div>
 								<div>實際完工日期</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="oOrderCompleteDateEdit" name="oOrderCompleteDate" class="form-control" />
 								</div>
 
@@ -97,7 +168,7 @@
 							<input type="email" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
+					<input type="button" style="color:#ffffff;"class="btn btn-success btn-lg float-right submit_btn" value="儲存"
 						onclick="orderOutEditContent()" />
 					</form>
 				</div>

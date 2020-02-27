@@ -14,66 +14,68 @@
 					<div class="card-body">
 						<form name="build">
 							<div id="dynamic_container">
-								<!-- 原物料財編
-								原物料類別
-								原物料規格
-								原物料數量
-								原物料狀態(充足、短缺、補充中)
-								原物料建立表單日期時程
-								原物料修改表單日期時程 -->
 								<div class="form-group row">
-									<input type="hidden" class="form-control form-control-sm col-sm-8" id="materialIdEdit">
+									<input type="hidden" class="form-control form-control-sm col-sm-8"
+										id="materialIdEdit">
 								</div>
-								<div>財編</div>
+								<!-- <div>財編</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div>
 									<input type="text" placeholder="" class="form-control" id="materialNoEdit" name="materialNo"/>
+								</div> -->
+								<div>原物料名稱</div>
+								<div class="input-group mt-3">
+									<!-- <div class="input-group-prepend">
+										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
+									</div> -->
+									<input type="text" placeholder="" id="materialNameEdit" name="materialClass"
+										class="form-control" />
 								</div>
 								<div>類別</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="materialClassEdit" name="materialClass"
 										class="form-control" />
 								</div>
 								<div>規格</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" class="form-control" id="materialSizeEdit" name="materialSize" />
 								</div>
 								<div>數量</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" class="form-control"id="materialCountEdit" name="materialCount" />
 								</div>
-								<div>狀態</div>
+								<!-- <div>狀態</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
 									<input type="text" placeholder="" class="form-control"id="materialStatusEdit" name="materialStatus" />
-								</div>
-								<div>建立表單日期時程</div>
+								</div> -->
+								<!-- <div>建立表單日期時程</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="text" placeholder="" class="form-control" id="materialTableCreateDateEdit" name="materialTableCreateDate"/>
-								</div>
-								<div>修改表單日期時程</div>
+									<input type="text" placeholder="" class="form-control" id="materialTableEditDateEdit" name="materialTableEditDate"/>
+								</div> -->
+								<!-- <div>修改表單日期時程</div>
 								<div class="input-group mt-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
 									</div>
 									<input type="text" placeholder="" class="form-control" id="materialTableModifyDateEdit" name="materialTableModifyDate"/>
-								</div>
+								</div> -->
 							</div>
 					</div>
 					<div class="card-footer">
@@ -91,7 +93,7 @@
 							<input type="email" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
+					<input type="button" class="btn btn-success btn-lg float-right submit_btn" value="儲存"
 						onclick="materialEditContent()" />
 					</form>
 				</div>

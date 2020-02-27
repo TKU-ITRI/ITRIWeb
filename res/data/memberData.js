@@ -10,6 +10,8 @@ var companyTypeData = {
 var SupervisorTypeData = {
     "S": "主管",
 }
+
+
 var GoOutWeekends = {
     0: "自行",
     1: "親友",

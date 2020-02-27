@@ -1,3 +1,72 @@
+<head>
+	<!-- <link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" /> -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />
+
+	<link rel="stylesheet"
+		href="/bootstrap-material-datetimepicker-gh-pages/css/bootstrap-material-datetimepicker.css" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+	<script type="text/javascript"
+		src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+	<script type="text/javascript"
+		src="/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
+	<script>
+		$(document).ready(function () {
+
+		});
+
+
+		$(function () {
+			$('#date').bootstrapMaterialDatePicker
+				({
+					time: false,
+					clearButton: true
+				});
+
+			$('#time').bootstrapMaterialDatePicker
+				({
+					date: false,
+					shortTime: false,
+					format: 'HH:mm'
+				});
+
+			$('#date-format').bootstrapMaterialDatePicker
+				({
+					format: 'dddd DD MMMM YYYY - HH:mm'
+				});
+			$('#date-fr').bootstrapMaterialDatePicker
+				({
+					format: 'DD/MM/YYYY HH:mm',
+					lang: 'fr',
+					weekStart: 1,
+					cancelText: 'ANNULER',
+					nowButton: true,
+					switchOnClick: true
+				});
+
+			$('#sOrderPredictDateEdit').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'YYYY/MM/DD HH:mm'
+				});
+
+			$('#sOrderCompleteDateEdit').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'YYYY/MM/DD HH:mm', shortTime: true
+				})
+		
+			$('#min-date').bootstrapMaterialDatePicker({ format: 'YYYY/MM/DD HH:mm', minDate: new Date() });
+
+			$.material.init()
+		}); 
+	</script>
+
+</head>
 <div class="container">
 	<div class="row text-center">
 		<div class="col-12">
@@ -37,99 +106,101 @@
 								public DateTime? SOrderCompleteDate { get; set; }
 								-->
 								<div class="form-group row">
-									<input type="hidden" class="form-control form-control-sm col-sm-8" id="sOrderIdEdit">
+									<input type="hidden" class="form-control form-control-sm col-sm-8"
+										id="sOrderIdEdit">
 								</div>
-								<div>指定歸屬工單編號</div>
+								<div>自製工單編號</div>
 								<div class="input-group">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
-									</div>
-									<input disabled="disabled" type="text" placeholder="" id="sGonNoEdit" name="sGonNo" class="form-control" />
+									</div> -->
+									<input disabled="disabled" type="text" placeholder="" id="sGonNoEdit"  class="form-control"></input>
 								</div>
+								
 								<div>指定圖檔</div>
 								<div class="input-group">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderImageEdit" name="sOrderImage" class="form-control" />
 								</div>
 								<div>製程編排</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderScheduleEdit" name="sOrderSchedule"
 										class="form-control" />
 								</div>
 								<div>製程工法</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderMethodEdit" name="sOrderMethod" class="form-control" />
 								</div>
 								<div>負責人編號</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-phone-square"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderMemberNameEdit" name="sOrderMemberName"
 										class="form-control" />
 								</div>
 								<div>機台序號</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderMachineEdit" name="sOrderMachine" class="form-control" />
 								</div>
 								<div>刀具序號</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderToolEdit" name="sOrderTool" class="form-control" />
 								</div>
 								<div>程式</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderProgramEdit" name="sOrderProgram" class="form-control" />
 								</div>
 								<div>機台設定</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderSettingEdit" name="sOrderSetting" class="form-control" />
 								</div>
 								<div>生產件數</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderCountEdit" name="sOrderCount" class="form-control" />
 								</div>
 								<div>材料序號</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderMaterialEdit" name="sOrderMaterial" class="form-control" />
 								</div>
 								<div>預估完工日期</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderPredictDateEdit" name="sOrderPredictDate" class="form-control" />
 								</div>
 								<div>實際完工日期</div>
 								<div class="input-group mt-3">
-									<div class="input-group-prepend">
+									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-									</div>
+									</div> -->
 									<input type="text" placeholder="" id="sOrderCompleteDateEdit" name="sOrderCompleteDate" class="form-control" />
 								</div>
 							</div>
@@ -149,7 +220,7 @@
 							<input type="text" placeholder="結束" class="form-control" />
 						</div> -->
 					</div>
-					<input type="button" class="btn btn-success btn-sm float-right submit_btn" value="編輯"
+					<input type="button" style="color:#ffffff;" class="btn btn-success btn-lg float-right submit_btn" value="儲存"
 						onclick="orderSelfEditContent()" />
 					</form>
 				</div>

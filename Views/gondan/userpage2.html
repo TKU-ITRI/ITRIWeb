@@ -30,7 +30,7 @@
     .btn {
       border: none;
       float: right;
-      
+
       /* cursor: pointer; */
     }
   </style>
@@ -173,7 +173,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row  btn btn-secondary btn-round btn-block w3-xlarge">' + row.id
+            html += '<div class="row  btn btn-secondary btn-round btn-block w3-xlarge">' + row.cutterName
             html += '<button onclick="toolcutterDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="toolcutterEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
@@ -197,7 +197,7 @@
       });
       sleep(100);
 
-       tooljigTable = $('#tooljigTable').DataTable({
+      tooljigTable = $('#tooljigTable').DataTable({
         "searching": false,
         "ordering": false,
         "serverSide": true,
@@ -277,7 +277,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.materialNo
+            html += '<div class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.materialName
             html += '<button onclick="materialDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="materialEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
@@ -353,200 +353,205 @@
 
 <body>
   <div class="mainframe">
-  <div class="row">
-    <div  class="Block">
-      <table id="memberTable">
+    <div class="row">
+      <div class="Block">
+        <table id="memberTable">
+          <thead>
+            <tr>
+              <td align=" center">
+                <h1>人員</h1>
+              </td>
+
+            </tr>
+            <th>
+              <input style="width:100%;" placeholder="Search.." id="memberSearch"></input>
+              <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
+                data-ui-class="a-fadeUp" onclick="memberCreate();" style="width:200px;">
+                <font size="5em" color="#0EFEFC" ;">新 增</font>
+              </button>
+            </th>
+          </thead>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="Block">
+        <table id="machineTable">
+          <thead>
+            <tr>
+              <td align=" center">
+                <h1>機台</h1>
+              </td>
+            </tr>
+            <th>
+              <input style="width:100%;" placeholder="Search.." id="machineSearch"></input>
+              <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
+                data-ui-class="a-fadeUp" onclick="machineCreate();" style="width:200px;">
+                <font size="5em" color="#0EFEFC" ;">新 增</font>
+              </button>
+            </th>
+          </thead>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="Block">
+        <table id="toolcutterTable">
+          <thead>
+            <tr>
+              <td align=" center">
+                <h1>刀具</h1>
+              </td>
+            </tr>
+            <th>
+              <input style="width:100%;" placeholder="Search.." id="toolcutterSearch"></input>
+              <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
+                data-ui-class="a-fadeUp" onclick="toolcutterCreate();" style="width:200px;">
+                <font size="5em" color="#0EFEFC" ;">新 增</font>
+              </button>
+            </th>
+          </thead>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="Block">
+        <table id="tooljigTable">
+          <thead>
+            <tr>
+              <td align=" center">
+                <h1>治具</h1>
+              </td>
+            </tr>
+            <th>
+              <input style="width:100%;" placeholder="Search.." id="tooljigSearch"></input>
+              <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
+                data-ui-class="a-fadeUp" onclick="tooljigCreate();" style="width:200px;">
+                <font size="5em" color="#0EFEFC" ;">新 增</font>
+              </button>
+            </th>
+          </thead>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="Block">
+        <table id="materialTable" ">
         <thead>
           <tr>
             <td align=" center">
-              <h1>人員</h1>
-            </td>
-
+          <h1>原物料</h1>
+          </td>
           </tr>
-        </thead>
-        <tfoot>
-          <th >
-            <input style="width:100%;" placeholder="Search.." id="memberSearch"></input>
-            <button class="createBtn btn btn-outline-info " data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="memberCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
-    </div>
-
-    <div  class="Block">
-      <table id="machineTable">
-        <thead>
-          <tr>
-            <td align=" center">
-              <h1>機台</h1>
-            </td>
-          </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="machineSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="machineCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
-    </div>
-
-    <div  class="Block">
-      <table id="toolcutterTable">
-        <thead>
-          <tr>
-            <td align=" center">
-              <h1>刀具</h1>
-            </td>
-          </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="toolcutterSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="toolcutterCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
-    </div>
-
-    <div class="Block">
-      <table id="tooljigTable">
-        <thead>
-          <tr>
-            <td align=" center">
-              <h1>治具</h1>
-            </td>
-          </tr>
-        </thead>
-        <tfoot>
-          <th>
-            <input style="width:100%;" placeholder="Search.." id="tooljigSearch"></input>
-            <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
-              data-ui-class="a-fadeUp" onclick="tooljigCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
-            </button>
-          </th>
-        </tfoot>
-      </table>
-    </div>
-
-    <div  class="Block">
-      <table id="materialTable" ">
-        <thead>
-          <tr>
-            <td align=" center">
-        <h1>原物料</h1>
-        </td>
-        </tr>
-        </thead>
-        <tfoot>
           <th>
             <input style="width:100%;" placeholder="Search.." id="materialSearch"></input>
             <button class="createBtn btn btn-outline-info" data-toggle="modal" data-target=".animate"
               data-ui-class="a-fadeUp" onclick="materialCreate();" style="width:200px;">
-              <font size="6" color="#737373" ;">新 增</font>
+              <font size="5em" color="#0EFEFC" ;">新 增</font>
             </button>
           </th>
-        </tfoot>
-      </table>
+          </thead>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 
 
-    <!-- Create -->
-    <div class="word  modal fade modal_right" id="memberCreate" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="memberCreate_Content"></div>
-        </div>
+  <!-- Create -->
+  <div class="word  modal fade modal_right" id="memberCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="memberCreate_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="toolcutterCreate" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="toolcutterCreate_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="toolcutterCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="toolcutterCreate_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="machineCreate" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="machineCreate_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="machineCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="machineCreate_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="materialCreate" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="materialCreate_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="materialCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="materialCreate_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="tooljigCreate" role="dialog" aria-labelledby="modalCreateLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="tooljigCreate_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="tooljigCreate" role="dialog" aria-labelledby="modalCreateLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="tooljigCreate_Content"></div>
       </div>
     </div>
+  </div>
 
-    <!-- Edit -->
-    <div class="word  modal fade modal_right" id="memberEdit" role="dialog" aria-labelledby="modalEditLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="memberEdit_Content"></div>
-        </div>
+  <!-- Edit -->
+  <div class="word  modal fade modal_right" id="memberEdit" role="dialog" aria-labelledby="modalEditLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="memberEdit_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="toolcutterEdit" role="dialog" aria-labelledby="modalEditLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="toolcutterEdit_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="toolcutterEdit" role="dialog" aria-labelledby="modalEditLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="toolcutterEdit_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="machineEdit" role="dialog" aria-labelledby="modalEditLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="machineEdit_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="machineEdit" role="dialog" aria-labelledby="modalEditLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="machineEdit_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="materialEdit" role="dialog" aria-labelledby="modalEditLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="materialEdit_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="materialEdit" role="dialog" aria-labelledby="modalEditLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="materialEdit_Content"></div>
       </div>
     </div>
-    <div class="word  modal fade modal_right" id="tooljigEdit" role="dialog" aria-labelledby="modalEditLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="width:25em;" role="document">
-        <div class="myForm modal-content">
-          <div id="tooljigEdit_Content"></div>
-        </div>
+  </div>
+  <div class="word  modal fade modal_right" id="tooljigEdit" role="dialog" aria-labelledby="modalEditLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:25em;" role="document">
+      <div class="myForm modal-content">
+        <div id="tooljigEdit_Content"></div>
       </div>
     </div>
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  </div>
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 </body>
 

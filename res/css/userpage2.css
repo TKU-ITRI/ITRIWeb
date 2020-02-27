@@ -14,8 +14,8 @@
 .createBtn{
     font-style: color;
 	width:140px;
-	height:60px;
-	background-color: gainsboro
+	height:40px;
+	background-color: rgb(0, 0, 0)
 }
 .CreateFont{
     font-family:DFKai-sb;
