@@ -51,7 +51,9 @@
 
 </head>
 <script>
-
+  var r = [];
+  var preRData=null;
+  var nextRData=null;
   var pOrderTable;
   $(document).ready(function () {
     // public int? POutOrderId { get; set; }
@@ -126,7 +128,34 @@
 
           return html
         },
-      }
+      },
+      {     
+                 targets: [0], //要合并的列数（第1，2，3列）
+                 createdCell: function (td, cellData, rowData, row, col) { 
+                     var rowspan = 3;
+                     var i =0;
+                     r.push(rowData.pInOrderId)
+                    
+                    if (row==3){
+                      $(td).attr('rowspan', rowspan)
+                    }
+                    if(row==5 || row==4){
+                      $(td).remove();
+                    }
+                    
+                  
+                    
+                    //  if(nextRData == preRData){
+                    //     $(td).attr('rowspan', rowspan)
+                    //     $(td).remove();
+                    //  }
+                        // if (rowspan == 2) {
+                        //     $(td).remove();
+                        //  }
+
+                     
+                 }
+             }
       ],
       "dom": '<"toolbar">frtip', // enable custommize toolbar elements
       "language": { // change display text
@@ -141,6 +170,7 @@
       }
 
     });
+    
     var html = ""
     html += "<div>"
     html += '<button class="btn-primary btn-sm" onclick="pOrderCreate()">新增訂單</button>'
@@ -149,6 +179,7 @@
     html += "</div>"
     $("div.toolbar").html(html);
   });
+ 
 </script>
 <script>
   $(function () {
