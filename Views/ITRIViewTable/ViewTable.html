@@ -63,7 +63,19 @@
                 //Type varchar(45) 
 
                 "columns": [
-                    { 'data': 'id' },
+                    { 'data': 'porderid' },
+                    { 'data': 'client_No' },
+                    { 'data': 'order_No' },
+                    { 'data': 'order_CreateDate' },
+                    { 'data': 'order_Predict_Date' },
+                    { 'data': 'gonid' },
+                    { 'data': 'purchase_Id' },
+                    { 'data': 'assembly_Id' },
+                    { 'data': 'orderoutsource_Id' },
+                    { 'data': 'orderselfmade_Id' },
+
+
+
                     // { 'data': 'active' },
                     // { 'data': 'userName' },
                     // { 'data': 'type' },
@@ -75,36 +87,36 @@
                 ], "columnDefs": [{
                     "targets": [], // hidden column
                     "visible": false
-                // }, {
-                //     "targets": 1,
-                //     "render": function (data, type, row) {
-                //         var checked = (row.active == 0) ? "啟用" : "停用";
-                //         return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
-                //     }
+                    // }, {
+                    //     "targets": 1,
+                    //     "render": function (data, type, row) {
+                    //         var checked = (row.active == 0) ? "啟用" : "停用";
+                    //         return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
+                    //     }
 
-                // }, {
-                //     "targets": 3,
-                //     "render": function (data, type, row) {
+                    // }, {
+                    //     "targets": 3,
+                    //     "render": function (data, type, row) {
 
-                //         return memberTypeData[row.type];
-                //     }
+                    //         return memberTypeData[row.type];
+                    //     }
 
-                // }, {
-                //     "targets": 8, // add edit buttononclick="recordChat(' + row.id + ')
-                //     "render": function (data, type, row) {
-                //         var html = "";
-                //         html += ' <a href="javascript:void(0);" onclick="editAccount(' + row.id + ',\'' + row.nickName + '\')">編輯</a>'
-                //         html += ' | <a href="javascript:void(0);" onclick="DeleteAccount(' + row.id + ')">刪除</a> '
-                //         return html
-                //     }
-                // }, {
-                //     "targets": [6, 7], render: function (data) {
-                //         if (data == null)
-                //             return "無";
-                //         else
-                //             return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                    // }, {
+                    //     "targets": 8, // add edit buttononclick="recordChat(' + row.id + ')
+                    //     "render": function (data, type, row) {
+                    //         var html = "";
+                    //         html += ' <a href="javascript:void(0);" onclick="editAccount(' + row.id + ',\'' + row.nickName + '\')">編輯</a>'
+                    //         html += ' | <a href="javascript:void(0);" onclick="DeleteAccount(' + row.id + ')">刪除</a> '
+                    //         return html
+                    //     }
+                    // }, {
+                    //     "targets": [6, 7], render: function (data) {
+                    //         if (data == null)
+                    //             return "無";
+                    //         else
+                    //             return moment(data).format('YYYY-MM-DD hh:mm:ss');
 
-                //     }
+                    //     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
                 "language": { // change display text
@@ -157,7 +169,18 @@
     <table id="AMTable" class="table table-striped table-sm" style="width:100%; font-size: 0.9em;">
         <thead>
             <tr>
-                <th>id</th>
+                <th>porderid</th>
+                <th>client_No</th>
+                <th>order_No</th>
+                <th>order_CreateDate</th>
+                <th>order_Predict_Date</th>
+                <th>gonid</th>
+
+                <th>purchase_Id</th>
+                <th>assembly_Id</th>
+                <th>orderoutsource_Id</th>
+                <th>orderselfmade_Id</th>
+
                 <!-- <th>狀態</th>
                 <th>帳號</th>
                 <th>類型</th>
