@@ -17,13 +17,46 @@
 	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 	<script type="text/javascript"
 		src="/bootstrap-material-datetimepicker-gh-pages/js/bootstrap-material-datetimepicker.js"></script>
+
 	<script>
 		$(document).ready(function () {
-
+			$('#oOrderImageCreate').attr("src", "/res/img/upload_image.png");
 		});
-
-
+		function getObjectURL(file) {
+            var url = null;
+            if (window.createObjectURL != undefined) { // basic  
+                url = window.createObjectURL(file);
+            } else if (window.URL != undefined) { // mozilla(firefox)  
+                url = window.URL.createObjectURL(file);
+            } else if (window.webkitURL != undefined) { // webkit or chrome  
+                url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+        }
+		function PicCheck(sender) {
+            var validExts = new Array(".jpg");
+            var fileExt = sender.value;
+            console.log(fileExt);
+            fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+            if (validExts.indexOf(fileExt) < 0) {
+                alert("檔案類型錯誤，可接受的副檔名有：" + validExts.toString());
+                sender.value = null;
+                return false;
+            }
+            else
+                return true;
+        }
 		$(function () {
+			$("#UploadoOrderImageCreate").change(function () {
+                if (PicCheck(this)) {
+                    var objUrl = getObjectURL(this.files[0]);
+                    console.log(this.files[0]);
+                    if (this.files.length != 0) {
+                        $("#oOrderImageCreate").attr("src", objUrl);
+                        $("#oOrderImageCreate").show();
+                    }
+                }
+            });
 			$('#date').bootstrapMaterialDatePicker
 				({
 					time: false,
@@ -111,8 +144,13 @@
 									<!-- <div class="input-group-prepend">
 										<span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
 									</div> -->
-									<input type="text" placeholder="" id="oOrderImageCreate" name="oOrderImage" class="form-control" />
+									<!-- <input type="text" placeholder="" id="oOrderImageCreate" name="oOrderImage" class="form-control" /> -->
+									<label class="btn-sm btn-outline-light btn-image">
+										<img class="img-rounded" src="#" id="oOrderImageCreate" width="75" height="75" />
+										<input accept=".jpg" id="UploadoOrderImageCreate" name="oOrderImage" class="form-control"  style="display:none;" type="file">
+									</label>
 								</div>
+								
 								<div>製程編排</div>
 								<div class="input-group mt-3">
 									<!-- <div class="input-group-prepend">

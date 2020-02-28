@@ -4,6 +4,7 @@
 
 var PorderNo;
 var GonNo;
+var formData = new FormData();
 function init() {
     // Create
     // $("#pOrderCreate_Content").load("/Views/ProductionManage/test.html");
@@ -20,6 +21,7 @@ function init2() {
     $("#purchase2Create_Content").load("/res/modalCreate/purchaseCreate.html");
     $("#assemblyCreate_Content").load("/res/modalCreate/assemblyCreate.html");
     $("#orderOutCreate_Content").load("/res/modalCreate/orderOutCreate.html");
+
     $("#orderSelfCreate_Content").load("/res/modalCreate/orderSelfCreate.html");
     // Edit
     $("#purchase2Edit_Content").load("/res/modalEdit/purchaseEdit.html");
@@ -50,7 +52,6 @@ function purchaseCreate() {
 }
 
 function purchase2Create() {
-    alert(GonNo)
     $("#pGonNoCreate").val(GonNo);
     console.log(GonNo);
     console.log('i am p' + GonNo);
@@ -76,7 +77,6 @@ function orderSelfCreate() {
 }
 
 function confirm2() {
-    alert("456");
     $("#purchase").modal("hide");
     $("#gon").modal("show");
 }
@@ -84,7 +84,6 @@ function confirm2() {
 // Edit
 function pOrderEdit(id) {
     $("#pOrderEdit_title").text(id + " 編輯頁面")
-    $("#pOrderEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -100,9 +99,10 @@ function pOrderEdit(id) {
             $("#pInOrderIdEdit").val(e.pInOrderId);
             $("#pOrderClientNoEdit").val(e.pOrderClientNo);
             $("#pOrderPredictDateEdit").val(moment(e.pOrderPredictDate).format('YYYY/MM/DD hh:mm'));
-            $('#pOrderCompleteDateEdit').val( moment(e.pOrderCompleteDate).format('YYYY/MM/DD hh:mm')
-            );
-        }       
+            $('#pOrderCompleteDateEdit').val(moment(e.pOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
+            $("#pOrderEdit").modal("show");
+
+        }
     })
 }
 
@@ -134,7 +134,6 @@ function gonEdit(id) {
 
 function purchase2Edit(id) {
     $("#purchase2Edit_title").text(id + " 編輯頁面")
-    $("#purchase2Edit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -152,6 +151,8 @@ function purchase2Edit(id) {
 
             $("#purchaseOrderCompleteDateEdit").val(moment(e.purchaseOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
             $("#pGonNoEdit").val(e.pGonNo);
+            $("#purchase2Edit").modal("show");
+
         }
 
     })
@@ -159,7 +160,6 @@ function purchase2Edit(id) {
 
 function assemblyEdit(id) {
     $("#assemblyEdit_title").text(id + " 編輯頁面")
-    $("#assemblyEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -177,6 +177,8 @@ function assemblyEdit(id) {
             $('#aListPredictDateEdit').val(moment(e.aListPredictDate).format('YYYY/MM/DD hh:mm'));
             $('#aListCompleteDateEdit').val(moment(e.aListCompleteDate).format('YYYY/MM/DD hh:mm'));
             $("#aGonNoEdit").val(e.aGonNo);
+            $("#assemblyEdit").modal("show");
+
         }
 
     })
@@ -185,7 +187,6 @@ function assemblyEdit(id) {
 function orderOutEdit(id) {
     $("#orderOutEdit_title").text(id + " 編輯頁面")
 
-    $("#orderOutEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -196,8 +197,12 @@ function orderOutEdit(id) {
             'id': id,
         }),
         success: function (e) {
+            if (e.oOrderImage != null)
+                $('#oOrderImageEdit').attr("src", "data:image;base64," + e.oOrderImage);
+            else
+                $('#oOrderImageEdit').attr("src", "/res/img/upload_image.png");
             $("#oOrderIdEdit").val(e.id);
-            $('#oOrderImageEdit').val(e.oOrderImage);
+            // $('#oOrderImageEdit').val(e.oOrderImage);
             $('#oOrderScheduleEdit').val(e.oOrderSchedule);
             $('#oOrderMethodEdit').val(e.oOrderMethod);
             $('#oOrderContractorEdit').val(e.oOrderContractor);
@@ -205,13 +210,14 @@ function orderOutEdit(id) {
             $('#oOrderCompleteDateEdit').val(moment(e.oOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
 
             $("#oGonNoEdit").val(e.oGonNo);
+            $("#orderOutEdit").modal("show");
+
         }
     })
 }
 
 function orderSelfEdit(id) {
     $("#orderSelfEdit_title").text(id + " 編輯頁面")
-    $("#orderSelfEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -223,7 +229,10 @@ function orderSelfEdit(id) {
         }),
         success: function (e) {
             $("#sOrderIdEdit").val(e.id);
-            $('#sOrderImageEdit').val(e.sOrderImage);
+            if (e.sOrderImage != null)
+                $('#sOrderImageEdit').attr("src", "data:image;base64," + e.sOrderImage);
+            else
+                $('#sOrderImageEdit').attr("src", "/res/img/upload_image.png");
             $('#sOrderScheduleEdit').val(e.sOrderSchedule);
             $('#sOrderMethodEdit').val(e.sOrderMethod);
             $('#sOrderContractorEdit').val(e.sOrderContractor);
@@ -238,14 +247,14 @@ function orderSelfEdit(id) {
             $('#sOrderCompleteDateEdit').val(moment(e.sOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
 
             $("#sGonNoEdit").val(e.sGonNo);
+            $("#orderSelfEdit").modal("show");
+
         }
     })
 }
 
 //create_content
 function pOrderCreateContent() {
-    alert("ddd");
-
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -316,7 +325,6 @@ function pOrderDelete(id) {
 }
 
 function gonCreateContent(PorderNo) {
-    alert("aaa");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -330,7 +338,7 @@ function gonCreateContent(PorderNo) {
         }),
         success: function (e) {
             console.log('api call back:' + e);
-            GonNo = e.id;
+            GonNo = e;
             initPurchase(GonNo)
             $("#gon").modal("hide");
         }
@@ -530,12 +538,14 @@ function assemblyDelete(id) {
 
 }
 
-function orderOutCreateContent() {
-    alert("ddd");
-    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
-    // "<a onclick=\"purchaseCreate()\">新增</a>"+
-    // "</button>");
+async function orderOutCreateContent() {
 
+    if ($('#UploadoOrderImageCreate')[0].files.length != 0) {
+        const arrayBuffer = await getArrayBuffer($('#UploadoOrderImageCreate')[0].files[0]);
+        var image = Array.from(new Uint8Array(arrayBuffer));
+    }
+    else
+        var image = null;
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -543,14 +553,13 @@ function orderOutCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'oOrderImage': $('#oOrderImageCreate').val(),
+            'oOrderImage': image,
             'oOrderSchedule': $('#oOrderScheduleCreate').val(),
             'oOrderMethod': $('#oOrderMethodCreate').val(),
             'oOrderContractor': $('#oOrderContractorCreate').val(),
             'oOrderPredictDate': new Date($('#oOrderPredictDateCreate').val()),
             'oOrderCompleteDate': new Date($('#oOrderCompleteDateCreate').val()),
             'oGonNo': $('#oGonNoCreate').val(),
-
         }),
         success: function () {
             orderOutTable.draw();
@@ -558,7 +567,25 @@ function orderOutCreateContent() {
         }
     })
 }
-function orderOutEditContent() {
+
+function getArrayBuffer(file) {
+    return new Promise((resolve, reject) => {
+        // STEP 3: 轉成 ArrayBuffer, i.e., reader.result
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            resolve(reader.result);
+        });
+        reader.readAsArrayBuffer(file);
+    });
+}
+
+async function orderOutEditContent() {
+    if ($('#UploadoOrderImageEdit')[0].files.length != 0) {
+        const arrayBuffer = await getArrayBuffer($('#UploadoOrderImageEdit')[0].files[0]);
+        var image = Array.from(new Uint8Array(arrayBuffer));
+    }
+    else
+        var image = null;
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -567,7 +594,7 @@ function orderOutEditContent() {
         async: false,
         data: JSON.stringify({
             'id': $('#oOrderIdEdit').val(),
-            'oOrderImage': $('#oOrderImageEdit').val(),
+            'oOrderImage': image,
             'oOrderSchedule': $('#oOrderScheduleEdit').val(),
             'oOrderMethod': $('#oOrderMethodEdit').val(),
             'oOrderContractor': $('#oOrderContractorEdit').val(),
@@ -606,11 +633,13 @@ function orderOutDelete(id) {
 
 }
 
-function orderSelfCreateContent() {
-    alert("ddd");
-    // $("#pOrderTable").prepend("<button class=\"btn btn-secondary btn-round btn-block\" data-toggle=\"modal\" data-target=\".animate\" data-ui-class=\"a-fadeUp\" >"+"123"+
-    // "<a onclick=\"purchaseCreate()\">新增</a>"+
-    // "</button>");
+async function orderSelfCreateContent() {
+    if ($('#UploadsOrderImageCreate')[0].files.length != 0) {
+        const arrayBuffer = await getArrayBuffer($('#UploadsOrderImageCreate')[0].files[0]);
+        var image = Array.from(new Uint8Array(arrayBuffer));
+    }
+    else
+        var image = null;
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -618,7 +647,7 @@ function orderSelfCreateContent() {
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            'sOrderImage': $('#sOrderImageCreate').val(),
+            'sOrderImage': image,
             'sOrderSchedule': $('#sOrderScheduleCreate').val(),
             'sOrderMethod': $('#sOrderMethodCreate').val(),
             'sOrderContractor': $('#sOrderContractorCreate').val(),
@@ -642,7 +671,13 @@ function orderSelfCreateContent() {
 
     })
 }
-function orderSelfEditContent() {
+async function orderSelfEditContent() {
+    if ($('#UploadsOrderImageEdit')[0].files.length != 0) {
+        const arrayBuffer = await getArrayBuffer($('#UploadsOrderImageEdit')[0].files[0]);
+        var image = Array.from(new Uint8Array(arrayBuffer));
+    }
+    else
+        var image = null;
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -651,7 +686,7 @@ function orderSelfEditContent() {
         async: false,
         data: JSON.stringify({
             'id': $('#sOrderIdEdit').val(),
-            'sOrderImage': $('#sOrderImageEdit').val(),
+            'sOrderImage': image,
             'sOrderSchedule': $('#sOrderScheduleEdit').val(),
             'sOrderMethod': $('#sOrderMethodEdit').val(),
             'sOrderContractor': $('#sOrderContractorEdit').val(),

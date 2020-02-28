@@ -43,7 +43,6 @@ function tooljigCreate() {
 
 function memberEdit(id) {
     $("#memberEdit_title").text(id + " 編輯頁面")
-    $("#memberEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -61,6 +60,8 @@ function memberEdit(id) {
             $("#memberSubDutiesEdit").val(e.memberSubDuties);
             $("#memberHiringDayEdit").val(e.memberHiringDay);
             $("#memberFiringDayEdit").val(e.memberFiringDay);
+            $("#memberEdit").modal("show");
+
         }
 
     })
@@ -68,7 +69,6 @@ function memberEdit(id) {
 
 function machineEdit(id) {
     $("#machineEdit_title").text(id + " 編輯頁面")
-    $("#machineEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -85,6 +85,8 @@ function machineEdit(id) {
             $("#machineNoEdit").val(e.machineNo);
             $("#machineBrandEdit").val(e.machineBrand);
             $("#machineSizeEdit").val(e.machineSize);
+            $("#machineEdit").modal("show");
+
         }
     })
    
@@ -93,7 +95,6 @@ function machineEdit(id) {
 function toolcutterEdit(id) {
     $("#toolcutterEdit_title").text(id + " 編輯頁面")
 
-    $("#toolcutterEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -112,12 +113,13 @@ function toolcutterEdit(id) {
             $('#toolcutterBrandEdit').val(e.cutterBrand);
             $('#toolcutterSizeEdit').val(e.cutterSize);
             // $('#toolcutterStatusEdit').val(e.cutterStatus);
+            $("#toolcutterEdit").modal("show");
+
         }
     })
 }
 function tooljigEdit(id) {
     $("#tooljigEdit_title").text(id + " 編輯頁面")
-    $("#tooljigEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -134,6 +136,8 @@ function tooljigEdit(id) {
             // $("#tooljigNoEdit").val(e.jigNo);
             $("#tooljigClassEdit").val(e.jigClass);
             // $("#tooljigUseEdit").val(e.jigUse);
+            $("#tooljigEdit").modal("show");
+
             
 
         }
@@ -144,7 +148,6 @@ function tooljigEdit(id) {
 function materialEdit(id) {
     $("#materialEdit_title").text(id + " 編輯頁面")
 
-    $("#materialEdit").modal("show");
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -160,6 +163,7 @@ function materialEdit(id) {
             $('#materialClassEdit').val(e.materialClass);
             $('#materialSizeEdit').val(e.materialSize);
             $('#materialCountEdit').val(e.materialCount);
+            $("#materialEdit").modal("show");
 
             // $('#materialNoEdit').val(e.materialNo);
             // $('#materialStatusEdit').val(e.materialStatus);
@@ -172,7 +176,6 @@ function materialEdit(id) {
 }
 
 function machineCreateContent() {
-    alert("ddd");
     // <!-- public string machineClass { get; set; }
     // public string machineName { get; set; }
     // public int? machineNo { get; set; }
