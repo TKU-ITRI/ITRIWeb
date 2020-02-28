@@ -30,13 +30,21 @@
     width:40%;
     margin-left: 20%;
     margin-right: 20%;
+    position: relative;
+    left: 10%;
 }
 .modal-content{
     width: 130%;
     position: relative;
-    right: 15%;
+    right: 0%;
    
 }
+.g .modal-content{
+    width: 80%;
+    position: relative;
+    left: 8%;
+}
+
 .TableStyle{
     padding:0px 2%;
     width:21%;
