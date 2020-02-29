@@ -56,6 +56,7 @@
           url: parent.webApiUrl + "/member/GetAll",
           contentType: "application/json",
           data: function (d) {
+            d.accountId = getCookie("id");
             return JSON.stringify(d)
           }
         },
@@ -71,7 +72,7 @@
           "targets": 0, // add edit buttononclick="recordChat(' + row.id + ')
           "render": function (data, type, row) {
             var html = "";
-            html += '<div  class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberNo
+            html += '<div  class="row btn btn-secondary btn-round btn-block w3-xlarge">' + row.memberName
             html += '<button onclick="memberDelete(' + row.id + ');" class="btn "><i class="fa fa-trash w3-xlarge"></i></button>'
             html += '<button onclick="memberEdit(' + row.id + ');" class="btn "><i class="fa fa-pencil w3-xlarge"></i></button>'
             html += '</div>'
@@ -107,6 +108,7 @@
           url: parent.webApiUrl + "/machine/GetAll",
           contentType: "application/json",
           data: function (d) {
+            d.accountId = getCookie("id");
             return JSON.stringify(d)
           }
         },
@@ -158,6 +160,7 @@
           url: parent.webApiUrl + "/toolcutter/GetAll",
           contentType: "application/json",
           data: function (d) {
+            d.accountId = getCookie("id");
             return JSON.stringify(d)
           }
         },
@@ -211,6 +214,7 @@
           url: parent.webApiUrl + "/tooljig/GetAll",
           contentType: "application/json",
           data: function (d) {
+            d.accountId = getCookie("id");
             return JSON.stringify(d)
           }
         },
@@ -262,6 +266,7 @@
           url: parent.webApiUrl + "/material/GetAll",
           contentType: "application/json",
           data: function (d) {
+            d.accountId = getCookie("id");
             return JSON.stringify(d)
           }
         },

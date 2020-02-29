@@ -8,20 +8,19 @@ var formData = new FormData();
 function init() {
     // Create
     // $("#pOrderCreate_Content").load("/Views/ProductionManage/test.html");
-
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
     $("#gon_Content").load("/Views/ProductionManage/gon.html");
-
     //Edit
     $("#pOrderEdit_Content").load("/res/modalEdit/pOrderEdit.html");
-}
 
+   
+    GetMemberList()
+
+}
 function init2() {
-    // Create
-    $("#purchase2Create_Content").load("/res/modalCreate/purchaseCreate.html");
+ $("#purchase2Create_Content").load("/res/modalCreate/purchaseCreate.html");
     $("#assemblyCreate_Content").load("/res/modalCreate/assemblyCreate.html");
     $("#orderOutCreate_Content").load("/res/modalCreate/orderOutCreate.html");
-
     $("#orderSelfCreate_Content").load("/res/modalCreate/orderSelfCreate.html");
     // Edit
     $("#purchase2Edit_Content").load("/res/modalEdit/purchaseEdit.html");
@@ -29,6 +28,32 @@ function init2() {
     $("#orderOutEdit_Content").load("/res/modalEdit/orderOutEdit.html");
     $("#orderSelfEdit_Content").load("/res/modalEdit/orderSelfEdit.html");
 }
+function GetMemberList() {
+    // Create
+    $.ajax({
+        type: "POST",
+        headers: { 'Authorization': getCookie("token") },
+        url: webApiUrl + "/member/getAllList",
+        contentType: "application/json;charset=utf-8",
+        async: false,
+        data: JSON.stringify({
+            'accountId': getCookie("id"),
+        }),
+        success: function (memberList) {
+            memberList.forEach(e => {
+                $("#purchaseOrderMemberNameEdit").append('<option value=' + e.id + '>' + e.memberName + '</option>');
+                $("#aListMemberNameEdit").append('<option value=' + e.id + '>' + e.memberName + '</option>');
+                $("#sOrderMemberNameEdit").append('<option value=' + e.id + '>' + e.memberName + '</option>');
+                $("#purchaseOrderMemberNameCreate").append('<option value=' + e.id + '>' + e.memberName + '</option>');
+                $("#aListMemberNameCreate").append('<option value=' + e.id + '>' + e.memberName + '</option>');
+                $("#sOrderMemberNameCreate").append('<option value=' + e.id + '>' + e.memberName + '</option>');
+
+            });
+
+        }
+    })
+}
+
 
 function pOrderCreate() {
     $("#pOrderCreate").modal("show");
@@ -265,6 +290,8 @@ function pOrderCreateContent() {
             'pOutOrderId': $('#pOutOrderIdCreate').val(),
             'pInOrderId': $('#pInOrderIdCreate').val(),
             'pOrderClientNo': $('#pOrderClientNoCreate').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId"),
             'pOrderPredictDate': new Date($('#pOrderPredictDateCreate').val()),
             'pOrderCompleteDate': new Date($('#pOrderCompleteDateCreate').val()),
 
@@ -289,6 +316,8 @@ function pOrderEditContent() {
             'pOutOrderId': $('#pOutOrderIdEdit').val(),
             'pInOrderId': $('#pInOrderIdEdit').val(),
             'pOrderClientNo': $('#pOrderClientNoEdit').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId"),
             'pOrderPredictDate': new Date($('#pOrderPredictDateEdit').val()),
             'pOrderCompleteDate': new Date($('#pOrderCompleteDateEdit').val()),
 
