@@ -17,24 +17,23 @@
 .undername{
     position: relative;
     left:15%;
-    width: 1000px;
+    width: 950px;
 }
 #U ul li{
     font-size: 30px;
     display: inline;
-    padding: 100px;
+    padding-right: 20%;
 }
-
+#U  .B li{
+    font-size: 30px;
+    display: inline;
+    padding-right: 23%;
+}
 .bottomblock{
     position: relative;
     left: 10%;
 }
 
-#B ul li{
-    font-size: xx-large;
-    padding: 1%;
-    list-style-type:none;
-}
 
 #B a{
     color: rgb(119, 119, 57);
@@ -47,13 +46,20 @@
     #U ul li{
         padding: 50px;
     }
+    #U  .B li{
+        padding:8%;
+    }
 }
-@media screen and (max-width:900px){
+@media screen and (max-width:800px){
     .undername{
         width: 500px;
         left: 0%;
     }
     #U ul li{
+        font-size: 25px;
         padding: 20px;
+    }
+    #U  .B li{
+        padding:5%;
     }
 }
