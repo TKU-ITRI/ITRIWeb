@@ -1,7 +1,7 @@
 var menuData = {
     "C": [
         {
-            title: '主管帳號管理頁面' ,
+            title: '主管帳號管理頁面',
             link: 'javascript:void(0);',
             command: 'CompanyManager',
             views: 'Company',
@@ -11,7 +11,7 @@ var menuData = {
     ],
     "A": [
         {
-            title: '帳號管理頁面' ,
+            title: '帳號管理頁面',
             link: 'javascript:void(0);',
             command: 'AccountManager',
             views: 'Account',
@@ -19,14 +19,14 @@ var menuData = {
             icon: null
         },
         {
-            title: '公司管理頁面' ,
+            title: '公司管理頁面',
             link: 'javascript:void(0);',
             command: 'Company',
             views: 'Company',
             sub: null,
             icon: null
         },
-    
+
     ],
     //     {
     //         title: '編輯考題 ',
@@ -45,17 +45,17 @@ var menuData = {
     //        icon: null
     //    },
     // ],
-    "P":[
+    "P": [
         {
-            title: '首頁' ,
+            title: '首頁',
             link: 'javascript:void(0);',
             command: 'userpage',
             views: 'gondan',
             sub: null,
             icon: null
         },
-        
-        
+
+
         // {
         //     title: '進度' ,
         //     link: 'javascript:void(0);',
@@ -65,7 +65,7 @@ var menuData = {
         //     icon: null
         // },
         {
-            title: '資源管理' ,
+            title: '資源管理',
             link: 'javascript:void(0);',
             command: 'userpage2',
             views: 'gondan',
@@ -73,7 +73,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '訂單' ,
+            title: '訂單',
             link: 'javascript:void(0);',
             command: 'APS',
             views: 'gondan',
@@ -81,7 +81,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '生產管理' ,
+            title: '生產管理',
             link: 'javascript:void(0);',
             command: 'Production',
             views: 'ProductionManage',
@@ -97,17 +97,17 @@ var menuData = {
         //     icon: null
         // }
     ],
-    "P":[
+    "P": [
         {
-            title: '首頁' ,
+            title: '首頁',
             link: 'javascript:void(0);',
             command: 'userpage',
             views: 'gondan',
             sub: null,
             icon: null
         },
-      
-        
+
+
         // {
         //     title: '進度' ,
         //     link: 'javascript:void(0);',
@@ -117,7 +117,7 @@ var menuData = {
         //     icon: null
         // },
         {
-            title: '資源管理' ,
+            title: '資源管理',
             link: 'javascript:void(0);',
             command: 'userpage2',
             views: 'gondan',
@@ -125,7 +125,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '訂單' ,
+            title: '訂單',
             link: 'javascript:void(0);',
             command: 'APS',
             views: 'gondan',
@@ -133,7 +133,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '生產管理' ,
+            title: '生產管理',
             link: 'javascript:void(0);',
             command: 'Production',
             views: 'ProductionManage',
@@ -149,71 +149,19 @@ var menuData = {
         //     icon: null
         // }
     ],
-    "P":[
+    "P": [
         {
-            title: '首頁' ,
+            title: '首頁',
             link: 'javascript:void(0);',
             command: 'userpage',
             views: 'gondan',
             sub: null,
             icon: null
         },
-        
-        
-        // {
-        //     title: '進度' ,
-        //     link: 'javascript:void(0);',
-        //     command: 'userpage',
-        //     views: 'gondan',
-        //     sub: null,
-        //     icon: null
-        // },
+
+
         {
-            title: '資源管理' ,
-            link: 'javascript:void(0);',
-            command: 'userpage2',
-            views: 'gondan',
-            sub: null,
-            icon: null
-        },
-        {
-            title: '訂單' ,
-            link: 'javascript:void(0);',
-            command: 'APS',
-            views: 'gondan',
-            sub: null,
-            icon: null
-        },
-        {
-            title: '生產管理' ,
-            link: 'javascript:void(0);',
-            command: 'Production',
-            views: 'ProductionManage',
-            sub: null,
-            icon: null
-        },
-        // {
-        //     title: '日程' ,
-        //     link: 'javascript:void(0);',
-        //     command: 'personal',
-        //     views: 'gondan',
-        //     sub: null,
-        //     icon: null
-        // }
-    ],
-    "S":[
-        {
-            title: '首頁' ,
-            link: 'javascript:void(0);',
-            command: 'userpage',
-            views: 'gondan',
-            sub: null,
-            icon: null
-        },
-      
-        
-        {
-            title: '進度' ,
+            title: '進度',
             link: 'javascript:void(0);',
             command: 'jindu',
             views: 'gondan',
@@ -221,7 +169,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '資源管理' ,
+            title: '資源管理',
             link: 'javascript:void(0);',
             command: 'userpage2',
             views: 'gondan',
@@ -229,7 +177,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '訂單' ,
+            title: '訂單',
             link: 'javascript:void(0);',
             command: 'APS',
             views: 'gondan',
@@ -237,7 +185,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '生產管理' ,
+            title: '生產管理',
             link: 'javascript:void(0);',
             command: 'Production',
             views: 'ProductionManage',
@@ -245,7 +193,7 @@ var menuData = {
             icon: null
         },
         {
-            title: '日程' ,
+            title: '日程',
             link: 'javascript:void(0);',
             command: 'personal',
             views: 'gondan',
@@ -253,7 +201,67 @@ var menuData = {
             icon: null
         },
         {
-            title: '檢視查詢' ,
+            title: '檢視查詢',
+            link: 'javascript:void(0);',
+            command: 'ViewTable',
+            views: 'ITRIViewTable',
+            sub: null,
+            icon: null
+        },
+    ],
+    "S": [
+        {
+            title: '首頁',
+            link: 'javascript:void(0);',
+            command: 'userpage',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+
+
+        {
+            title: '進度',
+            link: 'javascript:void(0);',
+            command: 'jindu',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '資源管理',
+            link: 'javascript:void(0);',
+            command: 'userpage2',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '訂單',
+            link: 'javascript:void(0);',
+            command: 'APS',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '生產管理',
+            link: 'javascript:void(0);',
+            command: 'Production',
+            views: 'ProductionManage',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '日程',
+            link: 'javascript:void(0);',
+            command: 'personal',
+            views: 'gondan',
+            sub: null,
+            icon: null
+        },
+        {
+            title: '檢視查詢',
             link: 'javascript:void(0);',
             command: 'ViewTable',
             views: 'ITRIViewTable',
