@@ -1,4 +1,14 @@
 var menuData = {
+    // "M": [
+    //     {
+    //         title: '日程',
+    //         link: 'javascript:void(0);',
+    //         command: 'MemberPage',
+    //         views: 'MemberManage',
+    //         sub: null,
+    //         icon: null
+    //     },
+    // ],
     "C": [
         {
             title: '主管帳號管理頁面',
@@ -195,8 +205,8 @@ var menuData = {
         {
             title: '日程',
             link: 'javascript:void(0);',
-            command: 'personal',
-            views: 'gondan',
+            command: 'MemberPage',
+            views: 'MemberManage',
             sub: null,
             icon: null
         },
@@ -255,8 +265,8 @@ var menuData = {
         {
             title: '日程',
             link: 'javascript:void(0);',
-            command: 'personal',
-            views: 'gondan',
+            command: 'MemberPage',
+            views: 'MemberManage',
             sub: null,
             icon: null
         },
