@@ -30,6 +30,7 @@
     </style>
     <script>
         var dataTables;
+        var r = [];
 
         $(document).ready(function () {
             $.each(memberTypeData, function (key, value) { // generate dropdown list from memberData.js 
@@ -76,61 +77,38 @@
 
 
 
-                    // { 'data': 'active' },
-                    // { 'data': 'userName' },
-                    // { 'data': 'type' },
-                    // { 'data': 'nickName' },//5
-                    // { 'data': 'password' },
-                    // { 'data': 'createDate' },
-                    // { 'data': 'modifyDate' },
-                    // { 'data': null }
+
                 ], "columnDefs": [{
                     "targets": [], // hidden column
                     "visible": false
-                    // }, {
-                    //     "targets": 1,
-                    //     "render": function (data, type, row) {
-                    //         var checked = (row.active == 0) ? "啟用" : "停用";
-                    //         return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.nickName + "\", \"" + checked + "\");'>" + checked + "</a>";
-                    //     }
+                }, {
+                    targets: [0], //要合并的列数（第1，2，3列）
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        var rowspan = 3;
+                        var i = 0;
+                        r.push(rowData.pInOrderId)
 
-                    // }, {
-                    //     "targets": 3,
-                    //     "render": function (data, type, row) {
-
-                    //         return memberTypeData[row.type];
-                    //     }
-
-                    // }, {
-                    //     "targets": 8, // add edit buttononclick="recordChat(' + row.id + ')
-                    //     "render": function (data, type, row) {
-                    //         var html = "";
-                    //         html += ' <a href="javascript:void(0);" onclick="editAccount(' + row.id + ',\'' + row.nickName + '\')">編輯</a>'
-                    //         html += ' | <a href="javascript:void(0);" onclick="DeleteAccount(' + row.id + ')">刪除</a> '
-                    //         return html
-                    //     }
-                    // }, {
-                    //     "targets": [6, 7], render: function (data) {
-                    //         if (data == null)
-                    //             return "無";
-                    //         else
-                    //             return moment(data).format('YYYY-MM-DD hh:mm:ss');
-
-                    //     }
+                        if (row == 3) {
+                            $(td).attr('rowspan', rowspan)
+                        }
+                        if (row == 5 || row == 4) {
+                            $(td).remove();
+                        }
+                    }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
                 "language": { // change display text
-                    "info": " 目前顯示 _START_ 至 _END_ 筆，共計 _TOTAL_ 筆。",
-                    "paginate": {
-                        "first": "第一頁",
-                        "last": "最後一頁",
-                        "next": ">",
-                        "previous": "<"
-                    }
+                "info": " 目前顯示 _START_ 至 _END_ 筆，共計 _TOTAL_ 筆。",
+                "paginate": {
+                    "first": "第一頁",
+                    "last": "最後一頁",
+                    "next": ">",
+                    "previous": "<"
                 }
+            }
 
             });
-            $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">新增會員帳號</button>'); // get dom from toolbar
+        $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">新增會員帳號</button>'); // get dom from toolbar
             //$('#txtCreateDateEdit').datepicker({ format: 'yyyy-mm-dd' }); 
 
 
