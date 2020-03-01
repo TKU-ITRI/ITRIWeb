@@ -2,8 +2,8 @@
 
 
 
-var PorderNo = 26;
-var GonNo;
+var PorderNo = 17;
+var GonNo =49;
 var formData = new FormData();
 function init() {
     // Create
@@ -18,6 +18,7 @@ function init() {
 
 function init2() {
     // Create
+    gonEdit(GonNo);
     $("#purchase2Create_Content").load("/res/modalCreate/purchaseCreate.html");
     $("#assemblyCreate_Content").load("/res/modalCreate/assemblyCreate.html");
     $("#orderOutCreate_Content").load("/res/modalCreate/orderOutCreate.html");

@@ -205,8 +205,8 @@ var menuData = {
         {
             title: '日程',
             link: 'javascript:void(0);',
-            command: 'MemberPage',
-            views: 'MemberManage',
+            command: 'personal',
+            views: 'gondan',
             sub: null,
             icon: null
         },
