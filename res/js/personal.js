@@ -2,7 +2,7 @@
 
 
 
-var PorderNo;
+var PorderNo = 26;
 var GonNo;
 var formData = new FormData();
 function init() {
