@@ -1,8 +1,4 @@
 
-
-
-
-
 function init() {
     // Create
     $("#memberCreate_Content").load("/res/modalCreate/memberCreate.html");
@@ -194,6 +190,9 @@ function machineCreateContent() {
             'machineNo': $('#machineNoCreate').val(),
             'machineBrand': $('#machineBrandCreate').val(),
             'machineSize': $('#machineSizeCreate').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
+
         }),
         success: function () {
             machineTable.draw();
@@ -218,6 +217,8 @@ function machineEditContent() {
             'machineNo': $('#machineNoEdit').val(),
             'machineBrand': $('#machineBrandEdit').val(),
             'machineSize': $('#machineSizeEdit').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             machineTable.draw();
@@ -272,6 +273,8 @@ function toolcutterCreateContent() {
             'cutterBrand': $('#toolcutterBrandCreate').val(),
             'cutterSize': $('#toolcutterSizeCreate').val(),
             // 'cutterStatus': $('#toolcutterStatusCreate').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             toolcutterTable.draw();
@@ -296,6 +299,8 @@ function toolcutterEditContent() {
             'cutterBrand': $('#toolcutterBrandEdit').val(),
             'cutterSize': $('#toolcutterSizeEdit').val(),
             // 'cutterStatus': $('#toolcutterStatusEdit').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             toolcutterTable.draw();
@@ -347,6 +352,8 @@ function tooljigCreateContent() {
             // 'jigNo': $('#tooljigNoCreate').val(),
             'jigClass': $('#tooljigClassCreate').val(),
             // 'jigUse': $('#tooljigUseCreate').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             tooljigTable.draw();
@@ -370,6 +377,8 @@ function tooljigEditContent() {
             // 'jigNo': $('#tooljigNoEdit').val(),
             'jigClass': $('#tooljigClassEdit').val(),
             // 'jigUse': $('#tooljigUseEdit').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             tooljigTable.draw();
@@ -421,7 +430,8 @@ function materialCreateContent() {
             'materialClass': $('#materialClassCreate').val(),
             'materialSize': $('#materialSizeCreate').val(),
             'materialCount': $('#materialCountCreate').val(),
-            
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
             // 'materialNo': $('#materialNoCreate').val(),
             // 'materialStatus': $('#materialStatusCreate').val(),
             // 'materialTableCreateDate':$('#materialTableCreateDateCreate').val(),
@@ -450,7 +460,8 @@ function materialEditContent() {
             'materialClass': $('#materialClassEdit').val(),
             'materialSize': $('#materialSizeEdit').val(),
             'materialCount': $('#materialCountEdit').val(),
-
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
             // 'materialNo': $('#materialNoEdit').val(),
             // 'materialStatus': $('#materialStatusEdit').val(),
             // 'materialTableCreateDate':$('#materialTableCreateDateEdit').val(),
@@ -508,6 +519,8 @@ function memberCreateContent() {
             // 'memberSubDuties': $('#memberSubDutiesCreate').val(),
             // 'memberHiringDay':$('#memberHiringDayCreate').val(),
             // 'memberFiringDay':$('#memberFiringDayCreate').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             memberTable.draw();
@@ -533,6 +546,8 @@ function memberEditContent() {
             // 'memberSubDuties': $('#memberSubDutiesEdit').val(),
             // 'memberHiringDay':$('#memberHiringDayEdit').val(),
             // 'memberFiringDay':$('#memberFiringDayEdit').val(),
+            'accountId': getCookie("id"),
+            'companyId': getCookie("companyId")
         }),
         success: function () {
             memberTable.draw();

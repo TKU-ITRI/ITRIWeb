@@ -77,6 +77,7 @@
         url: parent.webApiUrl + "/pOrder/GetAll",
         contentType: "application/json",
         data: function (d) {
+          d.accountId = getCookie("id");
           return JSON.stringify(d)
         }
       },
@@ -129,29 +130,6 @@
           return html
         },
       },
-      // {
-      //   targets: [0], //要合并的列数（第1，2，3列）
-      //   createdCell: function (td, cellData, rowData, row, col) {
-      //     var rowspan = 3;
-      //     var i = 0;
-      //     r.push(rowData.pInOrderId)
-
-      //     if (row == 3) {
-      //       $(td).attr('rowspan', rowspan)
-      //     }
-      //     if (row == 5 || row == 4) {
-      //       $(td).remove();
-      //     }
-
-
-
-          //  if(nextRData == preRData){
-          //     $(td).attr('rowspan', rowspan)
-          //     $(td).remove();
-          //  }
-          // if (rowspan == 2) {
-          //     $(td).remove();
-          //  }
       ],
       "dom": '<"toolbar">frtip', // enable custommize toolbar elements
       "language": { // change display text

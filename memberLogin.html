@@ -30,9 +30,7 @@
     <script>
         var token;
         $(document).ready(function () {
-            token = getCookie("token");
-            if (token) mainInitial();
-
+            $("#memberName").val(getCookie("memberName"));
 
         });
     </script>
@@ -48,23 +46,18 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">訂單管理系統-後臺管理登入介面</h3>
-                                <form id="AccountLogin" onsubmit="return accountLogin(this)">
+                                <h3 class="login-heading mb-4">訂單管理系統-員工登入介面</h3>
+                                <form id="memberLogin" onsubmit="return memberLogin(this)">
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" class="form-control" name="inputEmail"
+                                        <input type="text" id="memberName" class="form-control" name="memberName"
                                             required autofocus>
-                                        <label for="inputEmail">UserName</label>
+                                        <label for="memberName"">姓名</label>
                                         <!-- <input type="email" id="inputEmail" class="form-control" name="inputEmail"
                                             placeholder="example@email.com" required autofocus>
                                         <label for="inputEmail">Email address</label> -->
                                     </div>
 
-                                    <div class="form-label-group">
-                                        <input type="password" class="form-control" id="inputPassword"
-                                            name="inputPassword" placeholder="Password" required>
-                                        <label for="inputPassword">Password</label>
-                                    </div>
-
+                                  
                                     <!-- <div class="custom-control custom-checkbox mb-3">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">Remember password</label>
@@ -72,7 +65,7 @@
                                     <button
                                         class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                                         type="submit">Sign in</button>
-                                    <a href="memberLogin.html"
+                                    <a href="index.html"
                                         class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2">員工介面</a>
                                     <!-- <div class="text-center">
                                         <a class="small" href="#">Forgot password?</a></div>
@@ -144,8 +137,8 @@
                 <ul class="nav.black mr-auto" id="menu"></ul>
 
 
-                <button class="btn btn-outline-dark my-2 my-sm-0" onclick="accountEdit();" type="submit">更改密碼</button>
-                <button class="btn btn-outline-danger my-2 my-sm-0" onclick="accountLogout();" type="submit">登出</button>
+                <!-- <button class="btn btn-outline-dark my-2 my-sm-0" onclick="accountEdit();" type="submit">更改密碼</button>
+                <button class="btn btn-outline-danger my-2 my-sm-0" onclick="accountLogout();" type="submit">登出</button> -->
                 </span>
             </div>
         </nav>

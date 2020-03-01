@@ -42,6 +42,9 @@ function mainInitial() {
             break;
         case "P2":
             break;
+        default :
+            $("#iframe-content").attr("src", "/Views/MemberManage/MemberPage.html");
+  
 
     }
 
@@ -200,7 +203,7 @@ function accountLogin(form) {
             setCookie("nickName", result.nickName);
             setCookie("companyId", result.companyId);
 
-            mainInitial(StudentId);
+            mainInitial();
             form.reset();
             $("#menu").empty();
         },
@@ -210,36 +213,30 @@ function accountLogin(form) {
     });
     return false;
 }
-function UserLogin(form) {
-    console.log(form.inputEmail.value);
-    console.log(form.inputPassword.value);
-    var StudentId = 0
-    StudentId = window.location.href.split("=")[1];
-
+function memberLogin(form) {
+    console.log(form.memberName.value);
     $.ajax({
         type: "POST",
-        url: webApiUrl + "/account/login",
+        url: webApiUrl + "/account/memberlogin",
         contentType: "application/json;charset=utf-8",
         async: false,
         data: JSON.stringify({
-            "username": form.inputEmail.value,
-            "password": form.inputPassword.value
+            "memberName": form.memberName.value,
         }),
         success: function (result) {
             if (result == null) {
-                console.log("1223");
                 alert("帳號或密碼輸入錯誤");
             }
 
             console.log(result);
             setCookie("id", result.id);
-            setCookie("userName", result.userName);
-            setCookie("type", result.type);
-            setCookie("token", result.token);
-            setCookie("GroupId", result.groupId);
-            setCookie("nickName", result.nickName);
+            setCookie("memberDuties", result.memberDuties);
+            setCookie("memberNo", result.memberNo);
+            setCookie("memberName", result.memberName);
+            setCookie("companyId", result.companyId);
+            setCookie("type", "M");
 
-            StudentInitial(StudentId);
+            mainInitial();
             form.reset();
             $("#menu").empty();
         },
