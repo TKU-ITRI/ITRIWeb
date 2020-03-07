@@ -62,7 +62,13 @@
                     }
                 }, {
                     "targets": [3, 4], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -77,7 +83,7 @@
                 }
             });
             alert(btnBack);
-            if(btnBack != null && btnBack > 0) {
+            if (btnBack != null && btnBack > 0) {
                 $("div.toolbar").append('<button class="btn btn-outline-primary btn-sm" onclick="DetailDistrict()">回上一層</button>　'); // get dom from toolbar
             } else {
                 $("div.toolbar").empty();
@@ -263,7 +269,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="createDistrictCommit();">新增鄉鎮市區</button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                        onclick="createDistrictCommit();">新增鄉鎮市區</button>
                 </div>
             </div>
         </div>

@@ -50,12 +50,18 @@
                     "visible": false
                 }, {
                     "targets": [5, 6, 7], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
-                },{
+                }, {
                     "targets": [4],
-                    "render": function(data, type, row){
-                        return data.substr( 0, 64 ) + "...";
+                    "render": function (data, type, row) {
+                        return data.substr(0, 64) + "...";
                     }
                 }],
                 "language": { // change display text

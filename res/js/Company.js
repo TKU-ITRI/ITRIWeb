@@ -150,7 +150,7 @@ function CompanyManager(Id, title) { // 編輯會員初始化
             "render": function (data, type, row) {
                 var checked = (row.active == 0) ? "啟用" : "停用";
                 return "<a href='javascript:void(0);' onclick='changeAMStatus(" + row.id + ",\"" + checked + row.companyName + "\", \"" + checked + "\");'>" + checked + "</a>";
-    }
+            }
 
         }, {
             "targets": 3,
@@ -169,10 +169,13 @@ function CompanyManager(Id, title) { // 編輯會員初始化
             }
         }, {
             "targets": [6, 7], render: function (data) {
-                if(data==null)
+                if (data == null)
                     return "無";
-                else
-                    return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                else {
+                    var dateOrigin = new Date(data)
+                    dateOrigin.setHours(dateOrigin.getHours() + 8)
+                    return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                }
             }
         }],
         "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -242,7 +245,7 @@ function createAccountCommit() { // 建立初始化
     if ($('#txtpasswordCreate').val() != $('#txtConfirmPasswordCreate').val()) return alert("密碼不符");
     //if ($('#txtloginCreate').val().search(emailRule) == -1) return alert("帳號格式不正確");
     //if ($('#txtnameCreate').val() == "") return alert("暱稱不正確");
-    
+
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },
@@ -270,7 +273,7 @@ function createAccountCommit() { // 建立初始化
                     break;
             }
         },
-    
+
     })
     $('#AMCreate').modal('show');
 }

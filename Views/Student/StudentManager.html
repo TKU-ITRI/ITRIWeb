@@ -15,7 +15,7 @@
     <!-- zipdownload -->
     <script src="/node_modules/jszip/dist/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
-   
+
     <script type="text/javascript" src="/res/js/jquery.min.js"></script>
     <script type="text/javascript" src="/res/js/qrcode.js"></script>
     <script type="text/javascript" src="/res/js/qrcode.min.js"></script>
@@ -225,7 +225,13 @@
                     }
                 }, {
                     "targets": [14, 15], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }, {
                     "targets": 16, // add edit buttononclick="recordChat(' + row.id + ')
@@ -591,7 +597,7 @@
                     </div>
                     <div class="form-group">
                         <label for="txtstatusEdit">狀態</label>
-                        <select  class="form-control form-control-sm" id="txtstatusEdit">
+                        <select class="form-control form-control-sm" id="txtstatusEdit">
                         </select>
                     </div>
                     <div class="form-group">

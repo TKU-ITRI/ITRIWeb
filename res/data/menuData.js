@@ -230,14 +230,14 @@ var menuData = {
         },
 
 
-        {
-            title: '進度',
-            link: 'javascript:void(0);',
-            command: 'jindu',
-            views: 'gondan',
-            sub: null,
-            icon: null
-        },
+        // {
+        //     title: '進度',
+        //     link: 'javascript:void(0);',
+        //     command: 'jindu',
+        //     views: 'gondan',
+        //     sub: null,
+        //     icon: null
+        // },
         {
             title: '資源管理',
             link: 'javascript:void(0);',
@@ -246,14 +246,14 @@ var menuData = {
             sub: null,
             icon: null
         },
-        {
-            title: '訂單',
-            link: 'javascript:void(0);',
-            command: 'APS',
-            views: 'gondan',
-            sub: null,
-            icon: null
-        },
+        // {
+        //     title: '訂單',
+        //     link: 'javascript:void(0);',
+        //     command: 'APS',
+        //     views: 'gondan',
+        //     sub: null,
+        //     icon: null
+        // },
         {
             title: '生產管理',
             link: 'javascript:void(0);',
@@ -262,14 +262,14 @@ var menuData = {
             sub: null,
             icon: null
         },
-        {
-            title: '日程',
-            link: 'javascript:void(0);',
-            command: 'MemberPage',
-            views: 'MemberManage',
-            sub: null,
-            icon: null
-        },
+        // {
+        //     title: '日程',
+        //     link: 'javascript:void(0);',
+        //     command: 'MemberPage',
+        //     views: 'MemberManage',
+        //     sub: null,
+        //     icon: null
+        // },
         {
             title: '檢視查詢',
             link: 'javascript:void(0);',

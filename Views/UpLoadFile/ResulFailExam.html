@@ -155,7 +155,13 @@
                     }
                 }, {
                     "targets": [11, 12], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -694,9 +700,9 @@
                                 type: "text",
                                 text: result[i].text
                             }, {
-                                    id: kendo.guid(),
-                                    name: '',
-                                });
+                                id: kendo.guid(),
+                                name: '',
+                            });
                         }
                     }
                 },

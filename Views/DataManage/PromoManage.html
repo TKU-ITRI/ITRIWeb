@@ -19,7 +19,8 @@
     <link href="/res/bootstrap/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"
+        rel="stylesheet" />
     <script>
         var dataTables;
         $(document).ready(function () {
@@ -63,7 +64,13 @@
                     }
                 }, {
                     "targets": [3, 4], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -78,10 +85,10 @@
                 }
             });
             $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createPromo()">建立活動代碼</button>'); // get dom from toolbar
-            $('#txtStartCreate, #txtEndCreate, #txtStartEdit, #txtEndEdit').datepicker({format: 'yyyy-mm-dd'});
+            $('#txtStartCreate, #txtEndCreate, #txtStartEdit, #txtEndEdit').datepicker({ format: 'yyyy-mm-dd' });
         });
         /// Function 
-        function recordHistory(id, name, code ) {
+        function recordHistory(id, name, code) {
             $('#companyRecordTable').DataTable({
                 "destroy": true, // 允許Ajax重新載入資料
                 "lengthChange": false,
@@ -113,7 +120,13 @@
                     "visible": false
                 }, {
                     "targets": [4], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }]
             });
@@ -328,34 +341,34 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                            <label for="txtEventCodeEdit">活動代碼</label>
-                            <input type="hidden" class="form-control form-control-sm" id="txtPromoIdEdit">
-                            <input type="text" class="form-control form-control-sm" id="txtEventCodeEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtEventNameEdit">活動名稱</label>
-                            <input type="text" class="form-control form-control-sm" id="txtEventNameEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtEventDescEdit">活動說明</label>
-                            <input type="text" class="form-control form-control-sm" id="txtEventDescEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtPointEdit">活動點數</label>
-                            <input type="number" class="form-control form-control-sm" id="txtPointEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtStartEdit">開始時間</label>
-                            <input type="text" class="form-control form-control-sm" id="txtStartEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtEndEdit">結束時間</label>
-                            <input type="text" class="form-control form-control-sm" id="txtEndEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="selCompanyEdit">活動公司</label>
-                            <select class="form-control form-control-sm" id="selCompanyEdit"></select>
-                        </div>
+                        <label for="txtEventCodeEdit">活動代碼</label>
+                        <input type="hidden" class="form-control form-control-sm" id="txtPromoIdEdit">
+                        <input type="text" class="form-control form-control-sm" id="txtEventCodeEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEventNameEdit">活動名稱</label>
+                        <input type="text" class="form-control form-control-sm" id="txtEventNameEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEventDescEdit">活動說明</label>
+                        <input type="text" class="form-control form-control-sm" id="txtEventDescEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPointEdit">活動點數</label>
+                        <input type="number" class="form-control form-control-sm" id="txtPointEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtStartEdit">開始時間</label>
+                        <input type="text" class="form-control form-control-sm" id="txtStartEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEndEdit">結束時間</label>
+                        <input type="text" class="form-control form-control-sm" id="txtEndEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="selCompanyEdit">活動公司</label>
+                        <select class="form-control form-control-sm" id="selCompanyEdit"></select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
@@ -407,8 +420,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm"
-                        onclick="createPromoCommit();">新增活動代碼</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="createPromoCommit();">新增活動代碼</button>
                 </div>
             </div>
         </div>

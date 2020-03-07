@@ -54,21 +54,27 @@
                     "targets": 1,
                     "render": function (data, type, row) {
                         var checked = (row.status == 0) ? "啟用" : "停用";
-                        return "<a href='javascript:void(0);' onclick='changeStatus(" + row.id + ",\"" + checked + row.name+"\", \"" + checked + "\");'>" + checked + "</a>";
+                        return "<a href='javascript:void(0);' onclick='changeStatus(" + row.id + ",\"" + checked + row.name + "\", \"" + checked + "\");'>" + checked + "</a>";
                     }
-                  
-                },{
+
+                }, {
                     "targets": 7, // add edit buttononclick="recordChat(' + row.id + ')
                     "render": function (data, type, row) {
-                        var html ="";
-                        html+='<a href="javascript:void(0);" onclick="DetailObject(' + row.id + ')">詳細</a> '
-                        html+= '| <a href="javascript:void(0);" onclick="editAccount(' + row.id + ',\'' + row.name + '\')">編輯</a>'
-                        html+=' | <a href="javascript:void(0);" onclick="DeleteAccount(' + row.id + ')">刪除</a> '
-                        return  html
+                        var html = "";
+                        html += '<a href="javascript:void(0);" onclick="DetailObject(' + row.id + ')">詳細</a> '
+                        html += '| <a href="javascript:void(0);" onclick="editAccount(' + row.id + ',\'' + row.name + '\')">編輯</a>'
+                        html += ' | <a href="javascript:void(0);" onclick="DeleteAccount(' + row.id + ')">刪除</a> '
+                        return html
                     }
-                },{
-                    "targets": [5,6], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                }, {
+                    "targets": [5, 6], render: function (data) {
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -81,10 +87,10 @@
                         "previous": "<"
                     }
                 }
-                
+
             });
             $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">建立學校帳號</button>'); // get dom from toolbar
-            $('#txtCreateDateEdit').datepicker({ format: 'yyyy-mm-dd' }); 
+            $('#txtCreateDateEdit').datepicker({ format: 'yyyy-mm-dd' });
         });
         function DeleteAccount(id, msg) { // 變更狀態
             var confirmStatus = confirm("是否刪除此帳號?");
@@ -237,11 +243,11 @@
                 contentType: "application/json;charset=utf-8",
                 async: false,
                 data: JSON.stringify({
-                    'Id':$("#txtidEdit").val(),
-                    'Name' : $("#txtnameEdit").val(),
-                    'Status' : $("#txtstatusEdit").val(),
-                    'StudentNumber' :$("#txtstudentNumberEdit").val(),
-                    'UseNumber' : $("#txtuseNumberEdit").val(),
+                    'Id': $("#txtidEdit").val(),
+                    'Name': $("#txtnameEdit").val(),
+                    'Status': $("#txtstatusEdit").val(),
+                    'StudentNumber': $("#txtstudentNumberEdit").val(),
+                    'UseNumber': $("#txtuseNumberEdit").val(),
                 }),
                 success: function () {
                     dataTables.draw();
@@ -281,8 +287,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table id="AMDetail" class="table table-striped table-sm"
-                        style="width:100%; font-size: 0.9em;">
+                    <table id="AMDetail" class="table table-striped table-sm" style="width:100%; font-size: 0.9em;">
                         <thead>
                             <tr>
                                 <th>id</th>
@@ -317,32 +322,32 @@
                 </div>
 
                 <div class="modal-body">
-                
-                        <div class="form-group">
-                                <input type="hidden" class="form-control form-control-sm" id="txtidEdit">
-                        </div>
-                    
-                        <div class="form-group">
-                            <label for="txtnameEdit">學校名稱</label>
-                            <input type="text" class="form-control form-control-sm" id="txtnameEdit">
-                        </div>
-                      
-                    
-                      
-                        <div class="form-group">
-                            <label for="txtstatusEdit">狀態</label>
-                            <select class="form-control form-control-sm" id="txtstatusEdit">
-                         </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtstudentNumberEdit">學生人數</label>
-                            <input type="text" class="form-control form-control-sm" id="txtstudentNumberEdit">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtuseNumberEdit">使用數量</label>
-                            <input type="text" class="form-control form-control-sm" id="txtuseNumberEdit">
-                        </div>
+
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" id="txtidEdit">
                     </div>
+
+                    <div class="form-group">
+                        <label for="txtnameEdit">學校名稱</label>
+                        <input type="text" class="form-control form-control-sm" id="txtnameEdit">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="txtstatusEdit">狀態</label>
+                        <select class="form-control form-control-sm" id="txtstatusEdit">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtstudentNumberEdit">學生人數</label>
+                        <input type="text" class="form-control form-control-sm" id="txtstudentNumberEdit">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtuseNumberEdit">使用數量</label>
+                        <input type="text" class="form-control form-control-sm" id="txtuseNumberEdit">
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
                     <button type="button" class="btn btn-primary btn-sm" onclick="editAccountCommit();">修改存檔</button>
@@ -357,37 +362,38 @@
             <div class="modal-content">
                 <div class="modal-header">
 
-                    <h5 class="modal-title" id="modalCreateLabel"新增學校帳號</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="modalCreateLabel" 新增學校帳號</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
-              
+
 
                 <div class="modal-body">
-                                        
-                        <div class="form-group">
-                                <label for="txtnameCreate">學校名稱</label>
-                                <input type="text" class="form-control form-control-sm" id="txtnameCreate">
-                        </div>
-                          
-                        <div class="form-group">
-                                <label for="txtstatusCreate">狀態</label>
-                                <select class="form-control form-control-sm" id="txtstatusCreate">
-                         </select>
-                         </div>
-                         <div class="form-group">
-                                <label for="txtstudentNumberCreate">學生人數</label>
-                                <input type="text" class="form-control form-control-sm" id="txtstudentNumberCreate">
-                        </div>
-                         <div class="form-group">
-                                <label for="txtuseNumberCreate">使用數量</label>
-                                <input type="text" class="form-control form-control-sm" id="txtuseNumberCreate">
-                        </div>
+
+                    <div class="form-group">
+                        <label for="txtnameCreate">學校名稱</label>
+                        <input type="text" class="form-control form-control-sm" id="txtnameCreate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtstatusCreate">狀態</label>
+                        <select class="form-control form-control-sm" id="txtstatusCreate">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtstudentNumberCreate">學生人數</label>
+                        <input type="text" class="form-control form-control-sm" id="txtstudentNumberCreate">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtuseNumberCreate">使用數量</label>
+                        <input type="text" class="form-control form-control-sm" id="txtuseNumberCreate">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="createAccountCommit();">新增學校帳號</button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                        onclick="createAccountCommit();">新增學校帳號</button>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
             color: white;
         }
     </style>
-   <script>
+    <script>
         $(function () {
             $('#AiQuestionAndAnswerRecordTable').DataTable({
                 "searching": false,
@@ -50,7 +50,7 @@
                     { 'data': 'id' },
                     { 'data': 'accountId' },
                     { 'data': 'memberId' },
-                    { 'data': 'accountName'},
+                    { 'data': 'accountName' },
                     { 'data': 'memberName' },
                     { 'data': 'isRobot' }, //5
                     { 'data': 'isInjection' },
@@ -79,19 +79,25 @@
                     "render": function (data, type, row) {
                         return (row.isInjection == 0) ? "否" : "是";
                     }
-                },{
+                }, {
                     "targets": 7,
                     "render": function (data, type, row) {
                         return (row.isComplete == 0) ? "否" : "是";
                     }
-                },{
+                }, {
                     "targets": 8,
                     "render": function (data, type, row) {
                         return (row.isCorrect == 0) ? "錯誤" : "正確";
                     }
-                },{
+                }, {
                     "targets": [10, 11, 12], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip',
@@ -105,13 +111,13 @@
                     }
                 }
             });
-            var html ='<div class="tablesRows" style="width:150px;height:40px"><a>目前回答率為 0</a></div>'
+            var html = '<div class="tablesRows" style="width:150px;height:40px"><a>目前回答率為 0</a></div>'
             $("div.toolbar").html(html); // get dom from toolbar
             GetCorrectRate();
 
         })
 
-        function GetCorrectRate() {  
+        function GetCorrectRate() {
             $.ajax({
                 type: "POST",
                 headers: { 'Authorization': getCookie("token") },
@@ -119,9 +125,9 @@
                 contentType: "application/json;charset=utf-8",
                 async: false,
                 success: function (e) {
-                    var html ='<div class="tablesRows" style="width:150px;height:40px"><a>目前回答率為'+e+'%</a></div>'
+                    var html = '<div class="tablesRows" style="width:150px;height:40px"><a>目前回答率為' + e + '%</a></div>'
                     $("div.toolbar").html(html);
-      
+
                 }
             });
         }
@@ -170,9 +176,9 @@
             });
             $('#modalRecord').modal('show');
         }
-       
-            
-        
+
+
+
     </script>
 </head>
 

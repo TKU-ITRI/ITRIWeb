@@ -106,8 +106,11 @@
                     "targets": [3, 4], render: function (data) {
                         if (data == null)
                             return "無";
-                        else
-                            return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements

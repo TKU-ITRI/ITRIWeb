@@ -1,10 +1,11 @@
 //var webApiUrl = "http://localhost:49705";
 var webApiUrl = ""
-if (window.location.port == "5500")
-    webApiUrl = "http://localhost:6500";
-else
-    webApiUrl = "http://itriwebapi-test.us-east-1.elasticbeanstalk.com";
-console.log(webApiUrl)
+// webApiUrl = "https://localhost:44376";
+console.log(window.location.hostname)
+ if (window.location.hostname == "127.0.0.1")
+     webApiUrl = "http://163.13.243.118:5000";
+ else
+     webApiUrl = "http://163.13.243.118:5000";
 emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
 
@@ -43,7 +44,7 @@ function mainInitial() {
         case "P2":
             break;
         default :
-            $("#iframe-content").attr("src", "/Views/MemberManage/MemberPage.html");
+            $("#iframe-content").attr("src", "/Views/Member/MemberPage.html");
   
 
     }
@@ -207,7 +208,12 @@ function accountLogin(form) {
             form.reset();
             $("#menu").empty();
         },
-        error: function () {
+        error: function (e) {
+            alert(e);
+            alert(e.statusText)
+            alert(webApiUrl + "/account/login");
+            alert(form.inputEmail.value)
+            alert(form.inputPassword.value)
             alert("伺服器有問題")
         }
     });
@@ -234,8 +240,9 @@ function memberLogin(form) {
             setCookie("memberNo", result.memberNo);
             setCookie("memberName", result.memberName);
             setCookie("companyId", result.companyId);
+            setCookie("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjUyIiwiVHlwZSI6IkMiLCJDcmVhdGVEYXRlIjoiMjAyMC0wMi0yMyAxMjo0OTo0MiJ9.RUAWm2pDCqECybV0_ZqTiJ_QcxL9ty_eONMHn4YS0e8")
             setCookie("type", "M");
-
+            
             mainInitial();
             form.reset();
             $("#menu").empty();

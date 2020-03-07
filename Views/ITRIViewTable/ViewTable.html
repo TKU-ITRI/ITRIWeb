@@ -23,26 +23,38 @@
     <link href="//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
     <style>
+        .tablesRows {
+            background: rgb(3, 151, 139);
+            font-size: 1.5em;
+            width: 9em;
+            height: 1.5em;
+            font-family: "DFKai-sb";
+            text-align: center;
+            color: white;
+        }
+
         .table {
             background-color: transparent;
             table-layout: fixed;
+            font-size: 1em;
+
+        }
+
+
+        .table>tbody>tr>td {
+            text-align: center;
+            border: 1px solid black;
+
         }
     </style>
     <script>
         var dataTables;
         var r = [];
+        var orderRowspan = 0;
+        var clientRowspan = 0;
 
         $(document).ready(function () {
-            $.each(memberTypeData, function (key, value) { // generate dropdown list from memberData.js 
-                $("#txttypeEdit").append('<option value=' + key + '>' + value + '</option>');
-                $("#txttypeCreate").append('<option value=' + key + '>' + value + '</option>');
 
-            });
-
-            $("#txtactiveEdit").append('<option value="1">啟用</option>');
-            $("#txtactiveEdit").append('<option value="0">停用</option>');
-            $("#txtactiveCreate").append('<option value="1">啟用</option>');
-            $("#txtactiveCreate").append('<option value="0">停用</option>');
 
             GetAllCompany();
             dataTables = $('#AMTable').DataTable({
@@ -58,22 +70,21 @@
                     url: parent.webApiUrl + "/itriview/GetAll",
                     contentType: "application/json",
                     data: function (d) {
+                        d.id = getCookie("id");
                         return JSON.stringify(d)
                     }
                 },
                 //Type varchar(45) 
 
                 "columns": [
-                    { 'data': 'porderid' },
                     { 'data': 'client_No' },
                     { 'data': 'order_No' },
-                    { 'data': 'order_CreateDate' },
-                    { 'data': 'order_Predict_Date' },
+                    { 'data': 'completionRate' },
                     { 'data': 'gonid' },
                     { 'data': 'purchase_Id' },
-                    { 'data': 'assembly_Id' },
-                    { 'data': 'orderoutsource_Id' },
                     { 'data': 'orderselfmade_Id' },
+                    { 'data': 'orderoutsource_Id' },
+                    { 'data': 'assembly_Id' },
 
 
 
@@ -84,27 +95,58 @@
                 }, {
                     targets: [0], //要合并的列数（第1，2，3列）
                     createdCell: function (td, cellData, rowData, row, col) {
-                        var rowspan = 3;
-                        var i = 0;
-                        r.push(rowData.pInOrderId)
-                        if (row == 3) {
-                            $(td).attr('rowspan', rowspan)
-                        }
-                        if (row == 5 || row == 4) {
+                        console.log(rowData)
+
+                        if (clientRowspan > 0) {
+                            clientRowspan--;
                             $(td).remove();
                         }
+                        if (rowData.clientrowspan != 0) {
+                            $(td).attr('rowspan', rowData.clientrowspan + 1)
+                            clientRowspan = rowData.clientrowspan
+                        }
+
                     }
+                }, {
+                    targets: [1], //要合并的列数（第1，2，3列）
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        console.log(rowData)
+
+                        if (orderRowspan > 0) {
+                            orderRowspan--;
+                            $(td).remove();
+                        }
+                        if (rowData.orderrowspan != 0) {
+                            $(td).attr('rowspan', rowData.orderrowspan + 1)
+                            orderRowspan = rowData.orderrowspan
+                        }
+
+                    }
+                }, {
+                    targets: [2], //要合并的列数（第1，2，3列）
+                    "render": function (data, type, row) { 
+                       switch(row.completionRate){
+                            case null:
+                                return "無預測時間"
+                            case -1:
+                                return "時間設定錯誤"
+                            default:
+                                var num = (row.completionRate*100)
+                                return num.toFixed(2)+"%"
+                       }
+
+                    },
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
                 "language": { // change display text
-                "info": " 目前顯示 _START_ 至 _END_ 筆，共計 _TOTAL_ 筆。",
-                "paginate": {
-                    "first": "第一頁",
-                    "last": "最後一頁",
-                    "next": ">",
-                    "previous": "<"
+                    "info": " 目前顯示 _START_ 至 _END_ 筆，共計 _TOTAL_ 筆。",
+                    "paginate": {
+                        "first": "第一頁",
+                        "last": "最後一頁",
+                        "next": ">",
+                        "previous": "<"
+                    }
                 }
-            }
 
             });
 
@@ -141,20 +183,19 @@
 
 <body>
     <!-- DataTables -->
-    <table id="AMTable" class="table table-striped table-sm" style="width:100%; font-size: 0.9em;">
+    <table id="AMTable" class="table table-striped table-sm cell-board" style="width:100%;">
         <thead>
             <tr>
-                <th>porderid</th>
-                <th>client_No</th>
-                <th>order_No</th>
-                <th>order_CreateDate</th>
-                <th>order_Predict_Date</th>
-                <th>gonid</th>
+                <th>客戶</th>
+                <th>訂單編號</th>
+                <th>完成率</th>
+                <th>工單編號</th>
+                <th>市構件採購單編號</th>
+                <th>加工程序單編號</th>
+                <th>製程外包單編號</th>
+                <th>組裝程序單編號</th>
 
-                <th>purchase_Id</th>
-                <th>assembly_Id</th>
-                <th>orderoutsource_Id</th>
-                <th>orderselfmade_Id</th>
+
 
                 <!-- <th>狀態</th>
                 <th>帳號</th>

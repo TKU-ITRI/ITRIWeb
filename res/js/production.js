@@ -5,7 +5,7 @@
 var PorderNo;
 var GonNo;
 var formData = new FormData();
-function init() {
+function initOne() {
     // Create
     // $("#pOrderCreate_Content").load("/Views/ProductionManage/test.html");
     $("#purchase_Content").load("/Views/ProductionManage/Purchase.html");
@@ -105,7 +105,10 @@ function confirm2() {
     $("#purchase").modal("hide");
     $("#gon").modal("show");
 }
-
+function changeTime(data){
+    var time = new Date(data)
+    return time.setHours(time.getHours()+8)
+}
 // Edit
 function pOrderEdit(id) {
     $("#pOrderEdit_title").text(id + " 編輯頁面")
@@ -123,8 +126,10 @@ function pOrderEdit(id) {
             $("#pOutOrderIdEdit").val(e.pOutOrderId);
             $("#pInOrderIdEdit").val(e.pInOrderId);
             $("#pOrderClientNoEdit").val(e.pOrderClientNo);
-            $("#pOrderPredictDateEdit").val(moment(e.pOrderPredictDate).format('YYYY/MM/DD hh:mm'));
-            $('#pOrderCompleteDateEdit').val(moment(e.pOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
+            
+            $("#pOrderPredictDateEdit").val(moment(changeTime(e.pOrderPredictDate)).format('YYYY/MM/DD hh:mm'));
+            $("#pOrderCompleteDateEdit").val(moment(changeTime(e.pOrderCompleteDate)).format('YYYY/MM/DD hh:mm'));
+
             $("#pOrderEdit").modal("show");
 
         }
@@ -199,8 +204,9 @@ function assemblyEdit(id) {
             $('#aListImageEdit').val(e.aListImage);
             $('#aListMemberNameEdit').val(e.aListMemberName);
             $('#aListToolEdit').val(e.aListTool);
-            $('#aListPredictDateEdit').val(moment(e.aListPredictDate).format('YYYY/MM/DD hh:mm'));
-            $('#aListCompleteDateEdit').val(moment(e.aListCompleteDate).format('YYYY/MM/DD hh:mm'));
+            $("#aListPredictDateEdit").val(moment(changeTime(e.aListPredictDate)).format('YYYY/MM/DD hh:mm'));
+            $("#aListCompleteDateEdit").val(moment(changeTime(e.aListCompleteDate)).format('YYYY/MM/DD hh:mm'));
+
             $("#aGonNoEdit").val(e.aGonNo);
             $("#assemblyEdit").modal("show");
 
@@ -231,8 +237,9 @@ function orderOutEdit(id) {
             $('#oOrderScheduleEdit').val(e.oOrderSchedule);
             $('#oOrderMethodEdit').val(e.oOrderMethod);
             $('#oOrderContractorEdit').val(e.oOrderContractor);
-            $('#oOrderPredictDateEdit').val(moment(e.oOrderPredictDate).format('YYYY/MM/DD hh:mm'));
-            $('#oOrderCompleteDateEdit').val(moment(e.oOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
+            $("#oOrderPredictDateEdit").val(moment(changeTime(e.oOrderPredictDate)).format('YYYY/MM/DD hh:mm'));
+            $("#oOrderCompleteDateEdit").val(moment(changeTime(e.oOrderCompleteDate)).format('YYYY/MM/DD hh:mm'));
+
 
             $("#oGonNoEdit").val(e.oGonNo);
             $("#orderOutEdit").modal("show");
@@ -268,8 +275,9 @@ function orderSelfEdit(id) {
             $('#sOrderSettingEdit').val(e.sOrderSetting);
             $('#sOrderCountEdit').val(e.sOrderCount);
             $('#sOrderMaterialEdit').val(e.sOrderMaterial);
-            $('#sOrderPredictDateEdit').val(moment(e.sOrderPredictDate).format('YYYY/MM/DD hh:mm'));
-            $('#sOrderCompleteDateEdit').val(moment(e.sOrderCompleteDate).format('YYYY/MM/DD hh:mm'));
+            $("#sOrderPredictDateEdit").val(moment(changeTime(e.sOrderPredictDate)).format('YYYY/MM/DD hh:mm'));
+            $("#sOrderCompleteDateEdit").val(moment(changeTime(e.sOrderCompleteDate)).format('YYYY/MM/DD hh:mm'));
+
 
             $("#sGonNoEdit").val(e.sGonNo);
             $("#orderSelfEdit").modal("show");
@@ -280,6 +288,7 @@ function orderSelfEdit(id) {
 
 //create_content
 function pOrderCreateContent() {
+
     $.ajax({
         type: "POST",
         headers: { 'Authorization': getCookie("token") },

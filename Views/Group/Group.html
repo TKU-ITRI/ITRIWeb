@@ -180,7 +180,13 @@
                     }
                 }, {
                     "targets": [12, 11], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -196,7 +202,7 @@
 
             });
             $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">新增會員帳號</button>'); // get dom from toolbar
-            $('#modalGroup').modal("show"); 
+            $('#modalGroup').modal("show");
         }
         function DeleteAccount(id, msg) { // 變更狀態
             var confirmStatus = confirm("是否刪除此帳號?");
@@ -366,7 +372,7 @@
                 }
             });
         }
-      
+
         function DetailExam(id) {
             $('#ExamTable').DataTable({
                 "searching": false,
@@ -1019,8 +1025,8 @@
                 <div class="modal-header">
 
                     <h5 class="modal-title" id="GroupCreateLabel" 建立群組</h5> <button type="button" class="close"
-                        data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
 
@@ -1175,8 +1181,8 @@
                 <div class="modal-header">
 
                     <h5 class="modal-title" id="AMCreateLabel" 新增會員帳號</h5> <button type="button" class="close"
-                        data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
 

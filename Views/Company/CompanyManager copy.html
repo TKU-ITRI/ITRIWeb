@@ -96,7 +96,13 @@
                     }
                 }, {
                     "targets": [6, 7], render: function (data) {
-                        return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                        if (data == null)
+                            return "無";
+                        else {
+                            var dateOrigin = new Date(data)
+                            dateOrigin.setHours(dateOrigin.getHours() + 8)
+                            return moment(dateOrigin).format('YYYY-MM-DD hh:mm:ss');
+                        }
                     }
                 }],
                 "dom": '<"toolbar">frtip', // enable custommize toolbar elements
@@ -113,7 +119,7 @@
             });
             $("div.toolbar").html('<button class="btn btn-outline-primary btn-sm" onclick="createAccount()">新增會員帳號</button>'); // get dom from toolbar
         });
-   
+
     </script>
 </head>
 
